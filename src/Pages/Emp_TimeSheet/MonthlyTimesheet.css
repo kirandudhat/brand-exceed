@@ -1,0 +1,25 @@
+.timesheet {
+    flex: 7;
+    /* padding-bottom: 60px; */
+    padding-left: 10PX;
+    /* padding: 0px 20px; */
+  }
+  .btn {
+    /* margin-left: 240px; */
+  }
+  .timesheetWrapper {
+    padding: 0px 20px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1% !important;
+  }
+  .timesheetmain {
+    flex: 1;
+    margin: 0px 20px;
+    padding: 30px;
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  
+  }
+  

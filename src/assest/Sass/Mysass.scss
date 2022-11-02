@@ -1,0 +1,10 @@
+$myButtonColor: grey;
+$MyBackGroundColor: black;
+// * {
+//   background-color: black;
+// }
+
+button {
+  color: $myButtonColor;
+  background-color: $MyBackGroundColor;
+}

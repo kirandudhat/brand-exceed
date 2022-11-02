@@ -1,0 +1,42 @@
+.cantainer {
+  display: flex;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition-duration: 0.5s;
+}
+.link:hover{
+  background: #4b4b4b;
+  color: white !important;
+}
+.btncolor{
+  background-color: #4b4b4b;
+  color: aliceblue;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+}
+.MuiStepIcon-root.MuiStepIcon-active{
+  color: #4b4b4b !important;
+}
+
+.main-title-custom{
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.edu-add-btn{
+  padding: 10px 15px;
+  background: #444444 !important;
+  margin-bottom: 25px;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.MuiStepIcon-root.MuiStepIcon-completed{
+  color: #444444 !important;
+}
