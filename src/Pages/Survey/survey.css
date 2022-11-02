@@ -1,3 +1,19 @@
 .creat-form{
     padding-bottom: 5px !important;
 }
+.surveyTitle{
+    background-color: #fafbfc;
+    /* border-bottom: 1px solid #cfdbe2; */
+    color: #929292;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    /* margin: -20px -20px 20px; */
+}
+.surveyRadio{
+    display: flex;
+    align-items: center;
+}
+.labelInput{
+    padding-right: 20px !important;
+}

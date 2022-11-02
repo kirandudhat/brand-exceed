@@ -51,13 +51,14 @@ const handleChange = (e) => {
   const {name, value} = e.target
   console.log("name", name, value)
   setCreateSurvey({
+    ...createSurvey,
     [name]: value
   })
 
 }
 
 const handleSubmit = () => {
-  history.push('/createsurvey')
+  history.push(`/admin/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`)
 }
   // const empStatus = useSelector(
   //   (state) => state.employeeStatusUpdateReducer.payload
@@ -292,18 +293,12 @@ const handleSubmit = () => {
         <DialogTitle>Create Survey</DialogTitle>
         <DialogContent style={{display:'inline-grid'}}>
         <FormControl style={{paddingBottom:'20px'}}>
-        {/* <FormLabel id="demo-form-control-label-placement">Name *</FormLabel> */}
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            type="text"
-            value={createSurvey.name}
+        <FormLabel id="demo-form-control-label-placement">Name *</FormLabel>
+        <input value={createSurvey.name}
             onChange={(e)=>handleChange(e)}
-            // fullWidth
-            variant="standard"
-          />
+            name="name"/>
+        
+          
           </FormControl>
            <FormControl style={{paddingBottom:'20px'}}>
               <FormLabel id="demo-form-control-label-placement">App Layout</FormLabel>
