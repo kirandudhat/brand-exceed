@@ -13,7 +13,91 @@
 .surveyRadio{
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 .labelInput{
     padding-right: 20px !important;
 }
+.SurvayForm{
+    margin-top: 23px !important;
+}
+.formInputs{
+    padding: 12px;
+}
+.toolbarLabel{
+ padding: 30px;
+ /* margin-left: 25px; */
+ justify-content: space-evenly;
+}
+.ToolbarInput{
+    width: 80%;
+    height: 100px;
+}
+.savebtn{
+    background-color: #00AAAA;
+}
+.forbtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 5px;
+}
+.wrapper-class {
+    padding: 0.5rem;
+    /* border: 1px solid #ccc; */
+  }
+  .editor-class {
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid #ccc;
+  }
+  .toolbar-class {
+    border: 1px solid #ccc;
+  }
+  .textArea{
+    width: 85%;
+    margin-left: 25px;
+    padding: 10px;
+  }
+  .previewIcon{
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .backbtn{
+    background-color: lightgray;
+    color: black;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .headerColor{
+    color: #929292;
+  }
+  .form-btn{
+    width: 13%;
+    height: 30px;
+    font-size: 10px !important;
+  }
+  .form-header{
+    display: flex;
+    padding: 13px;
+  }
+  .App-header {
+    background-color: #282c34;
+    min-height: 4vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-bottom: 1vh;
+    text-align: left;
+    padding: 10px;
+  }
+  .stnd-btn{
+    width: 100%;
+    text-transform: capitalize !important;
+    border-radius: 0px !important;
+  }
+  .stnd-btn-click{
+    background-color: #0e4378;
+  }

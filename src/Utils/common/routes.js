@@ -37,6 +37,7 @@ import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import OverTimeSheet from "../../Pages/Emp_OverTimeSheet/OverTimeSheet";
 import Survey from "../../Pages/Survey/Survey";
 import CreateSurvey from "../../Pages/Survey/CreateSurvey";
+import CreateSurveyForm from "../../Pages/Survey/CreateSurveyForm";
 
 export const navLinks = [
   { to: "/", name: "DashBoard", permission: [1, 2], icon: <GridViewIcon /> },
@@ -123,6 +124,12 @@ export const routes = [
     name: "CreateSurvey",
     permission: [1, 2],
     component: <CreateSurvey />,
+  },
+  {
+    path: "/CreateSurveyForm",
+    name: "CreateSurveyForm",
+    permission: [1, 2],
+    component: <CreateSurveyForm />,
   },
   { path: "/ouremployee", permission: [1], component: <OurEmployee /> },
   {

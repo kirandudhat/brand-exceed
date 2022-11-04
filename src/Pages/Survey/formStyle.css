@@ -1,0 +1,33 @@
+.singliLine-header{
+    width: 90%;
+    margin-bottom: 10px;
+    height: 30px;
+}
+.discri-input{
+    width: 70%;
+}
+.discri-lbl{
+    font-size: 12px;
+    padding-right: 20px !important
+}
+.form-control{
+    /* display: block; */
+    width: 59% !important;
+    height: 35px;
+    padding: 6px 16px;
+    font-size: 13px !important;
+    line-height: 1.52857143;
+    color: #3a3f51;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #dde6e9;
+    border-radius: 4px;
+}
+.formInputs{
+    /* padding: 12px; */
+    font-size: 13px !important;
+    color: #0d0e0f;
+}
+.limit-input{
+    margin-left: 15px;
+}
