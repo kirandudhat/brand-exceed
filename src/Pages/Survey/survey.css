@@ -1,3 +1,10 @@
+.queHeader{
+  width: 100%;
+}
+.form-header{
+  width: 100%;
+  justify-content: space-between;
+}
 .creat-form{
     padding-bottom: 5px !important;
 }

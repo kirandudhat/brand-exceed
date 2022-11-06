@@ -9,21 +9,36 @@ import {
   handleMoveWithinParent,
   handleMoveToDifferentParent,
   handleMoveSidebarComponentIntoParent,
-  handleRemoveItemFromLayout
+  handleRemoveItemFromLayout,
 } from "./helpers";
-import "./styles.css"
-import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COMPONENT, COLUMN, Advance_Item } from "./constants";
+import "./styles.css";
+import {
+  SIDEBAR_ITEMS,
+  SIDEBAR_ITEM,
+  COMPONENT,
+  COLUMN,
+  Advance_Item,
+} from "./constants";
 import shortid from "shortid";
 import { Button, Grid } from "@mui/material";
-import { SingleLine, TextBox } from "./Forms";
+import {
+  CheckBoxList,
+  MultiLine,
+  NumberPoint,
+  NumberWithCodeInput,
+  RadioButton,
+  SingleLine,
+  TextBox,
+  Rating,
+} from "./Forms";
 
 const Container = () => {
   const initialLayout = initialData.layout;
   const initialComponents = initialData.components;
   const [layout, setLayout] = useState(initialLayout);
   const [components, setComponents] = useState(initialComponents);
-  const [standard,setStandard] = useState(0)
-  
+  const [standard, setStandard] = useState(0);
+
   const handleDropToTrashBin = useCallback(
     (dropZone, item) => {
       const splitItemPath = item.path.split("-");
@@ -34,8 +49,8 @@ const Container = () => {
 
   const handleDrop = useCallback(
     (dropZone, item) => {
-      console.log('dropZone', dropZone)
-      console.log('item', item)
+      console.log("dropZone", dropZone);
+      console.log("item", item);
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
@@ -51,16 +66,16 @@ const Container = () => {
         const newComponent = {
           id: shortid.generate(),
           compName: item.component.type,
-          ...item.component
+          ...item.component,
         };
         const newItem = {
           id: newComponent.id,
-          compName: <SingleLine/>,
-          type: COMPONENT
+          compName: <Rating />,
+          type: COMPONENT,
         };
         setComponents({
           ...components,
-          [newComponent.id]: newComponent
+          [newComponent.id]: newComponent,
         });
         setLayout(
           handleMoveSidebarComponentIntoParent(
@@ -128,66 +143,82 @@ const Container = () => {
   // causes this issue - https://github.com/react-dnd/react-dnd/issues/342
   return (
     <div className="option-header">
-        <Grid container>
-        <Grid item xs={4}>
-      <div className="sideBar">
-      <header className="App-header">Questions</header>
-    <Grid container>
-  <Grid item xs>
-    <Button color="primary" variant="contained" className='stnd-btn' onClick={()=>{setStandard(0)}}>Standard</Button>
-  </Grid>
-  <Grid item xs>
-  <Button color="primary" variant="contained" className='stnd-btn' onClick={()=>{setStandard(1)}}>Advance</Button>
-  </Grid>
-    </Grid>
-    {standard === 0 ?
-        Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
-          <SideBarItem key={sideBarItem.id} data={sideBarItem} />
-        ))
-      : 
-      Object.values(Advance_Item).map((sideBarItem, index) => (
-          <SideBarItem key={sideBarItem.id} data={sideBarItem} />
-        ))
-      }
-      </div>
-      </Grid>
-      <Grid item xs={8}>
-      <div className="pageContainer">
-        <div className="page">
-          {layout.map((row, index) => {
-            const currentPath = `${index}`;
-            return (
-              <React.Fragment key={row.id}>
-                <DropZone
-                  data={{
-                    path: currentPath,
-                    childrenCount: layout.length
+      <Grid container>
+        <Grid item xs={3}>
+          <div className="sideBar">
+            <header className="App-header">Questions</header>
+            <Grid container>
+              <Grid item xs>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  className="stnd-btn"
+                  onClick={() => {
+                    setStandard(0);
                   }}
-                  onDrop={handleDrop}
-                  path={currentPath}
-                />
-                {renderRow(row, currentPath)}
-              </React.Fragment>
-            );
-          })}
-          <DropZone
-            data={{
-              path: `${layout.length}`,
-              childrenCount: layout.length
-            }}
-            onDrop={handleDrop}
-            isLast
-          />
-        </div>
+                >
+                  Standard
+                </Button>
+              </Grid>
+              <Grid item xs>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  className="stnd-btn"
+                  onClick={() => {
+                    setStandard(1);
+                  }}
+                >
+                  Advance
+                </Button>
+              </Grid>
+            </Grid>
+            {standard === 0
+              ? Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
+                  <SideBarItem key={sideBarItem.id} data={sideBarItem} />
+                ))
+              : Object.values(Advance_Item).map((sideBarItem, index) => (
+                  <SideBarItem key={sideBarItem.id} data={sideBarItem} />
+                ))}
+          </div>
+        </Grid>
+        <Grid item xs={9}>
+          <div className="pageContainer">
+            <div className="page">
+              {layout.map((row, index) => {
+                const currentPath = `${index}`;
+                return (
+                  <React.Fragment key={row.id}>
+                    <DropZone
+                      data={{
+                        path: currentPath,
+                        childrenCount: layout.length,
+                      }}
+                      onDrop={handleDrop}
+                      path={currentPath}
+                    />
+                    {renderRow(row, currentPath)}
+                  </React.Fragment>
+                );
+              })}
+              <DropZone
+                data={{
+                  path: `${layout.length}`,
+                  childrenCount: layout.length,
+                }}
+                onDrop={handleDrop}
+                isLast
+              />
+            </div>
 
-        {/* <TrashDropZone
+            {/* <TrashDropZone
           data={{
             layout
           }}
           onDrop={handleDropToTrashBin}
         /> */}
-      </div>
-      </Grid>
+          </div>
+        </Grid>
       </Grid>
     </div>
   );

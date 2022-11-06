@@ -10,6 +10,20 @@
     font-size: 12px;
     padding-right: 20px !important
 }
+.code-table{
+    border: 1px solid lightgray;
+}
+.code-table-header{
+    border: 1px solid lightgray;
+}
+.code-table-col{
+    text-align: center;
+    border: 1px solid lightgray;
+    
+}
+.code-table-col input{ 
+    margin : 4px 0px 4px 0px !important;
+}
 .form-control{
     /* display: block; */
     width: 59% !important;
