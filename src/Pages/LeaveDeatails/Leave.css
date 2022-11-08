@@ -4,12 +4,13 @@
 }
 
 .employeeWrapper { 
-
-  padding: 0px 20px;
+  background-color: #fafbfc;
+  /* padding: 0px 20px; */
   display: flex;
   align-items: center;
-  margin-bottom: 1% !important;
-
+  /* margin-bottom: 1% !important; */
+  border-bottom: 1px solid lightgray;
+  padding: 13px;
 }
 .empyloyeemain {
   flex: 1;

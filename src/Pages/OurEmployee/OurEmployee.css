@@ -6,11 +6,11 @@
     justify-content: space-between;
   }
   .employeeWrapper {
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1% !important;
+    /* margin-bottom: 1% !important; */
     padding-top: 10px;
     /* margin-left: 260px; */
   }

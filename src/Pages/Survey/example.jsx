@@ -65,12 +65,12 @@ const Container = () => {
         // 1. Move sidebar item into page
         const newComponent = {
           id: shortid.generate(),
-          compName: item.component.type,
+          compName: item.component.content,
           ...item.component,
         };
         const newItem = {
           id: newComponent.id,
-          compName: <Rating />,
+          compName: item.component.content,
           type: COMPONENT,
         };
         setComponents({
@@ -173,6 +173,7 @@ const Container = () => {
                 </Button>
               </Grid>
             </Grid>
+            <div>
             {standard === 0
               ? Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
                   <SideBarItem key={sideBarItem.id} data={sideBarItem} />
@@ -180,6 +181,7 @@ const Container = () => {
               : Object.values(Advance_Item).map((sideBarItem, index) => (
                   <SideBarItem key={sideBarItem.id} data={sideBarItem} />
                 ))}
+             </div>
           </div>
         </Grid>
         <Grid item xs={9}>

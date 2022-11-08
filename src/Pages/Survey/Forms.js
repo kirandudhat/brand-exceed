@@ -17,7 +17,10 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "./formStyle.css";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export const TextBox = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -2425,6 +2428,7 @@ export const MaleFemale = () => {
   );
 };
 export const Date = () => {
+  const [value, setValue] = useState(dayjs('2022-04-07'));
   return (
     <>
       <div style={{ padding: "10px" }}>
@@ -2498,18 +2502,17 @@ export const Date = () => {
           >
             Minimum Date
           </FormLabel>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            views={["day"]}
-            className="col-lg-7 col-md-7"
-            // label="Just date"
-            // value={value}
-            // onChange={(newValue) => {
-            //   setValue(newValue);
-            // }}
-            renderInput={(params) => (
-              <TextField {...params} helperText={null} />
-            )}
-          />
+          views={['day']}
+          label="Just date"
+          value={value}
+          onChange={(newValue) => {
+            setValue(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
+        />
+          </LocalizationProvider>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2518,18 +2521,17 @@ export const Date = () => {
           >
             Maximum Date
           </FormLabel>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            views={["day"]}
-            className="col-lg-7 col-md-7"
-            // label="Just date"
-            // value={value}
-            // onChange={(newValue) => {
-            //   setValue(newValue);
-            // }}
-            renderInput={(params) => (
-              <TextField {...params} helperText={null} />
-            )}
-          />
+          views={['day']}
+          label="Just date"
+          value={value}
+          onChange={(newValue) => {
+            setValue(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
+        />
+          </LocalizationProvider>
         </div>
         <div className="d-flex formInputs">
           <FormLabel

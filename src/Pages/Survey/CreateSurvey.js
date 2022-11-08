@@ -29,6 +29,7 @@ import { useHistory } from "react-router-dom";
 
 const CreateSurvey = () => {
   const [open, setOpen] = useState(false);
+  const [time, setTime] = useState(false)
   const history = useHistory();
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,26 +60,26 @@ const CreateSurvey = () => {
         <span style={{ fontWeight: "bold" }} className="surveyTitle">
           Create Surveys
         </span>
-        <button className="backbtn" variant="contained" type="submit">
+        <button className="backbtn" variant="contained" type="submit" onClick={()=>history.push("/admin/survey")}>
           Back
         </button>
       </div>
-      <hr />
+      <div className="background">
       <div className="row SurvayForm">
-        <div className="col">
-          <div className="formInputs">
+        <div className="col-md-8 col-lg-6">
+          <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
             >
               Name *
             </FormLabel>
-            <input name="name" />
+            <input name="name" className="col-md-7 col-sm-7 form-control" />
           </div>
           <div className="surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
             >
               Layout Type
             </FormLabel>
@@ -88,11 +89,13 @@ const CreateSurvey = () => {
                 aria-labelledby="demo-form-control-label-placement"
                 name="layout"
                 defaultValue="horizontal"
+                className="survey-lbl"
               >
                 <FormControlLabel
                   value="horizontal"
                   control={<Radio />}
                   label="Horizontal"
+                  className="survey-lbl"
                   // labelPlacement="start"
                 />
                 <FormControlLabel
@@ -107,7 +110,7 @@ const CreateSurvey = () => {
           <div className="surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
             >
               Survey Type
             </FormLabel>
@@ -117,11 +120,13 @@ const CreateSurvey = () => {
                 aria-labelledby="demo-form-control-label-placement"
                 name="layout"
                 defaultValue="horizontal"
+                className="survey-lbl"
               >
                 <FormControlLabel
                   value="horizontal"
                   control={<Radio />}
                   label="App Survey"
+                  className="survey-lbl"
                   // labelPlacement="start"
                 />
                 <FormControlLabel
@@ -137,79 +142,158 @@ const CreateSurvey = () => {
           <div className="formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
             >
               Show Header
             </FormLabel>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} />
-            <div className="d-flex">
+            <Checkbox inputProps={{ "aria-label": "controlled" }} className="survey-lbl"/>
+            </div>
+            <div className="d-flex formInputs">
+            <FormLabel
+              id="demo-form-control-label-placement"
+              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+            >
+              Header Text *
+            </FormLabel>
+            <input name="name" className="col-md-7 col-sm-7 form-control" />
+          </div>
+          <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="labelInput"
+                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              >
+                Header Image
+              </FormLabel>
+              {/* <input type="file" /> */}
+              <TextField type="file" variant="standard" className="survey-lbl"/>
+            </div>
+            <div className="d-flex formInputs">
+              <FormLabel
+                id="demo-form-control-label-placement"
+                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
               >
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" />
+              <TextField type="file" variant="standard" className="survey-lbl"/>
             </div>
-            <div className="d-flex">
+            <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="labelInput"
+                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
               >
                 Thank you Image*
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" />
+              <TextField type="file" variant="standard" className="survey-lbl" />
             </div>
-            <div className="formInputs">
+            <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="labelInput"
+                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
               >
                 Thank You Duration (Seconds)
               </FormLabel>
-              <input name="name" />
+              <input name="name" className="col-md-7 col-sm-7 form-control" />
             </div>
+          
           </div>
-          <div className="col">
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                // value={n}
-                label="Age"
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
+          <div className="col-md-8 col-lg-6">
+          <div className="d-flex formInputs">
+          <FormLabel
+            for="Question Media Type"
+            className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+          >
+            Theme
+          </FormLabel>
+          <select
+            id="Question Media Type"
+            className="col-md-7 col-sm-7 form-control"
+            style={{height:'38px'}}
+          >
+            <option value="Default">
+              Default
+            </option>
+          </select>
+          </div>
+          <div className="d-flex formInputs">
+            <FormLabel
+              id="demo-form-control-label-placement"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+            >
+              Access Pin
+            </FormLabel>
+            <input name="name" className="col-md-7 col-sm-7 form-control" />
+          </div>
+          <div className="d-flex formInputs">
+            <FormLabel
+              id="demo-form-control-label-placement"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+            >
+              Timeout (Seconds)
+            </FormLabel>
+            <Checkbox 
+            inputProps={{ "aria-label": "controlled" }} 
+            checked={time} 
+            onChange={e => setTime(e.target.checked)}/>
+            {time ? 
+            <input name="name" className="col-md-4 col-sm-4 form-control"/> :
+            ""
+          }
+          </div>
+          {/* Dipended on above checkbox */}
+          {time ? 
+          <div className="formInputs">
+            <FormLabel
+              id="demo-form-control-label-placement"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+            >
+              Auto Save On Timeout
+            </FormLabel>
+            <Checkbox inputProps={{ "aria-label": "controlled" }}/>
+          </div> : ""}
+          <div className="d-flex formInputs">
+          <FormLabel
+            for="Question Media Type"
+            className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+          >
+            Default Language
+          </FormLabel>
+          <select
+            id="Question Media Type"
+            class="col-md-6 col-lg-7 form-control"
+            style={{height:'38px'}}
+          >
+            <option value="select">
+              Select
+            </option>
+            <option value="English">
+              English
+            </option>
+          </select>
           </div>
           <div className="formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Loop Survey
             </FormLabel>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} />
+            <Checkbox inputProps={{ "aria-label": "controlled" }}/>
           </div>
           <div className="formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              PDF-show Answered
-              <br /> Questions Only
+              PDF-show Answered Questions Only
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} />
           </div>
           <div className="formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Background Location Capture
             </FormLabel>
@@ -218,18 +302,20 @@ const CreateSurvey = () => {
           <div className="formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="labelInput"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Is Location Capture Mandatory?
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} />
           </div>
-        </div>
+          </div>
+        
       </div>
+      <div>
       <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          // className="labelInput"
+          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
         >
           Start Page
         </FormLabel>
@@ -237,16 +323,18 @@ const CreateSurvey = () => {
           editorState={editorState}
           onEditorStateChange={handleEditorChange}
           wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
+          editorClassName="editor-class survey-message"
           toolbarClassName="toolbar-class"
+          className="col-md-7 col-lg-7 col-sm-7"
         />
+      </div><span style={{paddingLeft:"14%"}}>
         <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" />
-      </div>
-      <div className="textArea">
+        <DeleteIcon className="previewIcon" /></span>
+
+        <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          // className="labelInput"
+          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
         >
           End Page
           <br />
@@ -256,16 +344,18 @@ const CreateSurvey = () => {
           editorState={editorState}
           onEditorStateChange={handleEditorChange}
           wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
+          editorClassName="editor-class  survey-message"
           toolbarClassName="toolbar-class"
+          className="col-md-7 col-lg-7 col-sm-7 survey-message"
         />
+      </div><span style={{paddingLeft:"14%"}}>
         <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" />
-      </div>
+        <DeleteIcon className="previewIcon" /></span>
+
       <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          // className="labelInput"
+          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
         >
           End Page
           <br />
@@ -275,12 +365,13 @@ const CreateSurvey = () => {
           editorState={editorState}
           onEditorStateChange={handleEditorChange}
           wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
+          editorClassName="editor-class  survey-message"
           toolbarClassName="toolbar-class"
+          className="col-md-7 col-lg-7 col-sm-7 survey-message"
         />
+      </div><span style={{paddingLeft:"14%"}}>
         <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" />
-      </div>
+        <DeleteIcon className="previewIcon" /></span>
       <div className="forbtn">
         <button
           className="btncolor"
@@ -297,6 +388,9 @@ const CreateSurvey = () => {
           Cancel
         </button>
       </div>
+      </div>
+      </div>
+
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle style={{ fontSize: "20px" }}>Preview</DialogTitle>

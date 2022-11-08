@@ -7,10 +7,11 @@
   background-color: rgb(251, 251, 255);
   border-right: 1px solid #f2f4f9;
   box-shadow: 0 8px 10px 0 rgb(183 192 206 / 20%);
-  background: #fff;
+  background: #3a3f51;
   position: sticky;
   top: 51px;
   border-right: 1px solid gray;
+  color: #00AAAA;
   /* position: fixed; */
 }
 .sidebarmenu{
@@ -33,6 +34,7 @@
   display: flex;
   align-items: center;
   list-style: none;
+  color: white;
 }
 
 .sidebarlistItem a {
@@ -49,7 +51,7 @@
   li a{
   text-decoration: none;
   /* background-color: #000; */
-  color: #fff;
+  color: #fff !important;
   padding: 10px 20px;
   /* font-weight: bold; */
 } 
@@ -60,7 +62,7 @@
 /* }  */
 
 .active{
-  background-color: #4b4b4b;
-    color: #ffffff !important;
+  background-color: #383d4e;
+    color: #00AAAA !important;
 
 }

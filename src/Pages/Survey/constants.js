@@ -1,4 +1,5 @@
 import shortid from "shortid";
+import { CheckBoxList, CheckBoxListWithOther, Date, DateTime, DecimalInput, Dropdown, DropdownWithOther, Email, MapCoordinates, MultiLine, NetPromoterScore, NumberInput, NumberPoint, NumberWithCodeInput, PhoneNumber, RadioButton, RadioButtonWithOther, Rating, SingleLine, TextBox, Time, TwoColumnCheckBox } from "./Forms";
 
 export const SIDEBAR_ITEM = "sidebarItem";
 export const ADVANCE_ITEM = "AdvanceItem"
@@ -12,7 +13,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Text Block",
-      content: "Some input"
+      content: <TextBox/>
     }
   },
   {
@@ -20,7 +21,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Singleline Text Input",
-      content: "Some name"
+      content: <SingleLine/>
     }
   },
   {
@@ -28,7 +29,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Multiline Text Input",
-      content: "Some email"
+      content: <MultiLine/>
     }
   },
   {
@@ -36,7 +37,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number Input",
-      content: "Some phone"
+      content: <NumberInput/>
     }
   },
   {
@@ -44,7 +45,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number With Auto Code",
-      content: "Some image"
+      content: <NumberWithCodeInput/>
     }
   },
   {
@@ -52,7 +53,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Decimal Input",
-      content: "Some image"
+      content: <DecimalInput/>
     }
   },
   {
@@ -60,7 +61,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Email",
-      content: "Some image"
+      content: <Email/>
     }
   },
   {
@@ -68,7 +69,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Phone Number",
-      content: "Some image"
+      content: <PhoneNumber/>
     }
   },
   {
@@ -76,7 +77,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Radio Button",
-      content: "Some image"
+      content: <RadioButton/>
     }
   },
   {
@@ -84,7 +85,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Radio Button With Other",
-      content: "Some image"
+      content: <RadioButtonWithOther/>
     }
   },
   {
@@ -92,7 +93,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Drop Down",
-      content: "Some image"
+      content: <Dropdown/>
     }
   },
   {
@@ -100,7 +101,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Drop Down With Other",
-      content: "Some image"
+      content: <DropdownWithOther/>
     }
   },
   {
@@ -108,7 +109,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Checkbox List",
-      content: "Some image"
+      content: <CheckBoxList/>
     }
   },
   {
@@ -116,7 +117,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Checkbox List With Other",
-      content: "Some image"
+      content: <CheckBoxListWithOther/>
     }
   },
   {
@@ -124,7 +125,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "2 Columns Checkbox",
-      content: "Some image"
+      content: <TwoColumnCheckBox/>
     }
   },
   {
@@ -132,7 +133,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number Point",
-      content: "Some image"
+      content: <NumberPoint/>
     }
   },
   {
@@ -140,7 +141,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Rating",
-      content: "Some image"
+      content: <Rating/>
     }
   },
   {
@@ -148,7 +149,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Date",
-      content: "Some image"
+      content: <Date/>
     }
   },
   {
@@ -156,7 +157,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Time",
-      content: "Some image"
+      content: <Time/>
     }
   },
   {
@@ -164,7 +165,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Date & Time",
-      content: "Some image"
+      content: <DateTime/>
     }
   },
   {
@@ -172,7 +173,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Net Promoter Score",
-      content: "Some image"
+      content: <NetPromoterScore/>
     }
   },
   {
@@ -180,7 +181,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Map Coordinates (GPS)",
-      content: "Some image"
+      content: <MapCoordinates/>
     }
   }
 ];
