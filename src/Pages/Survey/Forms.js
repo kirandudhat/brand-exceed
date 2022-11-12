@@ -144,11 +144,11 @@ export const SingleLine = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-label ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -262,7 +262,7 @@ export const MultiLine = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -362,7 +362,7 @@ export const NumberInput = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-bindingformInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -480,7 +480,7 @@ export const NumberWithCodeInput = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -853,7 +853,7 @@ export const DecimalInput = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -942,7 +942,7 @@ export const Email = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1013,7 +1013,7 @@ export const PhoneNumber = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1119,7 +1119,7 @@ export const RadioButton = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1128,7 +1128,7 @@ export const RadioButton = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -1243,7 +1243,7 @@ export const RadioButtonWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1252,7 +1252,7 @@ export const RadioButtonWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -1376,7 +1376,7 @@ export const Dropdown = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1385,7 +1385,7 @@ export const Dropdown = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-bindingformInputs"
           >
             Enable text search
           </FormLabel>
@@ -1394,7 +1394,7 @@ export const Dropdown = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -1518,7 +1518,7 @@ export const DropdownWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1527,7 +1527,7 @@ export const DropdownWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-bindingformInputs"
           >
             Enable text search
           </FormLabel>
@@ -1536,7 +1536,7 @@ export const DropdownWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -1651,7 +1651,7 @@ export const CheckBoxList = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1711,7 +1711,7 @@ export const CheckBoxList = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -1817,7 +1817,7 @@ export const CheckBoxListWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -1826,7 +1826,7 @@ export const CheckBoxListWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Minimum Options Required
           </FormLabel>
@@ -1835,7 +1835,7 @@ export const CheckBoxListWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Maximum Options Selectable
           </FormLabel>
@@ -1875,7 +1875,7 @@ export const CheckBoxListWithOther = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -1981,7 +1981,7 @@ export const TwoColumnCheckBox = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2041,7 +2041,7 @@ export const TwoColumnCheckBox = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Randomize Options
           </FormLabel>
@@ -2153,7 +2153,7 @@ export const NumberPoint = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2263,7 +2263,7 @@ export const Rating = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2311,7 +2311,7 @@ export const YesNo = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2359,7 +2359,7 @@ export const TrueFalse = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2407,7 +2407,7 @@ export const MaleFemale = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-bindingformInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2489,7 +2489,7 @@ export const Date = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-bindingformInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2608,7 +2608,7 @@ export const Time = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2679,7 +2679,7 @@ export const DateTime = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2688,7 +2688,7 @@ export const DateTime = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
@@ -2752,7 +2752,7 @@ export const NetPromoterScore = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2791,7 +2791,7 @@ export const NetPromoterScore = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
@@ -2829,7 +2829,7 @@ export const MapCoordinates = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Is Question Required?
           </FormLabel>
@@ -2839,7 +2839,7 @@ export const MapCoordinates = () => {
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
-            className="formInputs"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Prevent duplicate location capture
           </FormLabel>

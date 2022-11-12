@@ -25,6 +25,7 @@ body {
   margin-top: 10px;
   background: white;
   font-size: 12px;
+  cursor: grab;
 }
 
 .page {
