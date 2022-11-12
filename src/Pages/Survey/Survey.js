@@ -24,11 +24,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import { useHistory } from "react-router-dom"
+import CreateSurvey from "./CreateSurvey";
 const Survey = () => {
   const [createSurvey, setCreateSurvey] = useState({
     name: '',
-    layout:'',
-    survey_type: ''
+    layout:'horizontal',
+    survey_type: 'app_survey'
   });
   const dispatch = useDispatch();
   let history = useHistory();
@@ -359,6 +360,7 @@ const handleSubmit = () => {
           <button className="btncolor" variant="contained" type="submit" onClick={handleSubmit}>
             Create Survey 
           </button>
+
         </DialogActions>
       </Dialog>
     </>
