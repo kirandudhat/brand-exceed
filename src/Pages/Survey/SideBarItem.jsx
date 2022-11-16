@@ -1,7 +1,8 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 
-const SideBarItem = ({ data }) => {
+const SideBarItem = ({ data, onChange }) => {
+  // console.log("sideber",onChange)
   const [{ opacity }, drag] = useDrag({
     item: data,
     collect: monitor => ({

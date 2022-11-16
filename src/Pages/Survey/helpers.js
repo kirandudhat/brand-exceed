@@ -195,7 +195,6 @@ export const handleMoveSidebarComponentIntoParent = (
   splitDropZonePath,
   item
 ) => {
-  console.log("compName", item, layout);
 
   let newLayoutStructure;
   switch (splitDropZonePath.length) {
@@ -203,7 +202,8 @@ export const handleMoveSidebarComponentIntoParent = (
       newLayoutStructure = {
         type: ROW,
         id: shortid.generate(),
-        children: item.compName 
+        children: item.compName,
+        data: item.data 
       };
       break;
     }
@@ -219,7 +219,7 @@ export const handleMoveSidebarComponentIntoParent = (
       newLayoutStructure = item;
     }
   }
-console.log("newLayoutStructure",newLayoutStructure)
+// console.log("newLayoutStructure",newLayoutStructure)
   return addChildToChildren(layout, splitDropZonePath, newLayoutStructure);
 };
 

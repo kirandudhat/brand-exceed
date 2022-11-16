@@ -3,9 +3,10 @@ import { useDrag } from "react-dnd";
 import { ROW } from "./constants";
 import DropZone from "./DropZone";
 import Column from "./Column";
+import { formController } from "./Forms";
 
 const style = {};
-const Row = ({ data, components, handleDrop, path }) => {
+const Row = ({ data, components, handleDrop, path, formData, handleChange, handleChecked }) => {
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -41,8 +42,8 @@ const Row = ({ data, components, handleDrop, path }) => {
       style={{ ...style, opacity, border: "7px solid gray" }}
       className="base draggable row"
     >
-      {console.log(data, components, path, "path")}
-      {data.children}
+      {console.log(data.children, components, path, "path")}
+      {formController(data.children.type.name, data.data, formData, handleChange, handleChecked)}
       <div className="columns">
         {/* {data.children.map((column, index) => {
           const currentPath = `${path}-${index}`;

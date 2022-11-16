@@ -11,7 +11,7 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
+import { Children, useState } from "react";
 import { convertToHTML } from "draft-convert";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -22,7 +22,69 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export const TextBox = () => {
+
+export const formController = (name, data, formData, handleChange, handleChecked) => {
+  switch(name) {
+    case 'TextBox':
+     return <TextBox data={data} formData={formData}  handleChange={handleChange}/>;
+    case 'SingleLine':
+      return <SingleLine data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'MultiLine':
+      return <MultiLine data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'NumberInput':
+      return <NumberInput data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'NumberWithCodeInput':
+      return <NumberWithCodeInput data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'DecimalInput':
+      return <DecimalInput data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'Email':
+      return <Email data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'PhoneNumber':
+      return <PhoneNumber data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'RadioButton':
+      return <RadioButton data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'RadioButtonWithOther':
+      return <RadioButtonWithOther data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'Dropdown':
+      return <Dropdown data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'DropdownWithOther':
+      return <DropdownWithOther data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'CheckBoxList':
+      return <CheckBoxList data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'CheckBoxListWithOther':
+      return <CheckBoxListWithOther data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'TwoColumnCheckBox':
+      return <TwoColumnCheckBox data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'NumberPoint':
+      return <NumberPoint data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'Rating':
+      return <Rating data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'YesNo':
+      return <YesNo data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'TrueFalse':
+      return <TrueFalse data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'MaleFemale':
+      return <MaleFemale data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'Date':
+      return <Date data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'Time':
+      return <Time data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'DateTime':
+      return <DateTime data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'NetPromoterScore':
+      return <NetPromoterScore data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'BarCodeScanner':
+      return <BarCodeScanner data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    case 'MapCoordinates':
+      return <MapCoordinates data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+    default:
+     return null;
+   }
+}
+
+
+export const TextBox = ({data,formData, handleChange}) => {
+  console.log("textbox---->",data,formData, handleChange)
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -54,11 +116,15 @@ export const TextBox = () => {
   );
 };
 
-export const SingleLine = () => {
+export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field);
+
+  console.log("SingleLine",findData)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" checked={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -66,7 +132,7 @@ export const SingleLine = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -75,7 +141,7 @@ export const SingleLine = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -84,7 +150,7 @@ export const SingleLine = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -96,6 +162,8 @@ export const SingleLine = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -118,7 +186,7 @@ export const SingleLine = () => {
           >
             Suffix
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="suffix" value={findData.suffix} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -127,7 +195,7 @@ export const SingleLine = () => {
           >
             Limit Length
           </FormLabel>
-          <input type="text" variant="standard" style={{ height: "25px" }} />
+          <input type="text" variant="standard" name="limitTo" className="form-control2" value={findData.limitTo} onChange={(e)=>handleChange(e, field)}/>
           &nbsp;&nbsp;
           <div className="d-flex limit-input">
             <FormLabel
@@ -137,7 +205,7 @@ export const SingleLine = () => {
             >
               To
             </FormLabel>
-            <input type="text" variant="standard" style={{ height: "25px" }} />
+            <input type="text" variant="standard" name="limitFrom" className="form-control2" value={findData.limitFrom} onChange={(e)=>handleChange(e, field)}/>
             &nbsp;&nbsp;
           </div>
         </div>
@@ -148,7 +216,7 @@ export const SingleLine = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -157,7 +225,7 @@ export const SingleLine = () => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -166,17 +234,19 @@ export const SingleLine = () => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const MultiLine = () => {
+export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -184,7 +254,7 @@ export const MultiLine = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -193,7 +263,7 @@ export const MultiLine = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -202,7 +272,7 @@ export const MultiLine = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -214,6 +284,8 @@ export const MultiLine = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -236,7 +308,7 @@ export const MultiLine = () => {
           >
             Suffix
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="suffix" value={findData.suffix} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -245,7 +317,7 @@ export const MultiLine = () => {
           >
             Limit Length
           </FormLabel>
-          <input type="text" variant="standard" style={{ height: "25px" }} />
+          <input type="text" variant="standard" className="form-control2" name="limitTo" value={findData.limitTo} onChange={(e)=>handleChange(e, field)}/>
           &nbsp;&nbsp;
           <div className="d-flex limit-input">
             <FormLabel
@@ -255,7 +327,7 @@ export const MultiLine = () => {
             >
               To
             </FormLabel>
-            <input type="text" variant="standard" style={{ height: "25px" }} />
+            <input type="text" variant="standard" className="form-control2" name="limitFrom" value={findData.limitFrom} onChange={(e)=>handleChange(e, field)}/>
             &nbsp;&nbsp;
           </div>
         </div>
@@ -266,17 +338,19 @@ export const MultiLine = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const NumberInput = () => {
+export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -284,7 +358,7 @@ export const NumberInput = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -293,7 +367,7 @@ export const NumberInput = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -302,7 +376,7 @@ export const NumberInput = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -314,6 +388,8 @@ export const NumberInput = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -336,7 +412,7 @@ export const NumberInput = () => {
           >
             Suffix
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="suffix" value={findData.suffix} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -345,7 +421,7 @@ export const NumberInput = () => {
           >
             Limit Length
           </FormLabel>
-          <input type="text" variant="standard" style={{ height: "25px" }} />
+          <input type="text" variant="standard" className="form-control2"  name="limitTo" value={findData.limitTo} onChange={(e)=>handleChange(e, field)}/>
           &nbsp;&nbsp;
           <div className="d-flex limit-input">
             <FormLabel
@@ -355,7 +431,7 @@ export const NumberInput = () => {
             >
               To
             </FormLabel>
-            <input type="text" variant="standard" style={{ height: "25px" }} />
+            <input type="text" variant="standard" className="form-control2" name="limitFrom" value={findData.limitFrom} onChange={(e)=>handleChange(e, field)}/>
             &nbsp;&nbsp;
           </div>
         </div>
@@ -366,7 +442,7 @@ export const NumberInput = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -375,7 +451,7 @@ export const NumberInput = () => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -384,17 +460,19 @@ export const NumberInput = () => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const NumberWithCodeInput = () => {
+export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -402,7 +480,7 @@ export const NumberWithCodeInput = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -411,7 +489,7 @@ export const NumberWithCodeInput = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -420,7 +498,7 @@ export const NumberWithCodeInput = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -432,6 +510,8 @@ export const NumberWithCodeInput = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -454,7 +534,7 @@ export const NumberWithCodeInput = () => {
           >
             Suffix
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="suffix" value={findData.suffix} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -463,7 +543,7 @@ export const NumberWithCodeInput = () => {
           >
             Limit Length
           </FormLabel>
-          <input type="text" variant="standard" style={{ height: "25px" }} />
+          <input type="text" variant="standard" className="form-control2" name="limitTo" value={findData.limitTo} onChange={(e)=>handleChange(e, field)}/>
           &nbsp;&nbsp;
           <div className="d-flex limit-input">
             <FormLabel
@@ -473,7 +553,7 @@ export const NumberWithCodeInput = () => {
             >
               To
             </FormLabel>
-            <input type="text" variant="standard" style={{ height: "25px" }} />
+            <input type="text" variant="standard" className="form-control2" name="limitFrom" value={findData.limitFrom} onChange={(e)=>handleChange(e, field)}/>
             &nbsp;&nbsp;
           </div>
         </div>
@@ -484,7 +564,7 @@ export const NumberWithCodeInput = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -493,7 +573,7 @@ export const NumberWithCodeInput = () => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -502,7 +582,7 @@ export const NumberWithCodeInput = () => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -522,7 +602,8 @@ export const NumberWithCodeInput = () => {
                 <input
                   type="text"
                   variant="standard"
-                  className="col-lg-11 col-md-12"
+                  className="col-lg-11 col-md-12 "
+                  name="code1" value={findData.code1} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -530,6 +611,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="from1" value={findData.from1} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -537,29 +619,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
-                />
-              </td>
-            </tr>
-            <tr className="code-table-header">
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
+                  name="to1" value={findData.to1} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
             </tr>
@@ -569,6 +629,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="code2" value={findData.code2} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -576,6 +637,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="from2" value={findData.from2} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -583,29 +645,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
-                />
-              </td>
-            </tr>
-            <tr className="code-table-header">
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
+                  name="to2" value={findData.to2} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
             </tr>
@@ -615,6 +655,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="code3" value={findData.code3} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -622,6 +663,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="from3" value={findData.from3} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -629,29 +671,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
-                />
-              </td>
-            </tr>
-            <tr className="code-table-header">
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
+                  name="to3" value={findData.to3} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
             </tr>
@@ -661,6 +681,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="code4" value={findData.code4} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -668,6 +689,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="from4" value={findData.from4} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -675,29 +697,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
-                />
-              </td>
-            </tr>
-            <tr className="code-table-header">
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
-                />
-              </td>
-              <td className="code-table-col">
-                <input
-                  type="text"
-                  variant="standard"
-                  className="col-lg-11 col-md-12"
+                  name="to4" value={findData.to4} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
             </tr>
@@ -707,6 +707,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="code5" value={findData.code5} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -714,6 +715,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="from5" value={findData.from5} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -721,6 +723,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="to5" value={findData.to5} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
             </tr>
@@ -730,6 +733,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="code6" value={findData.code6} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -737,6 +741,7 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="from6" value={findData.from6} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
               <td className="code-table-col">
@@ -744,6 +749,111 @@ export const NumberWithCodeInput = () => {
                   type="text"
                   variant="standard"
                   className="col-lg-11 col-md-12"
+                  name="to6" value={findData.to6} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+            </tr>
+            <tr className="code-table-header">
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="code7" value={findData.code7} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="from7" value={findData.from7} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="to7" value={findData.to7} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+            </tr>
+            <tr className="code-table-header">
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="code8" value={findData.code8} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="from8" value={findData.from8} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="to8" value={findData.to8} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+            </tr>
+            <tr className="code-table-header">
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="code9" value={findData.code9} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="from9" value={findData.from9} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="to9" value={findData.to9} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+            </tr>
+            <tr className="code-table-header">
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="code10" value={findData.code10} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="from10" value={findData.from10} onChange={(e)=>handleChange(e, field)}
+                />
+              </td>
+              <td className="code-table-col">
+                <input
+                  type="text"
+                  variant="standard"
+                  className="col-lg-11 col-md-12"
+                  name="to10" value={findData.to10} onChange={(e)=>handleChange(e, field)}
                 />
               </td>
             </tr>
@@ -754,11 +864,13 @@ export const NumberWithCodeInput = () => {
   );
 };
 
-export const DecimalInput = () => {
+export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -766,7 +878,7 @@ export const DecimalInput = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -775,7 +887,7 @@ export const DecimalInput = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -784,7 +896,7 @@ export const DecimalInput = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -796,6 +908,8 @@ export const DecimalInput = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -818,7 +932,7 @@ export const DecimalInput = () => {
           >
             Suffix
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="suffix" value={findData.suffix} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -827,7 +941,7 @@ export const DecimalInput = () => {
           >
             Precision
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="precision" value={findData.precision} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -836,7 +950,7 @@ export const DecimalInput = () => {
           >
             Limit Value between
           </FormLabel>
-          <input type="text" variant="standard" style={{ height: "25px" }} />
+          <input type="text" variant="standard" className="form-control2" name="limitTo" value={findData.limitTo} onChange={(e)=>handleChange(e, field)}/>
           &nbsp;&nbsp;
           <div className="d-flex limit-input">
             <FormLabel
@@ -846,7 +960,7 @@ export const DecimalInput = () => {
             >
               To
             </FormLabel>
-            <input type="text" variant="standard" style={{ height: "25px" }} />
+            <input type="text" variant="standard" className="form-control2" name="limitFrom" value={findData.limitFrom} onChange={(e)=>handleChange(e, field)}/>
             &nbsp;&nbsp;
           </div>
         </div>
@@ -857,7 +971,7 @@ export const DecimalInput = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -866,7 +980,7 @@ export const DecimalInput = () => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -875,17 +989,19 @@ export const DecimalInput = () => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const Email = () => {
+export const Email = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -893,7 +1009,7 @@ export const Email = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -902,7 +1018,7 @@ export const Email = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -911,7 +1027,7 @@ export const Email = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -923,6 +1039,8 @@ export const Email = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -946,17 +1064,19 @@ export const Email = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const PhoneNumber = () => {
+export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -964,7 +1084,7 @@ export const PhoneNumber = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -973,7 +1093,7 @@ export const PhoneNumber = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -982,7 +1102,7 @@ export const PhoneNumber = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -994,6 +1114,8 @@ export const PhoneNumber = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1017,17 +1139,19 @@ export const PhoneNumber = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const RadioButton = () => {
+export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1036,7 +1160,7 @@ export const RadioButton = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1045,7 +1169,7 @@ export const RadioButton = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1057,6 +1181,8 @@ export const RadioButton = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1085,6 +1211,7 @@ export const RadioButton = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1107,6 +1234,7 @@ export const RadioButton = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1123,7 +1251,7 @@ export const RadioButton = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1132,7 +1260,7 @@ export const RadioButton = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }}  name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1141,17 +1269,19 @@ export const RadioButton = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const RadioButtonWithOther = () => {
+export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1160,7 +1290,7 @@ export const RadioButtonWithOther = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1169,7 +1299,7 @@ export const RadioButtonWithOther = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1181,6 +1311,8 @@ export const RadioButtonWithOther = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1209,6 +1341,7 @@ export const RadioButtonWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1231,6 +1364,7 @@ export const RadioButtonWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1247,7 +1381,7 @@ export const RadioButtonWithOther = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1256,7 +1390,7 @@ export const RadioButtonWithOther = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1265,17 +1399,19 @@ export const RadioButtonWithOther = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const Dropdown = () => {
+export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1284,7 +1420,7 @@ export const Dropdown = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1293,7 +1429,7 @@ export const Dropdown = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1302,7 +1438,7 @@ export const Dropdown = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1314,6 +1450,8 @@ export const Dropdown = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1342,6 +1480,7 @@ export const Dropdown = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1364,6 +1503,7 @@ export const Dropdown = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1380,7 +1520,7 @@ export const Dropdown = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1389,7 +1529,7 @@ export const Dropdown = () => {
           >
             Enable text search
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="enableText" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1398,7 +1538,7 @@ export const Dropdown = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1407,17 +1547,19 @@ export const Dropdown = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const DropdownWithOther = () => {
+export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1426,7 +1568,7 @@ export const DropdownWithOther = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1435,7 +1577,7 @@ export const DropdownWithOther = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1444,7 +1586,7 @@ export const DropdownWithOther = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1456,6 +1598,8 @@ export const DropdownWithOther = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1484,6 +1628,7 @@ export const DropdownWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1506,6 +1651,7 @@ export const DropdownWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1522,7 +1668,7 @@ export const DropdownWithOther = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1531,7 +1677,7 @@ export const DropdownWithOther = () => {
           >
             Enable text search
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="enableText" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1540,7 +1686,7 @@ export const DropdownWithOther = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1549,17 +1695,19 @@ export const DropdownWithOther = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const CheckBoxList = () => {
+export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1568,7 +1716,7 @@ export const CheckBoxList = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1577,7 +1725,7 @@ export const CheckBoxList = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1589,6 +1737,8 @@ export const CheckBoxList = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1617,6 +1767,7 @@ export const CheckBoxList = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1639,6 +1790,7 @@ export const CheckBoxList = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1655,7 +1807,7 @@ export const CheckBoxList = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -1665,7 +1817,7 @@ export const CheckBoxList = () => {
           >
             Minimum Options Required
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="minimumOption" value={findData.minimumOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1674,7 +1826,7 @@ export const CheckBoxList = () => {
           >
             Maximum Options Selectable
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="maximumOption" value={findData.maximumOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -1690,6 +1842,7 @@ export const CheckBoxList = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="uniqueOption" value={findData.uniqueOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1706,7 +1859,7 @@ export const CheckBoxList = () => {
           >
             Check All Options
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="checkallOption" value={findData.checkallOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1715,17 +1868,19 @@ export const CheckBoxList = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const CheckBoxListWithOther = () => {
+export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1734,7 +1889,7 @@ export const CheckBoxListWithOther = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1743,7 +1898,7 @@ export const CheckBoxListWithOther = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1755,6 +1910,8 @@ export const CheckBoxListWithOther = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1783,6 +1940,7 @@ export const CheckBoxListWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1805,6 +1963,7 @@ export const CheckBoxListWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1821,7 +1980,7 @@ export const CheckBoxListWithOther = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1830,7 +1989,7 @@ export const CheckBoxListWithOther = () => {
           >
             Minimum Options Required
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="minimumOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1839,7 +1998,7 @@ export const CheckBoxListWithOther = () => {
           >
             Maximum Options Selectable
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="maximumOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1854,6 +2013,7 @@ export const CheckBoxListWithOther = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="uniqueOption" value={findData.uniqueOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1870,7 +2030,7 @@ export const CheckBoxListWithOther = () => {
           >
             Check All Options
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="checkallOption" value={findData.checkallOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -1879,17 +2039,19 @@ export const CheckBoxListWithOther = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const TwoColumnCheckBox = () => {
+export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -1898,7 +2060,7 @@ export const TwoColumnCheckBox = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1907,7 +2069,7 @@ export const TwoColumnCheckBox = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1919,6 +2081,8 @@ export const TwoColumnCheckBox = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -1947,6 +2111,7 @@ export const TwoColumnCheckBox = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="option" value={findData.option} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1969,6 +2134,7 @@ export const TwoColumnCheckBox = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="hiddenOption" value={findData.hiddenOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -1985,7 +2151,7 @@ export const TwoColumnCheckBox = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -1995,7 +2161,7 @@ export const TwoColumnCheckBox = () => {
           >
             Minimum Options Required
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="minimumOption" value={findData.minimumOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2004,7 +2170,7 @@ export const TwoColumnCheckBox = () => {
           >
             Maximum Options Selectable
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="maximumOption" value={findData.maximumOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2020,6 +2186,7 @@ export const TwoColumnCheckBox = () => {
                 type="text"
                 variant="standard"
                 className="col-lg-7 col-md-7"
+                name="uniqueOption" value={findData.uniqueOption} onChange={(e)=>handleChange(e, field)}
               />
             </div>
             <div>
@@ -2036,7 +2203,7 @@ export const TwoColumnCheckBox = () => {
           >
             Check All Options
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="checkallOption" value={findData.checkallOption} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -2045,18 +2212,20 @@ export const TwoColumnCheckBox = () => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
 
-export const NumberPoint = () => {
+export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2065,7 +2234,7 @@ export const NumberPoint = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2074,7 +2243,7 @@ export const NumberPoint = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2086,6 +2255,8 @@ export const NumberPoint = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -2109,7 +2280,7 @@ export const NumberPoint = () => {
           >
             Limit Value between
           </FormLabel>
-          <input type="text" variant="standard" style={{ height: "25px" }} />
+          <input type="text" variant="standard" className="form-control2" name="limitTo" value={findData.limitTo} onChange={(e)=>handleChange(e, field)}/>
           &nbsp;&nbsp;
           <div className="d-flex limit-input">
             <FormLabel
@@ -2119,7 +2290,7 @@ export const NumberPoint = () => {
             >
               To
             </FormLabel>
-            <input type="text" variant="standard" style={{ height: "25px" }} />
+            <input type="text" variant="standard" className="form-control2" name="limitFrom" value={findData.limitFrom} onChange={(e)=>handleChange(e, field)}/>
             &nbsp;&nbsp;
           </div>
         </div>
@@ -2130,7 +2301,7 @@ export const NumberPoint = () => {
           >
             Start Value Label
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="startValue" value={findData.startValue} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2139,7 +2310,7 @@ export const NumberPoint = () => {
           >
             Mid Value Label
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="midValue" value={findData.midValue} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2148,7 +2319,7 @@ export const NumberPoint = () => {
           >
             End Value Label
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="endValue" value={findData.endValue} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -2157,7 +2328,7 @@ export const NumberPoint = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2166,7 +2337,7 @@ export const NumberPoint = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2178,10 +2349,10 @@ export const NumberPoint = () => {
           <RadioGroup
             row
             aria-labelledby="demo-form-control-label-placement"
-            name="display"
             defaultValue="numbers"
-            // value={createSurvey.survey_type}
-            // onChange={(e)=>handleChange(e)}
+            name="display"
+            value={findData.display}
+            onChange={(e)=>handleChange(e, field)}
           >
             <FormControlLabel
               value="numbers"
@@ -2202,11 +2373,13 @@ export const NumberPoint = () => {
   );
 };
 
-export const Rating = () => {
+export const Rating = ({data,formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2215,7 +2388,7 @@ export const Rating = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2224,7 +2397,7 @@ export const Rating = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2236,6 +2409,8 @@ export const Rating = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -2258,7 +2433,7 @@ export const Rating = () => {
           >
             Number of ratings
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-3 col-md-3" />
+          <input type="text" variant="standard" className="col-lg-3 col-md-3 form-control" name="numberOfRating" value={findData.numberOfRating} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="formInputs">
           <FormLabel
@@ -2267,7 +2442,7 @@ export const Rating = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2277,17 +2452,19 @@ export const Rating = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const YesNo = () => {
+export const YesNo = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2296,7 +2473,7 @@ export const YesNo = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2305,7 +2482,7 @@ export const YesNo = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="formInputs">
@@ -2315,7 +2492,7 @@ export const YesNo = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2325,17 +2502,19 @@ export const YesNo = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const TrueFalse = () => {
+export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2344,7 +2523,7 @@ export const TrueFalse = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2353,7 +2532,7 @@ export const TrueFalse = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="formInputs">
@@ -2363,7 +2542,7 @@ export const TrueFalse = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2373,17 +2552,19 @@ export const TrueFalse = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const MaleFemale = () => {
+export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2392,7 +2573,7 @@ export const MaleFemale = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2401,7 +2582,7 @@ export const MaleFemale = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="formInputs">
@@ -2411,7 +2592,7 @@ export const MaleFemale = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2421,18 +2602,20 @@ export const MaleFemale = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const Date = () => {
+export const Date = ({data, formData, handleChange, handleChecked}) => {
   const [value, setValue] = useState(dayjs('2022-04-07'));
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2441,7 +2624,7 @@ export const Date = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="description" value={findData.description} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2450,7 +2633,7 @@ export const Date = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2459,7 +2642,7 @@ export const Date = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2471,6 +2654,8 @@ export const Date = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia"
+            value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -2493,7 +2678,7 @@ export const Date = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2510,7 +2695,7 @@ export const Date = () => {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
+          renderInput={(params) => <TextField {...params} helperText={null} name="minDate" value={findData.minDate} onChange={(e)=>handleChange(e, field)}/>}
         />
           </LocalizationProvider>
         </div>
@@ -2529,7 +2714,7 @@ export const Date = () => {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
+          renderInput={(params) => <TextField {...params} helperText={null} name="maxDate" value={findData.maxDate} onChange={(e)=>handleChange(e, field)}/>}
         />
           </LocalizationProvider>
         </div>
@@ -2540,18 +2725,20 @@ export const Date = () => {
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
 
-export const Time = () => {
+export const Time = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2560,7 +2747,7 @@ export const Time = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="description" value={findData.description} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2569,7 +2756,7 @@ export const Time = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="numberOfRating" value={findData.numberOfRating} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2578,7 +2765,7 @@ export const Time = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2590,6 +2777,7 @@ export const Time = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia" value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -2612,17 +2800,19 @@ export const Time = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const DateTime = () => {
+export const DateTime = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2631,7 +2821,9 @@ export const DateTime = () => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="description"
+            value={findData.description}
+            onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2640,7 +2832,7 @@ export const DateTime = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2649,7 +2841,7 @@ export const DateTime = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2661,6 +2853,7 @@ export const DateTime = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia" value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -2683,26 +2876,28 @@ export const DateTime = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
-        <div className="formInputs">
+        <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
             className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-4 col-md-4 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const NetPromoterScore = () => {
+export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2714,6 +2909,7 @@ export const NetPromoterScore = () => {
           <select
             id="Question Media Type"
             className="col-lg-7 col-md-7 form-control"
+            name="questionMedia" value={findData.questionMedia} onChange={(e)=>handleChange(e, field)}
           >
             <option value="Include Media Type" className="formInputs">
               Include Media Type
@@ -2737,7 +2933,7 @@ export const NetPromoterScore = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2746,7 +2942,7 @@ export const NetPromoterScore = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="formInputs">
@@ -2756,7 +2952,7 @@ export const NetPromoterScore = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2766,7 +2962,7 @@ export const NetPromoterScore = () => {
           >
             Start Value Label
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="startValue" value={findData.startValue} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="d-flex formInputs">
@@ -2776,7 +2972,7 @@ export const NetPromoterScore = () => {
           >
             Mid Value Label
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="midValue" value={findData.midValue} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2785,27 +2981,68 @@ export const NetPromoterScore = () => {
           >
             End Value Label
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="endValue" value={findData.endValue} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
-        <div className="formInputs">
+        <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
             className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
           >
             Auto Next Duration (In Seconds)
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5" />
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
       </div>
     </>
   );
 };
-export const MapCoordinates = () => {
+export const BarCodeScanner = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" />
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formInputs">
+          <FormLabel
+            id="demo-form-control-label-placement"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
+          >
+            Is Question Required?
+          </FormLabel>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+        </div>
+        <div className="formInputs">
+          <FormLabel
+            id="demo-form-control-label-placement"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
+          >
+            Disallow Manual Entry
+          </FormLabel>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="disallowManual" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+        </div>
+
+        <div className="d-flex formInputs">
+          <FormLabel
+            id="demo-form-control-label-placement"
+            className="col-lg-3 col-md-4 control-FormLabel ng-binding formInputs"
+          >
+            Variable Name
+          </FormLabel>
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+        </div>
+      </div>
+    </>
+  );
+};
+export const MapCoordinates = ({data, formData, handleChange, handleChecked}) => {
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field)
+  return (
+    <>
+      <div style={{ padding: "10px" }}>
+        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
 
         <div className="d-flex formInputs">
           <FormLabel
@@ -2814,7 +3051,7 @@ export const MapCoordinates = () => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2823,7 +3060,7 @@ export const MapCoordinates = () => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7" />
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
         </div>
 
         <div className="formInputs">
@@ -2833,7 +3070,7 @@ export const MapCoordinates = () => {
           >
             Is Question Required?
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
 
         <div className="formInputs">
@@ -2843,7 +3080,7 @@ export const MapCoordinates = () => {
           >
             Prevent duplicate location capture
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} />
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="preventDuplicate" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
       </div>
     </>

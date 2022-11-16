@@ -1,5 +1,5 @@
 import shortid from "shortid";
-import { CheckBoxList, CheckBoxListWithOther, Date, DateTime, DecimalInput, Dropdown, DropdownWithOther, Email, MapCoordinates, MultiLine, NetPromoterScore, NumberInput, NumberPoint, NumberWithCodeInput, PhoneNumber, RadioButton, RadioButtonWithOther, Rating, SingleLine, TextBox, Time, TwoColumnCheckBox } from "./Forms";
+import { BarCodeScanner, CheckBoxList, CheckBoxListWithOther, Date, DateTime, DecimalInput, Dropdown, DropdownWithOther, Email, MapCoordinates, MultiLine, NetPromoterScore, NumberInput, NumberPoint, NumberWithCodeInput, PhoneNumber, RadioButton, RadioButtonWithOther, Rating, SingleLine, TextBox, Time, TwoColumnCheckBox } from "./Forms";
 
 export const SIDEBAR_ITEM = "sidebarItem";
 export const ADVANCE_ITEM = "AdvanceItem"
@@ -13,7 +13,9 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Text Block",
-      content: <TextBox/>
+      content: <TextBox data={{
+        text:''
+    }}/>
     }
   },
   {
@@ -21,7 +23,19 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Singleline Text Input",
-      content: <SingleLine/>
+      content: <SingleLine data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        suffix:'',
+        limitTo:'',
+        limitFrom:'',
+        questionRequired:false,
+        validationPattern:'',
+        ValidationMessage:''
+    }}/>
     }
   },
   {
@@ -29,7 +43,17 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Multiline Text Input",
-      content: <MultiLine/>
+      content: <MultiLine data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        suffix:'',
+        limitTo:'',
+        limitFrom:'',
+        questionRequired:false,
+    }}/>
     }
   },
   {
@@ -37,7 +61,19 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number Input",
-      content: <NumberInput/>
+      content: <NumberInput data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        suffix:'',
+        limitTo:'',
+        limitFrom:'',
+        questionRequired:false,
+        validationPattern:'',
+        ValidationMessage:''
+    }}/>
     }
   },
   {
@@ -45,7 +81,49 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number With Auto Code",
-      content: <NumberWithCodeInput/>
+      content: <NumberWithCodeInput data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        suffix:'',
+        limitTo:'',
+        limitFrom:'',
+        questionRequired:false,
+        validationPattern:'',
+        ValidationMessage:'',
+        code1:'',
+        from1:'',
+        to1:'',
+        code2:'',
+        from2:'',
+        to2:'',
+        code3:'',
+        from3:'',
+        to3:'',
+        code4:'',
+        from4:'',
+        to4:'',
+        code5:'',
+        from5:'',
+        to5:'',
+        code6:'',
+        from6:'',
+        to6:'',
+        code7:'',
+        from7:'',
+        to7:'',
+        code8:'',
+        from8:'',
+        to8:'',
+        code9:'',
+        from9:'',
+        to9:'',
+        code10:'',
+        from10:'',
+        to10:'',
+    }}/>
     }
   },
   {
@@ -53,7 +131,20 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Decimal Input",
-      content: <DecimalInput/>
+      content: <DecimalInput data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        suffix:'',
+        precision:'',
+        limitTo:'',
+        limitFrom:'',
+        questionRequired:false,
+        validationPattern:'',
+        ValidationMessage:''
+    }}/>
     }
   },
   {
@@ -61,7 +152,14 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Email",
-      content: <Email/>
+      content: <Email data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        questionRequired:false,
+    }}/>
     }
   },
   {
@@ -69,7 +167,14 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Phone Number",
-      content: <PhoneNumber/>
+      content: <PhoneNumber data={{
+        question:'',
+        discription:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        questionRequired:false,
+    }}/>
     }
   },
   {
@@ -77,7 +182,17 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Radio Button",
-      content: <RadioButton/>
+      content: <RadioButton data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        randomizeOption:false,
+        autonextDuration:''
+    }}/>
     }
   },
   {
@@ -85,7 +200,17 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Radio Button With Other",
-      content: <RadioButtonWithOther/>
+      content: <RadioButtonWithOther data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        randomizeOption:false,
+        autonextDuration:''
+    }}/>
     }
   },
   {
@@ -93,7 +218,19 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Drop Down",
-      content: <Dropdown/>
+      content: <Dropdown data={{
+        question:'',
+        description:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        enableText:false,
+        randomizeOption:false,
+        autonextDuration:''
+    }}/>
     }
   },
   {
@@ -101,7 +238,19 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Drop Down With Other",
-      content: <DropdownWithOther/>
+      content: <DropdownWithOther data={{
+        question:'',
+        description:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        enableText:false,
+        randomizeOption:false,
+        autonextDuration:''
+    }}/>
     }
   },
   {
@@ -109,7 +258,20 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Checkbox List",
-      content: <CheckBoxList/>
+      content: <CheckBoxList data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        minimumOption:'',
+        maximumOption:'',
+        uniqueOption:'',
+        checkallOption:'',
+        randomizeOption:''
+    }}/>
     }
   },
   {
@@ -117,7 +279,20 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Checkbox List With Other",
-      content: <CheckBoxListWithOther/>
+      content: <CheckBoxListWithOther data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        minimumOption:false,
+        maximumOption:false,
+        uniqueOption:'',
+        checkallOption:'',
+        randomizeOpt:false
+    }}/>
     }
   },
   {
@@ -125,7 +300,20 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "2 Columns Checkbox",
-      content: <TwoColumnCheckBox/>
+      content: <TwoColumnCheckBox data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        option:'',
+        hiddenOption:'',
+        questionRequired:false,
+        minimumOption:'',
+        maximumOption:'',
+        uniqueOption:'',
+        checkallOption:'',
+        randomizeOpt:false
+    }}/>
     }
   },
   {
@@ -133,7 +321,20 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number Point",
-      content: <NumberPoint/>
+      content: <NumberPoint data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        limitTo:'',
+        limitFrom:'',
+        startValue:'',
+        midValue:'',
+        endValue:'',
+        questionRequired:false,
+        autoNextDuration:'',
+        display:'',
+    }}/>
     }
   },
   {
@@ -141,7 +342,15 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Rating",
-      content: <Rating/>
+      content: <Rating data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        numberOfRating:'',
+        questionRequired:false,
+        autoNextDuration:'',
+    }}/>
     }
   },
   {
@@ -149,7 +358,17 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Date",
-      content: <Date/>
+      content: <Date data={{
+        question:'',
+        description:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        questionRequired:false,
+        minDate:'',
+        maxDate:'',
+        autoNextDuration:'',
+    }}/>
     }
   },
   {
@@ -157,7 +376,14 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Time",
-      content: <Time/>
+      content: <Time data={{
+        question:'',
+        description:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        questionRequired:false,
+    }}/>
     }
   },
   {
@@ -165,7 +391,15 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Date & Time",
-      content: <DateTime/>
+      content: <DateTime data={{
+        question:'',
+        description:'',
+        displayTitle:'',
+        variableName:'',
+        questionMedia:'',
+        questionRequired:false,
+        autoNextDuration:''
+    }}/>
     }
   },
   {
@@ -173,7 +407,29 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Net Promoter Score",
-      content: <NetPromoterScore/>
+      content: <NetPromoterScore data={{
+        question:'',
+        questionMedia:'',
+        displayTitle:'',
+        variableName:'',
+        questionRequired:false,
+        startValue:'',
+        midValue:'',
+        endValue:'',
+        autoNextDuration:'',
+    }}/>
+    }
+  },
+  {
+    id: shortid.generate(),
+    type: SIDEBAR_ITEM,
+    component: {
+      type: "Barcode Scanner",
+      content: <BarCodeScanner data={{
+        questionRequired:false,
+        disallowManual:false,
+        variableName:'',
+    }}/>
     }
   },
   {
@@ -181,7 +437,13 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Map Coordinates (GPS)",
-      content: <MapCoordinates/>
+      content: <MapCoordinates data={{
+        question:'',
+        displayTitle:'',
+        variableName:'',
+        questionRequired:false,
+        preventDuplicate:false
+    }}/>
     }
   }
 ];

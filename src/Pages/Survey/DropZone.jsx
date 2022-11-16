@@ -9,7 +9,7 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ACCEPTS,
     drop: (item, monitor) => {
-      console.log("hello");
+      console.log("hello",data);
       onDrop(data, item);
     },
     canDrop: (item, monitor) => {

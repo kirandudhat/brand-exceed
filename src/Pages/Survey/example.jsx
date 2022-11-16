@@ -12,6 +12,8 @@ import {
   handleRemoveItemFromLayout,
 } from "./helpers";
 import "./styles.css";
+import "./survey.css";
+import "./../OurEmployee/OurEmployee.css";
 import {
   SIDEBAR_ITEMS,
   SIDEBAR_ITEM,
@@ -31,6 +33,7 @@ import {
   TextBox,
   Rating,
 } from "./Forms";
+import { width } from "@mui/system";
 
 const Container = () => {
   const initialLayout = initialData.layout;
@@ -38,6 +41,47 @@ const Container = () => {
   const [layout, setLayout] = useState(initialLayout);
   const [components, setComponents] = useState(initialComponents);
   const [standard, setStandard] = useState(0);
+  const [formData,setFormData] = useState([])
+
+  const handleChange = (e, field) =>{
+    const {name, value} = e.target
+    let setField  = formData.map((item) => {
+      if(item.field === field){
+        return {
+          ...item,
+          [name]:value
+        }
+      }
+      else {
+        return item
+      }
+    })
+    
+    setFormData(setField)
+  }
+   
+  const handleChecked = (e, field) =>{
+    const {name, checked} = e.target
+    console.log("e.target", name,e.target)
+    let setField  = formData.map((item) => {
+      if(item.field === field){
+        console.log("item.field", checked)
+        return {
+          ...item,
+          [name]: checked
+        }
+      }
+      else {
+        return item
+      }
+    })
+    console.log("setField",setField)
+    setFormData(setField)
+  }
+
+  const handleClick = () =>{
+    console.log("SaveBtn",formData)
+  }
 
   const handleDropToTrashBin = useCallback(
     (dropZone, item) => {
@@ -49,8 +93,8 @@ const Container = () => {
 
   const handleDrop = useCallback(
     (dropZone, item) => {
-      console.log("dropZone", dropZone);
-      console.log("item", item);
+      // console.log("dropZone", dropZone);
+      // console.log("item", item);
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
@@ -68,12 +112,15 @@ const Container = () => {
           compName: item.component.content,
           ...item.component,
         };
+        let fieldString = `${newComponent.compName.type.name}_${Date.now().toString()}`
+        setFormData([...formData,{...newComponent.compName.props.data, field: fieldString}])
         const newItem = {
           id: newComponent.id,
           compName: item.component.content,
           type: COMPONENT,
+          data: {[fieldString]:newComponent.compName.props.data}
         };
-        setComponents({
+      setComponents({
           ...components,
           [newComponent.id]: newComponent,
         });
@@ -86,7 +133,7 @@ const Container = () => {
         );
         return;
       }
-
+  
       // move down here since sidebar items dont have path
       const splitItemPath = item.path.split("-");
       const pathToItem = splitItemPath.slice(0, -1).join("-");
@@ -126,8 +173,8 @@ const Container = () => {
     },
     [layout, components]
   );
-
-  const renderRow = (row, currentPath) => {
+  console.log("formData",formData)
+  const renderRow = (row, currentPath, formData, handleChange, handleChecked) => {
     return (
       <Row
         key={row.id}
@@ -135,10 +182,12 @@ const Container = () => {
         handleDrop={handleDrop}
         components={components}
         path={currentPath}
+        formData={formData}
+        handleChange={handleChange}
+        handleChecked={handleChecked}
       />
     );
   };
-
   // dont use index for key when mapping over items
   // causes this issue - https://github.com/react-dnd/react-dnd/issues/342
   return (
@@ -199,7 +248,7 @@ const Container = () => {
                       onDrop={handleDrop}
                       path={currentPath}
                     />
-                    {renderRow(row, currentPath)}
+                    {renderRow(row, currentPath, formData, handleChange, handleChecked)}
                   </React.Fragment>
                 );
               })}
@@ -207,12 +256,18 @@ const Container = () => {
                 data={{
                   path: `${layout.length}`,
                   childrenCount: layout.length,
+                  onChange: {handleChange},
+                  formData: formData
                 }}
                 onDrop={handleDrop}
                 isLast
               />
             </div>
-
+            <div style={{display:'flex', justifyContent:'end', paddingRight:'10px', paddingBottom:'10px'}}>
+            <button className="btncolor" style={{width:'80px', float:'right'}} onClick={handleClick}>
+              Save
+            </button>
+            </div>
             {/* <TrashDropZone
           data={{
             layout
