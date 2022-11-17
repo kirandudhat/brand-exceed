@@ -28,7 +28,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
 
-function VappSurvey({onChange, survey}) {
+function VappSurvey({onChange, survey, handleSubmit}) {
     const [time, setTime] = useState(false);
     const [showHeader,setShowHeader] = useState(false)
        // const [savebtn,setSavebtn] = useState([])
@@ -288,7 +288,7 @@ function VappSurvey({onChange, survey}) {
           variant="contained"
           type="submit"
           onClick={() => {
-            history.push("/admin/CreateSurveyForm");
+            handleSubmit()
           }}
         >
           Save

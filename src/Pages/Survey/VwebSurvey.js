@@ -28,7 +28,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
 
-function VwebSurvey({onChange, survey}) {
+function VwebSurvey({onChange, survey, handleSubmit}) {
     const [open, setOpen] = useState(false);
   const [time, setTime] = useState(false);
   const [showHeader,setShowHeader] = useState(false)
@@ -400,7 +400,7 @@ const handleEditorChangeEndTer = (state) => {
           variant="contained"
           type="submit"
           onClick={() => {
-            history.push("/admin/CreateSurveyForm");
+            handleSubmit()
           }}
         >
           Save

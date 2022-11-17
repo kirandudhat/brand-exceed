@@ -64,16 +64,20 @@ const handleSubmit = () => {
   // const empStatus = useSelector(
   //   (state) => state.employeeStatusUpdateReducer.payload
   // );
-//   const empdata = useSelector((state) =>
-//     state.empListReducer.employeeList.map((item, index) => ({
-//       ...item,
-//     }))
-//   );
-//   React.useEffect(() => {
-//     dispatch({ type: EMPLOYEE_LIST });
-//   }, []);
+  const empdata2 = useSelector((state) =>
+    state.empListReducer.employeeList.map((item, index) => ({
+      ...item,
+    }))
+  );
+  React.useEffect(() => {
+    dispatch({ type: EMPLOYEE_LIST });
+  }, []);
 
-//   const isLoading = useSelector((state) => state.empListReducer.loading);
+  // EMPLOYEE_LIST -> get survey list
+  // ADD_CLIENTS -> create survey 
+
+
+  const isLoading = useSelector((state) => state.empListReducer.loading);
 //   const handleViewEmployee = (id) => {
 //     History.push(`/admin/ouremployee/viewemployee/${id}`);
 
