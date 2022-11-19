@@ -1,8 +1,8 @@
 import apiClient from "./axois";
 export async function addClients(creds) {
-     
+     console.log(creds);
     return apiClient
-      .post("/api/v1/client/add", creds)
+      .post("/survey", creds)
       .then((response) => {
         if (response) {
           return response.data;

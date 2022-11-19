@@ -17,6 +17,7 @@ export default function PrivateRoute() {
     const role = 1;
 
     return getByRoleRoutes(role).map((route, index) => {
+      console.log("routes",route)
       return (
         <Route
           key={index}
@@ -32,7 +33,7 @@ export default function PrivateRoute() {
 
   return (
     <>
-      {getUser().role ? (
+      {getUser()? (
         <Switch>
           {getRoutesAccToRoles()}
           <Route path="*">

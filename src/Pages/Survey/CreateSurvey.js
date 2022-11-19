@@ -17,7 +17,7 @@ import { Editor } from "react-draft-wysiwyg";
 import { convertToHTML } from "draft-convert";
 import DOMPurify from "dompurify";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Dialog from "@mui/material/Dialog";
@@ -30,9 +30,14 @@ import HwebSurvey from "./HwebSurvey";
 import HappSurvey from "./HappSurvey";
 import VappSurvey from "./VappSurvey";
 import VwebSurvey from "./VwebSurvey";
+import { ADD_CLIENTS } from "../../redux/addClients/types";
+import { useDispatch } from "react-redux";
+import { imageUplode } from "../../services/imgUploadServices";
+import { uploadimagefunction } from "../../Utils/common/Common";
+
 
 const CreateSurvey = () => {
-
+  const dispatch = useDispatch()
   const history = useHistory();
   const params = new URLSearchParams(window.location.search) 
   let name = params.get('name')
@@ -43,23 +48,25 @@ const CreateSurvey = () => {
     layout:layout,
     survey_type:survey_type,
     headerText:name,
-    headerImage:'',
-    welcomeImage:'',
-    thankyouImage:'',
-    thankyouDuration:0,
-    theme:'',
-    accessPin:'',
-    timeOut:'',
+    headerImage:null,
+    welcomeImage:null,
+    thankyouImage:null,
+    thankyouDuration:null,
+    theme:null,
+    accessPin:null,
+    timeOut:null,
     saveOnTime:false,
-    defaultLang:'',
+    defaultLang:null,
     loopSurvey:false,
     pdf:false,
-    backgroundLoc:'',
-    captureMandatory:'',
-    startPage:'',
-    endPageSuccess:'',
-    endPageTer:'', 
+    backgroundLoc:null,
+    captureMandatory:null,
+    startPage:null,
+    endPageSuccess:null,
+    endPageTer:null, 
+    field:null
 })
+
 const handleChange = (e) =>{
   const {name, value} = e.target
   console.log("name", name, value)
@@ -68,6 +75,22 @@ const handleChange = (e) =>{
     [name]: value
   })
 }
+
+const handleSubmit = () => {
+  console.log("survey", survey)
+  dispatch({ type: ADD_CLIENTS, payload: survey });
+
+}
+// useEffect(()=>{
+// },[])
+
+
+// const imageHandle = async (e) => {
+//   const imagesse = await uploadimagefunction(e.target.files[0]);
+//   setSurvey(imagesse)
+// };
+// console.log("survey",survey)
+
   return (
     <div className="ouremployee">
       <div className="employeeWrapper">
@@ -79,13 +102,13 @@ const handleChange = (e) =>{
         </button>
       </div>
       {layout === "horizontal" && survey_type === "web_survey" ?    
-      <HwebSurvey onChange={handleChange} survey={survey}/> : "" }
+      <HwebSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
       {layout === "horizontal" && survey_type === "app_survey" ?    
-      <HappSurvey onChange={handleChange} survey={survey}/> : "" }
+      <HappSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
       {layout === "vertical" && survey_type === "web_survey" ?    
-      <VwebSurvey onChange={handleChange} survey={survey}/> : "" }
+      <VwebSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
       {layout === "vertical" && survey_type === "app_survey" ?    
-      <VappSurvey onChange={handleChange} survey={survey}/> : "" }
+      <VappSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
       
 
     </div>

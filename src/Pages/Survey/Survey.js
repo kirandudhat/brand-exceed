@@ -64,16 +64,17 @@ const handleSubmit = () => {
   // const empStatus = useSelector(
   //   (state) => state.employeeStatusUpdateReducer.payload
   // );
-//   const empdata = useSelector((state) =>
-//     state.empListReducer.employeeList.map((item, index) => ({
-//       ...item,
-//     }))
-//   );
-//   React.useEffect(() => {
-//     dispatch({ type: EMPLOYEE_LIST });
-//   }, []);
+  const empdata2 = useSelector((state) =>state.empListReducer.employeeList);
+  console.log("empdata2",empdata2)
+  React.useEffect(() => {
+    dispatch({ type: EMPLOYEE_LIST });
+  }, []);
 
-//   const isLoading = useSelector((state) => state.empListReducer.loading);
+  // EMPLOYEE_LIST -> get survey list
+  // ADD_CLIENTS -> create survey 
+
+
+  const isLoading = useSelector((state) => state.empListReducer.loading);
 //   const handleViewEmployee = (id) => {
 //     History.push(`/admin/ouremployee/viewemployee/${id}`);
 
@@ -278,14 +279,11 @@ const handleSubmit = () => {
           {/* </NavLink> */}
         </div>
         <div className="employeemain">
-          {/* {empdata && empdata[0]?.rows.length > 0 && (
-            <Datatable column={columns} tableData={empdata[0]?.rows} />
-          )} */}
           {
             <Datatable
               column={columns}
-              tableData={getformattedDate(empdata)}
-            //   isLoading={isLoading}
+              tableData={getformattedDate(empdata2)}
+              isLoading={isLoading}
             />
           }
         </div>

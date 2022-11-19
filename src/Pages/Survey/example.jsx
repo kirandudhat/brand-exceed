@@ -34,8 +34,11 @@ import {
   Rating,
 } from "./Forms";
 import { width } from "@mui/system";
+import { EDIT_CLIENT } from "../../redux/editClients/types";
+import { useDispatch } from "react-redux";
 
 const Container = () => {
+  const dispatch = useDispatch()
   const initialLayout = initialData.layout;
   const initialComponents = initialData.components;
   const [layout, setLayout] = useState(initialLayout);
@@ -81,6 +84,7 @@ const Container = () => {
 
   const handleClick = () =>{
     console.log("SaveBtn",formData)
+    dispatch({type: EDIT_CLIENT, payload: formData})
   }
 
   const handleDropToTrashBin = useCallback(

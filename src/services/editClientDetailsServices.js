@@ -1,9 +1,9 @@
 import apiClient from "./axois";
 
-export async function editClients({payload,id}) {
-  
+export async function editClients({payload, id}) {
+  console.log("editClient",payload)
   return apiClient
-    .put(`/api/v1/client/update/${id}`, payload)
+    .put(`/survey/${id}`, {fields: JSON.stringify(payload)})
     .then((response) => {
       if (response) {
         return response.data;

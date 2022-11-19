@@ -19,11 +19,11 @@ const authReducer = (state = initialState, action) => {
       };
     case AUTH_LOGIN_SUCCESS: {
       // const {email, password} = action.payload;
-
+      console.log("action.payload",action.payload);
       return {
         ...state,
         loading: false,
-        payload: action.payload.result,
+        payload: action.payload.data,
       };
     }
     case AUTH_LOGIN_FAILURE:

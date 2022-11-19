@@ -28,16 +28,11 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
 
-function HwebSurvey({onChange, survey}) {
+function HwebSurvey({onChange, survey, handleSubmit}) {
     console.log("onChange",onChange)
     const [open, setOpen] = useState(false);
     const [time, setTime] = useState(false);
-    // const [savebtn,setSavebtn] = useState([])
-
-    // const handleSaveClick = () =>{
-    //     setSavebtn([...savebtn,survey])
-    // }
-    // console.log("savebtn",savebtn)
+ 
     const history = useHistory();
     const handleClickOpen = () => {
       setOpen(true);
@@ -355,11 +350,8 @@ function HwebSurvey({onChange, survey}) {
         <button
           className="btncolor"
           variant="contained"
-          type="submit"
-          onClick={() => {
-            // handleSaveClick()
-            history.push("/admin/CreateSurveyForm");
-          }}
+          // type="submit"
+          onClick={handleSubmit}
 
         >
           Save

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import qtech_logo from "../../assest/img/brand-exceed.jpeg";
 import Blob from "../../assest/img/blob.svg";
 import round from "../../assest/img/round.svg";
@@ -22,6 +22,8 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { LoadingButton } from "@mui/lab";
 import { Container, makeStyles } from "@material-ui/core";
+import history from "../../Utils/History/History";
+import { getUser } from "../../Utils/common/Common";
 
 const InputField = ({ field, form, ...props }) => {
   const inputFieldProps = props.inputFieldProps;
@@ -150,7 +152,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = (event) => event.preventDefault();
   const handleClickShowPassword = () => setShowPassword(!showPassword);
-
+  
   const passwordInputProps = {
     id: "password",
     name: "password",
@@ -184,7 +186,7 @@ const Login = () => {
     email: "",
     password: "",
   };
-
+let user = getUser() 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
@@ -192,6 +194,16 @@ const Login = () => {
       .required("Password is required"),
   });
 
+  const handleSubmit = (fields)=> {
+    dispatch({ type: AUTH_LOGIN, payload: fields })
+
+  }
+  // useEffect(() => {
+  //   if(user){
+      
+  //     history.push('/admin/')
+  //   }
+  // },[user])
   return (
     <>
       <Container maxWidth="xl">
@@ -210,7 +222,7 @@ const Login = () => {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={(fields) =>
-                  dispatch({ type: AUTH_LOGIN, payload: fields })
+                   handleSubmit(fields) 
                 }
                 render={() => (
                   <Form className={classes.formWrapper}>

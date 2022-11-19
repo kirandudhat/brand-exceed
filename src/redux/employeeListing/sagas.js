@@ -13,13 +13,10 @@ export function* getEmployeeListSagas() {
   try {
     const result = yield call(employeeListing);
 
-    if (result.status == true) {
-      yield put(empListingSuccess(result.result));
+    // if (result.status == true) {
+      yield put(empListingSuccess(result.data));
       // toast.success(" Successfully");
-    } else {
-      yield put(empListingFailure(result));
-      // toast("FailListing")
-    }
+   
   } catch (error) {
     yield put(empListingFailure(error.response.data));
 

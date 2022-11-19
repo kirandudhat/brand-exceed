@@ -12,18 +12,21 @@ import { getBasePath } from "../../Utils/common/routes";
 
 export function* userLoginSaga({ payload }) {
   const { email, password } = payload;
+  console.log("email, password",email, password);
   yield put(loginUserRequest());
   try {
     const result = yield call(userLogin, { email, password });
     if (result.status) {
+      console.log("result",result)
       yield put(loginUserSuccess(result));
-      yield history.push(`${getBasePath(result.result.role)}`);
-      toast.success(result.message);
+      yield history.push(`/admin/`);
+      toast.success(result.msg);
     }
   } catch (error) {
-    const { message } = error.response.data;
-    toast.error(message);
-    yield put(loginUserFailure(error.response.data));
+    console.log("error",error)
+    // const { message } = error.response.data;
+    // toast.error(message);
+    // yield put(loginUserFailure(error.response.data));
   }
 }
 

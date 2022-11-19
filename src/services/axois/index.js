@@ -1,28 +1,30 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: `${process.env.REACT_APP_API_HOST}`,
+  baseURL: `https://api.brandexceed.in/api/survey`
 });
 
-// apiClient.interceptors.request.use((request) => {
+apiClient.interceptors.request.use((request) => {
+
 //   const accessToken = getUser() ? getUser().token : null;
 //   if (accessToken) {
 //     request.headers.Authorization = `Bearer ${accessToken}`;
 //   }
-//   return request;
-// });
+  return request;
+});
 
 apiClient.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
-    // const { code, message } = error.response.data;
+    console.log("error",error)
+    const { code, message } = error.response.data;
 
-    // if (code === 401 || message === 'auth token is invalid') {
-    //   removeUser();
-    //   history.push('/login');
-    // }
+    if (code === 401 || message === 'auth token is invalid') {
+      // removeUser();
+      // history.push('/login');
+    }
 
     return Promise.reject(error);
   }

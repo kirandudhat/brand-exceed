@@ -28,7 +28,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
 
-function HappSurvey({onChange, survey}) {
+function HappSurvey({onChange, survey, handleSubmit}) {
     const history = useHistory();
    // const [savebtn,setSavebtn] = useState([])
 
@@ -232,7 +232,7 @@ function HappSurvey({onChange, survey}) {
           variant="contained"
           type="submit"
           onClick={() => {
-            history.push("/admin/CreateSurveyForm");
+            handleSubmit()
           }}
         >
           Save

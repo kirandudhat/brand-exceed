@@ -19,11 +19,12 @@ const empListReducer = (state = initialState, action) => {
         error: null,
       };
     case EMPLOYEE_LIST_SUCCESS: {
+      console.log("response",action.payload)
       return {
         ...state,
         loading: false,
-        employeeList: action.payload.rows,
-        employeeListCount: action.payload.count,
+        employeeList: action.payload,
+        // employeeListCount: action.payload.count,
       };
     }
     case EMPLOYEE_LIST_FAILURE:
