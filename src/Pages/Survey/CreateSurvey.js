@@ -43,10 +43,11 @@ const CreateSurvey = () => {
   let name = params.get('name')
   let layout = params.get('layout') 
   let survey_type = params.get('survey_type') 
+  console.log("survey_type",survey_type)
   const [survey,setSurvey] = useState({
     name:name,
     layout:layout,
-    survey_type:survey_type,
+    survey_type: survey_type,
     headerText:name,
     headerImage:null,
     welcomeImage:null,
@@ -78,8 +79,8 @@ const handleChange = (e) =>{
 
 const handleSubmit = () => {
   console.log("survey", survey)
-  dispatch({ type: ADD_CLIENTS, payload: survey });
-
+  // dispatch({ type: ADD_CLIENTS, payload: survey });
+  history.push("/admin/CreateSurveyForm")
 }
 // useEffect(()=>{
 // },[])

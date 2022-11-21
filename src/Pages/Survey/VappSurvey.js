@@ -103,14 +103,14 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 onChange={onChange}
               >
                 <FormControlLabel
-                  value="horizontal"
+                  value="app_survey"
                   control={<Radio />}
                   label="App Survey"
                   className="survey-lbl"
                   // labelPlacement="start"
                 />
                 <FormControlLabel
-                  value="vertical"
+                  value="web_survey"
                   control={<Radio />}
                   label="Web Survey"
                   // labelPlacement="start"
@@ -284,7 +284,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
       <div>
       <div className="forbtn">
         <button
-          className="btncolor"
+          className="btncolor2"
           variant="contained"
           type="submit"
           onClick={() => {
@@ -294,7 +294,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
           Save
         </button>
         &nbsp;&nbsp;
-        <button className="btncolor" variant="contained" type="submit">
+        <button className="btncolorforCancel" variant="contained" type="submit">
           Cancel
         </button>
       </div>

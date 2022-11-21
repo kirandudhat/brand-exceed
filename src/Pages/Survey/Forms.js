@@ -132,7 +132,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -141,7 +141,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -150,7 +150,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -225,7 +225,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}  placeholder="Define validation pattern"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -234,7 +234,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
       </div>
     </>
@@ -254,7 +254,7 @@ export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -263,7 +263,7 @@ export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -272,7 +272,7 @@ export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -358,7 +358,7 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -367,7 +367,7 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -376,7 +376,7 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -451,7 +451,7 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)} placeholder="Define validation pattern"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -460,7 +460,7 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
       </div>
     </>
@@ -480,7 +480,7 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -489,7 +489,7 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -498,7 +498,7 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -573,7 +573,7 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)} placeholder="Define validation pattern"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -582,7 +582,7 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -878,7 +878,7 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -887,7 +887,7 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -896,7 +896,7 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -980,7 +980,7 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Validation Pattern
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="validationPattern" value={findData.validationPattern} onChange={(e)=>handleChange(e, field)} placeholder="Define validation pattern"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -989,7 +989,7 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
           >
             Validation Message
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
       </div>
     </>
@@ -1009,7 +1009,7 @@ export const Email = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1018,7 +1018,7 @@ export const Email = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1027,7 +1027,7 @@ export const Email = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1084,7 +1084,7 @@ export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1093,7 +1093,7 @@ export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1102,7 +1102,7 @@ export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1160,7 +1160,7 @@ export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1169,7 +1169,7 @@ export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1290,7 +1290,7 @@ export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1299,7 +1299,7 @@ export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1420,7 +1420,7 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1429,7 +1429,7 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1438,7 +1438,7 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1568,7 +1568,7 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="discription" value={findData.discription} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1577,7 +1577,7 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1586,7 +1586,7 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1716,7 +1716,7 @@ export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1725,7 +1725,7 @@ export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1889,7 +1889,7 @@ export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecke
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1898,7 +1898,7 @@ export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecke
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2060,7 +2060,7 @@ export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) 
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2069,7 +2069,7 @@ export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) 
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2234,7 +2234,7 @@ export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2243,7 +2243,7 @@ export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2388,7 +2388,7 @@ export const Rating = ({data,formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2397,7 +2397,7 @@ export const Rating = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2473,7 +2473,7 @@ export const YesNo = ({data, formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2482,7 +2482,7 @@ export const YesNo = ({data, formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
 
         <div className="formInputs">
@@ -2523,7 +2523,7 @@ export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2532,7 +2532,7 @@ export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
 
         <div className="formInputs">
@@ -2573,7 +2573,7 @@ export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2582,7 +2582,7 @@ export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
 
         <div className="formInputs">
@@ -2624,7 +2624,7 @@ export const Date = ({data, formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="description" value={findData.description} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="description" value={findData.description} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2633,7 +2633,7 @@ export const Date = ({data, formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2642,7 +2642,7 @@ export const Date = ({data, formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2747,7 +2747,7 @@ export const Time = ({data, formData, handleChange, handleChecked}) => {
           >
             Description
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="description" value={findData.description} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="description" value={findData.description} onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2756,7 +2756,7 @@ export const Time = ({data, formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="numberOfRating" value={findData.numberOfRating} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="numberOfRating" value={findData.numberOfRating} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2765,7 +2765,7 @@ export const Time = ({data, formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2823,7 +2823,7 @@ export const DateTime = ({data, formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control"  name="description"
             value={findData.description}
-            onChange={(e)=>handleChange(e, field)}/>
+            onChange={(e)=>handleChange(e, field)} placeholder="Type help information for question here..."/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2832,7 +2832,7 @@ export const DateTime = ({data, formData, handleChange, handleChecked}) => {
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2841,7 +2841,7 @@ export const DateTime = ({data, formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2933,7 +2933,7 @@ export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) 
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -2942,7 +2942,7 @@ export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) 
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
 
         <div className="formInputs">
@@ -3030,7 +3030,7 @@ export const BarCodeScanner = ({data, formData, handleChange, handleChecked}) =>
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
       </div>
     </>
@@ -3051,7 +3051,7 @@ export const MapCoordinates = ({data, formData, handleChange, handleChecked}) =>
           >
             Display Title
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="displayTitle" value={findData.displayTitle} onChange={(e)=>handleChange(e, field)} placeholder="Display Title"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -3060,7 +3060,7 @@ export const MapCoordinates = ({data, formData, handleChange, handleChecked}) =>
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)}/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
 
         <div className="formInputs">

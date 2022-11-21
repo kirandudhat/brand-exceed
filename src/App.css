@@ -12,7 +12,37 @@
   color: white !important;
 }
 .btncolor{
-  background-color: #4b4b4b;
+  background-color: #5d9cec;
+  color: aliceblue;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* .btncolor:hover{
+  border: 0.5px solid #5d9cec;
+  background-color: white;
+  color: #5d9cec;
+  padding: 10px 15px;
+  border-radius: 10px;
+} */
+
+.btncolor2{
+  background-color: #00AAAA;
+  color: aliceblue;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+}
+/* .btncolor2:hover{
+  border: 1px solid #00AAAA;
+  background-color: white;
+  color: #00AAAA;
+  padding: 10px 15px;
+  border-radius: 10px;
+} */
+.btncolorforCancel{
+  background-color: #ee3d3d;
   color: aliceblue;
   padding: 10px 15px;
   border: none;

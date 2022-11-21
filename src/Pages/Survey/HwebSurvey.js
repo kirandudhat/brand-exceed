@@ -348,7 +348,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
         <DeleteIcon className="previewIcon" /></span>
       <div className="forbtn">
         <button
-          className="btncolor"
+          className="btncolor2"
           variant="contained"
           // type="submit"
           onClick={handleSubmit}
@@ -357,7 +357,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
           Save
         </button>
         &nbsp;&nbsp;
-        <button className="btncolor" variant="contained" type="submit">
+        <button className="btncolorforCancel" variant="contained" type="submit">
           Cancel
         </button>
       </div>

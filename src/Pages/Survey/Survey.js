@@ -352,10 +352,10 @@ const handleSubmit = () => {
             </FormControl>
         </DialogContent>
         <DialogActions>
-          <button className="btncolor" variant="contained" type="submit" onClick={handleClose}>
+          <button className="btncolorforCancel" variant="contained" type="submit" onClick={handleClose}>
             Cancel
           </button>
-          <button className="btncolor" variant="contained" type="submit" onClick={handleSubmit}>
+          <button className="btncolor2" variant="contained" type="submit" onClick={handleSubmit}>
             Create Survey 
           </button>
 

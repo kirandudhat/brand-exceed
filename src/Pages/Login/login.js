@@ -196,7 +196,7 @@ let user = getUser()
 
   const handleSubmit = (fields)=> {
     dispatch({ type: AUTH_LOGIN, payload: fields })
-
+    // history.push('/admin/survey')
   }
   // useEffect(() => {
   //   if(user){
