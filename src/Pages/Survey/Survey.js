@@ -13,23 +13,23 @@ import { EMPLOYEE_LIST } from "../../redux/employeeListing/types";
 import { useDispatch, useSelector } from "react-redux";
 import { VIEW_EMPLOYEE_DETAILS } from "../../redux/viewEmployee/types";
 import { EMPLOYEE_STATUS_UPDATE } from "../../redux/Approve_reject_leaves/type";
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import { useHistory } from "react-router-dom"
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import { useHistory } from "react-router-dom";
 import CreateSurvey from "./CreateSurvey";
 const Survey = () => {
   const [createSurvey, setCreateSurvey] = useState({
-    name: '',
-    layout:'horizontal',
-    survey_type: 'app_survey'
+    name: "",
+    layout: "horizontal",
+    survey_type: "app_survey",
   });
   const dispatch = useDispatch();
   let history = useHistory();
@@ -42,71 +42,72 @@ const Survey = () => {
   const handleClose = () => {
     setOpen(false);
     setCreateSurvey({
-      name: '',
-      layout:'',
-      survey_type: ''
-    })
+      name: "",
+      layout: "",
+      survey_type: "",
+    });
   };
 
-const handleChange = (e) => {
-  const {name, value} = e.target
-  console.log("name", name, value)
-  setCreateSurvey({
-    ...createSurvey,
-    [name]: value
-  })
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log("name", name, value);
+    setCreateSurvey({
+      ...createSurvey,
+      [name]: value,
+    });
+  };
 
-}
-
-const handleSubmit = () => {
-  history.push(`/admin/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`)
-}
+  const handleSubmit = () => {
+    history.push(
+      `/admin/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`
+    );
+  };
   // const empStatus = useSelector(
   //   (state) => state.employeeStatusUpdateReducer.payload
   // );
-  const empdata2 = useSelector((state) =>state.empListReducer.employeeList);
-  console.log("empdata2",empdata2)
+  const empdata2 = useSelector((state) => state.empListReducer.employeeList);
+  console.log("empdata2", empdata2);
   React.useEffect(() => {
     dispatch({ type: EMPLOYEE_LIST });
   }, []);
 
   // EMPLOYEE_LIST -> get survey list
-  // ADD_CLIENTS -> create survey 
-
+  // ADD_CLIENTS -> create survey
 
   const isLoading = useSelector((state) => state.empListReducer.loading);
-//   const handleViewEmployee = (id) => {
-//     History.push(`/admin/ouremployee/viewemployee/${id}`);
+  //   const handleViewEmployee = (id) => {
+  //     History.push(`/admin/ouremployee/viewemployee/${id}`);
 
-//     dispatch({ type: VIEW_EMPLOYEE_DETAILS, payload: id });
-//   };
+  //     dispatch({ type: VIEW_EMPLOYEE_DETAILS, payload: id });
+  //   };
 
-//   const handleEditEmployee = (id) => {
-//     History.push(`/admin/ouremployee/edit/${id}`);
-//   };
+  //   const handleEditEmployee = (id) => {
+  //     History.push(`/admin/ouremployee/edit/${id}`);
+  //   };
 
-//   const handleDisableEmployee = (e, id, is_approve) => {
-//     // e.preventDefault();
+  //   const handleDisableEmployee = (e, id, is_approve) => {
+  //     // e.preventDefault();
 
-//     if (is_approve === 0) {
-//       is_approve = 1;
-//     } else if (is_approve === 1) {
-//       is_approve = 0;
-//     }
+  //     if (is_approve === 0) {
+  //       is_approve = 1;
+  //     } else if (is_approve === 1) {
+  //       is_approve = 0;
+  //     }
 
-//     dispatch({
-//       type: EMPLOYEE_STATUS_UPDATE,
-//       payload: { id: id, is_approve: is_approve },
-//     });
-//     dispatch({ type: EMPLOYEE_LIST });
-//   };
+  //     dispatch({
+  //       type: EMPLOYEE_STATUS_UPDATE,
+  //       payload: { id: id, is_approve: is_approve },
+  //     });
+  //     dispatch({ type: EMPLOYEE_LIST });
+  //   };
 
   const columns = [
-    { field: "id", headerName: "#", flex: 1 },
+    { field: "id", headerName: "#", flex: 1, width: 20 },
     {
       field: "name",
       headerName: "Name",
       flex: 1,
+      width: 30,
       renderCell: ({ row }) => {
         return <p>{row.name}</p>;
       },
@@ -116,16 +117,17 @@ const handleSubmit = () => {
       headerName: "Questionnaire",
       type: "text",
       flex: 1,
+      width: 20,
       renderCell: ({ row }) => {
         return (
           <>
-            
-            <Button className="iconbtn"
+            <Button
+              className="iconbtn"
               variant="contained"
               color="primary"
-            //   onClick={() => handleEditEmployee(row.id)}
+              //   onClick={() => handleEditEmployee(row.id)}
             >
-              <EditIcon  />
+              <EditIcon />
             </Button>
           </>
         );
@@ -137,18 +139,17 @@ const handleSubmit = () => {
       headerName: "Web URL",
       type: "text",
       flex: 1,
-
+      width: 20,
       renderCell: ({ row }) => {
         return (
           <>
-            <Button 
+            <Button
               variant="contained"
               color="primary"
-            //   onClick={() => handleViewEmployee(row.id)}
+              //   onClick={() => handleViewEmployee(row.id)}
             >
               <VisibilityIcon />
             </Button>
-           
           </>
         );
       },
@@ -158,9 +159,9 @@ const handleSubmit = () => {
       headerName: "Responses",
       type: "text",
       flex: 1,
-      
+      width: 10,
       renderCell: ({ row }) => {
-        return <p>{row.responses}</p>;
+        return <p>{row.responses && row.responses > 0 ? row.responses : 0}</p>;
       },
     },
     {
@@ -168,14 +169,14 @@ const handleSubmit = () => {
       headerName: "Status",
       type: "text",
       flex: 1,
-
+      width: 10,
       renderCell: ({ row }) => {
         return (
           <>
-           <Button 
+            <Button
               variant="contained"
               color="primary"
-            //   onClick={(e) => handleDisableEmployee(e, row.id, row.is_active)}
+              //   onClick={(e) => handleDisableEmployee(e, row.id, row.is_active)}
               value={row.is_active}
             >
               <label className="switch">
@@ -196,7 +197,6 @@ const handleSubmit = () => {
                 <span className="slider round" />
               </label>
             </Button>
-           
           </>
         );
       },
@@ -240,7 +240,7 @@ const handleSubmit = () => {
     //               // defaultValue={true}
     //               readOnly
     //             />
-    //             {/* <input 
+    //             {/* <input
     //               type="checkbox"
     //               checked={row.is_active === 1 ? true : false}
     //               onChange={() => handleDisableEmployeeChange(row.id, row.is_active)}
@@ -255,9 +255,7 @@ const handleSubmit = () => {
     // },
   ];
 
-  const empdata = [
-    {id:1, name:'test-demo', responses:'1',is_active:1}
-  ]
+  const empdata = [{ id: 1, name: "test-demo", responses: "1", is_active: 1 }];
   const getformattedDate = (list) => {
     return list.map((date) => ({
       ...date,
@@ -271,10 +269,15 @@ const handleSubmit = () => {
         <div className="employeeWrapper">
           <span style={{ fontWeight: "bold" }}>Surveys</span>
           {/* <NavLink to="/admin/ouremployee/add"> */}
-            {/* <Button className="btn btn-dark btn-lg"> ADD EMPLOYEE</Button> */}
-            <button className="btncolor" variant="contained" type="submit" onClick={handleClickOpen}>
-              Create Survey
-            </button>
+          {/* <Button className="btn btn-dark btn-lg"> ADD EMPLOYEE</Button> */}
+          <button
+            className="btncolor"
+            variant="contained"
+            type="submit"
+            onClick={handleClickOpen}
+          >
+            Create Survey
+          </button>
           {/* </NavLink> */}
         </div>
         <div className="employeemain">
@@ -289,75 +292,86 @@ const handleSubmit = () => {
       </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Create Survey</DialogTitle>
-        <DialogContent style={{display:'inline-grid'}}>
-        <FormControl style={{paddingBottom:'20px'}}>
-        <FormLabel id="demo-form-control-label-placement">Name *</FormLabel>
-        <input value={createSurvey.name}
-            onChange={(e)=>handleChange(e)}
-            name="name"/>
-        
-          
+        <DialogContent style={{ display: "inline-grid" }}>
+          <FormControl style={{ paddingBottom: "20px" }}>
+            <FormLabel id="demo-form-control-label-placement">Name *</FormLabel>
+            <input
+              value={createSurvey.name}
+              onChange={(e) => handleChange(e)}
+              name="name"
+            />
           </FormControl>
-           <FormControl style={{paddingBottom:'20px'}}>
-              <FormLabel id="demo-form-control-label-placement">App Layout</FormLabel>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-form-control-label-placement"
-                  name="layout"
-                  defaultValue="horizontal"
-                  value={createSurvey.layout}
-                  onChange={(e)=>handleChange(e)}
-                >
-       
-                <FormControlLabel
-                  value="horizontal"
-                  control={<Radio />}
-                  label="Horizontal"
-                  // labelPlacement="start"
-                />
-                <FormControlLabel
-                  value="vertical"
-                  control={<Radio />}
-                  label="Vertical"
-                  // labelPlacement="start"
-                />
-                 </RadioGroup>
-            </FormControl >
+          <FormControl style={{ paddingBottom: "20px" }}>
+            <FormLabel id="demo-form-control-label-placement">
+              App Layout
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-form-control-label-placement"
+              name="layout"
+              defaultValue="horizontal"
+              value={createSurvey.layout}
+              onChange={(e) => handleChange(e)}
+            >
+              <FormControlLabel
+                value="horizontal"
+                control={<Radio />}
+                label="Horizontal"
+                // labelPlacement="start"
+              />
+              <FormControlLabel
+                value="vertical"
+                control={<Radio />}
+                label="Vertical"
+                // labelPlacement="start"
+              />
+            </RadioGroup>
+          </FormControl>
 
-            <FormControl>
-              <FormLabel id="demo-form-control-label-placement">Survey Type</FormLabel>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-form-control-label-placement"
-                  name="survey_type"
-                  defaultValue="app_survey"
-                  value={createSurvey.survey_type}
-                  onChange={(e)=>handleChange(e)}
-                >
-       
-                <FormControlLabel
-                  value="app_survey"
-                  control={<Radio />}
-                  label="App Survey"
-                  // labelPlacement="start"
-                />
-                <FormControlLabel
-                  value="web_survey"
-                  control={<Radio />}
-                  label="Web Survey"
-                  // labelPlacement="start"
-                />
-                 </RadioGroup>
-            </FormControl>
+          <FormControl>
+            <FormLabel id="demo-form-control-label-placement">
+              Survey Type
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-form-control-label-placement"
+              name="survey_type"
+              defaultValue="app_survey"
+              value={createSurvey.survey_type}
+              onChange={(e) => handleChange(e)}
+            >
+              <FormControlLabel
+                value="app_survey"
+                control={<Radio />}
+                label="App Survey"
+                // labelPlacement="start"
+              />
+              <FormControlLabel
+                value="web_survey"
+                control={<Radio />}
+                label="Web Survey"
+                // labelPlacement="start"
+              />
+            </RadioGroup>
+          </FormControl>
         </DialogContent>
         <DialogActions>
-          <button className="btncolorforCancel" variant="contained" type="submit" onClick={handleClose}>
+          <button
+            className="btncolorforCancel"
+            variant="contained"
+            type="submit"
+            onClick={handleClose}
+          >
             Cancel
           </button>
-          <button className="btncolor2" variant="contained" type="submit" onClick={handleSubmit}>
-            Create Survey 
+          <button
+            className="btncolor2"
+            variant="contained"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Create Survey
           </button>
-
         </DialogActions>
       </Dialog>
     </>

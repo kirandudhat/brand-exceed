@@ -35,62 +35,60 @@ import { useDispatch } from "react-redux";
 import { imageUplode } from "../../services/imgUploadServices";
 import { uploadimagefunction } from "../../Utils/common/Common";
 
-
 const CreateSurvey = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const history = useHistory();
-  const params = new URLSearchParams(window.location.search) 
-  let name = params.get('name')
-  let layout = params.get('layout') 
-  let survey_type = params.get('survey_type') 
-  console.log("survey_type",survey_type)
-  const [survey,setSurvey] = useState({
-    name:name,
-    layout:layout,
+  const params = new URLSearchParams(window.location.search);
+  let name = params.get("name");
+  let layout = params.get("layout");
+  let survey_type = params.get("survey_type");
+  console.log("survey_type", survey_type);
+  const [survey, setSurvey] = useState({
+    name: name,
+    layout: layout,
     survey_type: survey_type,
-    headerText:name,
-    headerImage:null,
-    welcomeImage:null,
-    thankyouImage:null,
-    thankyouDuration:null,
-    theme:null,
-    accessPin:null,
-    timeOut:null,
-    saveOnTime:false,
-    defaultLang:null,
-    loopSurvey:false,
-    pdf:false,
-    backgroundLoc:null,
-    captureMandatory:null,
-    startPage:null,
-    endPageSuccess:null,
-    endPageTer:null, 
-    field:null
-})
+    headerText: name,
+    headerImage: null,
+    welcomeImage: null,
+    thankyouImage: null,
+    thankyouDuration: null,
+    theme: null,
+    accessPin: null,
+    timeOut: null,
+    saveOnTime: false,
+    defaultLang: null,
+    loopSurvey: false,
+    pdf: false,
+    backgroundLoc: null,
+    captureMandatory: null,
+    startPage: null,
+    endPageSuccess: null,
+    endPageTer: null,
+    field: null,
+  });
 
-const handleChange = (e) =>{
-  const {name, value} = e.target
-  console.log("name", name, value)
-  setSurvey({
-    ...survey,
-    [name]: value
-  })
-}
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log("name", name, value);
+    setSurvey({
+      ...survey,
+      [name]: value,
+    });
+  };
 
-const handleSubmit = () => {
-  console.log("survey", survey)
-  // dispatch({ type: ADD_CLIENTS, payload: survey });
-  history.push("/admin/CreateSurveyForm")
-}
-// useEffect(()=>{
-// },[])
+  const handleSubmit = () => {
+    console.log("survey", survey);
+    dispatch({ type: ADD_CLIENTS, payload: survey });
+    // history.push("/admin/CreateSurveyForm")
+  };
+  // useEffect(()=>{
+  // },[])
 
-
-// const imageHandle = async (e) => {
-//   const imagesse = await uploadimagefunction(e.target.files[0]);
-//   setSurvey(imagesse)
-// };
-// console.log("survey",survey)
+  // const imageHandle = async (e) => {
+  //   const imagesse = await uploadimagefunction(e.target.files[0]);
+  //   setSurvey(imagesse)
+  // };
+  // console.log("survey",survey)
 
   return (
     <div className="ouremployee">
@@ -98,20 +96,51 @@ const handleSubmit = () => {
         <span style={{ fontWeight: "bold" }} className="surveyTitle">
           Create Surveys
         </span>
-        <button className="backbtn" variant="contained" type="submit" onClick={()=>history.push("/admin/survey")}>
+        <button
+          className="backbtn"
+          variant="contained"
+          type="submit"
+          onClick={() => history.push("/admin/survey")}
+        >
           Back
         </button>
       </div>
-      {layout === "horizontal" && survey_type === "web_survey" ?    
-      <HwebSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
-      {layout === "horizontal" && survey_type === "app_survey" ?    
-      <HappSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
-      {layout === "vertical" && survey_type === "web_survey" ?    
-      <VwebSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
-      {layout === "vertical" && survey_type === "app_survey" ?    
-      <VappSurvey onChange={handleChange} survey={survey} handleSubmit={handleSubmit}/> : "" }
-      
-
+      {layout === "horizontal" && survey_type === "web_survey" ? (
+        <HwebSurvey
+          onChange={handleChange}
+          survey={survey}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        ""
+      )}
+      {layout === "horizontal" && survey_type === "app_survey" ? (
+        <HappSurvey
+          onChange={handleChange}
+          survey={survey}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        ""
+      )}
+      {layout === "vertical" && survey_type === "web_survey" ? (
+        <VwebSurvey
+          onChange={handleChange}
+          survey={survey}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        ""
+      )}
+      {layout === "vertical" && survey_type === "app_survey" ? (
+        <VappSurvey
+          onChange={handleChange}
+          survey={survey}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

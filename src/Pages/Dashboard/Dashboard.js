@@ -23,14 +23,17 @@ const DashBoard = () => {
   }, []);
 
   const dashboardData = useSelector((state) => state.dasboardReducer?.payload);
- 
-  useEffect(() => {
-    dispatch({ type: DASHBOARD });
-  }, []);
+
+  // useEffect(() => {
+  //   dispatch({ type: DASHBOARD });
+  // }, []);
   return (
     <>
       <div className="dashboard">
-          <p className="text-center">No reports have been configured. To add report on the dashboard - go to Analytics section and then click on "Pin to Dashboard"</p>
+        <p className="text-center">
+          No reports have been configured. To add report on the dashboard - go
+          to Analytics section and then click on "Pin to Dashboard"
+        </p>
       </div>
     </>
   );
