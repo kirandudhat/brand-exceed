@@ -14,9 +14,13 @@
 .btncolor{
   background-color: #5d9cec;
   color: aliceblue;
-  padding: 10px 15px;
+  text-align: center;
+  /* padding: 10px 15px; */
+  padding: 8px;
+  font-size: 14px;
+  margin: 4px 4px;
   border: none;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 /* .btncolor:hover{
@@ -30,9 +34,14 @@
 .btncolor2{
   background-color: #00AAAA;
   color: aliceblue;
-  padding: 10px 15px;
+  /* padding: 10px 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 10px; */
+  padding: 8px;
+  font-size: 14px;
+  margin: 4px 4px;
+  border: none;
+  border-radius: 3px;
 }
 /* .btncolor2:hover{
   border: 1px solid #00AAAA;
@@ -44,9 +53,14 @@
 .btncolorforCancel{
   background-color: #ee3d3d;
   color: aliceblue;
-  padding: 10px 15px;
+  /* padding: 10px 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 10px; */
+  padding: 8px;
+  font-size: 14px;
+  margin: 4px 4px;
+  border: none;
+  border-radius: 3px;
 }
 .MuiStepIcon-root.MuiStepIcon-active{
   color: #4b4b4b !important;
@@ -69,4 +83,20 @@
 }
 .MuiStepIcon-root.MuiStepIcon-completed{
   color: #444444 !important;
+}
+#demo-form-control-label-placement{
+  padding-bottom: 4px;
+}
+
+.MuiDataGrid-columnHeaderTitleContainer{
+  justify-content: center;
+}
+
+.MuiDataGrid-cell{
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.MuiDataGrid-iconButtonContainer{
+  display: none !important;
 }

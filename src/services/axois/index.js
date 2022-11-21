@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: `https://api.brandexceed.in/api/survey`
+  baseURL: `https://api.brandexceed.in/api`
 });
 
 apiClient.interceptors.request.use((request) => {

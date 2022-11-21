@@ -111,7 +111,7 @@ export default function Datatable({ column, tableData = [], isLoading }) {
           </div>
         </div>
       ) : (
-        <div style={{ height: "600px" }}>
+        <div>
           <DataGrid
             components={{
               Toolbar: QuickSearchToolbar,
@@ -128,6 +128,7 @@ export default function Datatable({ column, tableData = [], isLoading }) {
                 </div>
               ),
             }}
+            autoHeight={true}
             rows={rows ? rows : tableData ? tableData : []}
             columns={column || []}
             disableSelectionOnClick={true}

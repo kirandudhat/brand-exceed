@@ -44,7 +44,7 @@ function HappSurvey({onChange, survey, handleSubmit}) {
           <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl formstyl"
             >
               Name *
             </FormLabel>
@@ -70,14 +70,17 @@ function HappSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="horizontal"
                   control={<Radio />}
+                  disabled
                   label="Horizontal"
-                  className="survey-lbl"
+                  className="radio-lbl"
                   // labelPlacement="start"
                 />
                 <FormControlLabel
                   value="vertical"
                   control={<Radio />}
+                  disabled
                   label="Vertical"
+                  className="radio-lbl"
                   // labelPlacement="start"
                 />
               </RadioGroup>
@@ -103,14 +106,17 @@ function HappSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="app_survey"
                   control={<Radio />}
+                  disabled
                   label="App Survey"
-                  className="survey-lbl"
+                  className="radio-lbl"
                   // labelPlacement="start"
                 />
                 <FormControlLabel
                   value="web_survey"
                   control={<Radio />}
+                  disabled
                   label="Web Survey"
+                  className="radio-lbl"
                   // labelPlacement="start"
                 />
               </RadioGroup>

@@ -102,11 +102,11 @@ const handleSubmit = () => {
 //   };
 
   const columns = [
-    { field: "id", headerName: "#", width: 80 },
+    { field: "id", headerName: "#", flex: 1 },
     {
       field: "name",
       headerName: "Name",
-      width: 200,
+      flex: 1,
       renderCell: ({ row }) => {
         return <p>{row.name}</p>;
       },
@@ -115,18 +115,17 @@ const handleSubmit = () => {
       field: "questionnaire",
       headerName: "Questionnaire",
       type: "text",
-      width: 200,
-
+      flex: 1,
       renderCell: ({ row }) => {
         return (
           <>
             
-            <Button
+            <Button className="iconbtn"
               variant="contained"
               color="primary"
             //   onClick={() => handleEditEmployee(row.id)}
             >
-              <EditIcon />
+              <EditIcon  />
             </Button>
           </>
         );
@@ -137,12 +136,12 @@ const handleSubmit = () => {
       field: "web_url",
       headerName: "Web URL",
       type: "text",
-      width: 150,
+      flex: 1,
 
       renderCell: ({ row }) => {
         return (
           <>
-            <Button
+            <Button 
               variant="contained"
               color="primary"
             //   onClick={() => handleViewEmployee(row.id)}
@@ -158,7 +157,7 @@ const handleSubmit = () => {
       field: "responses",
       headerName: "Responses",
       type: "text",
-      width: 150,
+      flex: 1,
       
       renderCell: ({ row }) => {
         return <p>{row.responses}</p>;
@@ -168,12 +167,12 @@ const handleSubmit = () => {
       field: "is_active",
       headerName: "Status",
       type: "text",
-      width: 150,
+      flex: 1,
 
       renderCell: ({ row }) => {
         return (
           <>
-           <Button
+           <Button 
               variant="contained"
               color="primary"
             //   onClick={(e) => handleDisableEmployee(e, row.id, row.is_active)}
@@ -325,7 +324,7 @@ const handleSubmit = () => {
                  </RadioGroup>
             </FormControl >
 
-            <FormControl style={{paddingBottom:'20px'}}>
+            <FormControl>
               <FormLabel id="demo-form-control-label-placement">Survey Type</FormLabel>
                 <RadioGroup
                   row

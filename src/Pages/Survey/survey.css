@@ -117,6 +117,12 @@
     text-align: right;
     padding-right: 20px !important;
   }
+
+  .radio-lbl{
+    color: #929292;
+    font-size: 14px;
+  }
+
   .background{
     background-color: aliceblue;
     padding-top: 10px;
@@ -145,4 +151,9 @@
     background-color: #FFF;
     border: 1px solid #EEE;
     height: 100px;
+  }
+  .formstyl{
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: purple;
   }
