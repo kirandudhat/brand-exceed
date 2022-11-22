@@ -111,7 +111,7 @@ export default function Datatable({ column, tableData = [], isLoading }) {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="custom-table">
           <DataGrid
             components={{
               Toolbar: QuickSearchToolbar,

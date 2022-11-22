@@ -26,6 +26,7 @@ import FormControl from "@mui/material/FormControl";
 import { useHistory } from "react-router-dom";
 import CreateSurvey from "./CreateSurvey";
 const Survey = () => {
+  const [emptyName, setEmptyName] = useState(false);
   const [createSurvey, setCreateSurvey] = useState({
     name: "",
     layout: "horizontal",
@@ -50,6 +51,7 @@ const Survey = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setEmptyName(false)
     console.log("name", name, value);
     setCreateSurvey({
       ...createSurvey,
@@ -58,9 +60,18 @@ const Survey = () => {
   };
 
   const handleSubmit = () => {
-    history.push(
-      `/admin/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`
-    );
+
+    if(createSurvey.name)
+    {
+      history.push(
+        `/admin/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`
+      );
+    }
+    else
+    {
+setEmptyName(true)
+    }
+    
   };
   // const empStatus = useSelector(
   //   (state) => state.employeeStatusUpdateReducer.payload
@@ -102,14 +113,14 @@ const Survey = () => {
   //   };
 
   const columns = [
-    { field: "id", headerName: "#", flex: 1, width: 20 },
+    { field: "id", headerName: "#", maxWidth: 10, className:"pstyl" },
     {
       field: "name",
       headerName: "Name",
-      flex: 1,
+      flex: 1.5,
       width: 30,
       renderCell: ({ row }) => {
-        return <p>{row.name}</p>;
+        return <p className="pstyl">{row.name}</p>;
       },
     },
     {
@@ -127,7 +138,7 @@ const Survey = () => {
               color="primary"
               //   onClick={() => handleEditEmployee(row.id)}
             >
-              <EditIcon />
+              <EditIcon className="iconstyl" />
             </Button>
           </>
         );
@@ -148,7 +159,7 @@ const Survey = () => {
               color="primary"
               //   onClick={() => handleViewEmployee(row.id)}
             >
-              <VisibilityIcon />
+              <VisibilityIcon className="iconstyl" />
             </Button>
           </>
         );
@@ -161,7 +172,7 @@ const Survey = () => {
       flex: 1,
       width: 10,
       renderCell: ({ row }) => {
-        return <p>{row.responses && row.responses > 0 ? row.responses : 0}</p>;
+        return <p className="pstyl">{row.responses && row.responses > 0 ? row.responses : 0}</p>;
       },
     },
     {
@@ -280,7 +291,7 @@ const Survey = () => {
           </button>
           {/* </NavLink> */}
         </div>
-        <div className="employeemain">
+        <div className="employeemain" style={{borderWidth:"2px 1px 2px 1px",borderStyle:"solid",borderColor:"lightgray"}}>
           {
             <Datatable
               column={columns}
@@ -294,12 +305,15 @@ const Survey = () => {
         <DialogTitle>Create Survey</DialogTitle>
         <DialogContent style={{ display: "inline-grid" }}>
           <FormControl style={{ paddingBottom: "20px" }}>
-            <FormLabel id="demo-form-control-label-placement">Name *</FormLabel>
+            <FormLabel id="demo-form-control-label-placement">Name<span class="star">*</span></FormLabel>
             <input
+              required="required"
+
               value={createSurvey.name}
               onChange={(e) => handleChange(e)}
               name="name"
             />
+            {emptyName && <span className="star">Name is required</span>}
           </FormControl>
           <FormControl style={{ paddingBottom: "20px" }}>
             <FormLabel id="demo-form-control-label-placement">

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins"); 
+@import url("https://fonts.googleapis.com/css?family=Roboto"); 
 .cantainer {
   display: flex;
 }
@@ -88,15 +90,40 @@
   padding-bottom: 4px;
 }
 
-.MuiDataGrid-columnHeaderTitleContainer{
+.MuiDataGrid-columnHeader:not([data-field="name"]) .MuiDataGrid-columnHeaderTitleContainer{
   justify-content: center;
 }
-
-.MuiDataGrid-cell{
+.MuiDataGrid-columnHeaderTitleContainer,.MuiDataGrid-columnSeparator,.MuiDataGrid-columnHeader{
+  background-color: whitesmoke;
+  font-family:"Poppins", sans-serif;
+  font-weight: bold !important;
+}
+.MuiDataGrid-cell:not([data-field="name"]){
   justify-content: center !important;
   text-align: center !important;
 }
 
 .MuiDataGrid-iconButtonContainer{
   display: none !important;
+}
+/* .MuiDataGrid-windowContainer{
+  width:"372px";
+  height: "316px";
+} */
+.custom-table .MuiDataGrid-main .MuiDataGrid-window .MuiDataGrid-renderingZone .MuiDataGrid-row:nth-child(even){
+  background-color: whitesmoke;
+}
+.custom-table .MuiDataGrid-main .MuiDataGrid-window .MuiDataGrid-renderingZone .MuiDataGrid-row p{
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+.MuiDataGrid-cell{
+  font-family:"Roboto","Helvetica Neue",sans-serif;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+  
+  font-weight: 1000 !important;
+  color: gray;
+ 
 }
