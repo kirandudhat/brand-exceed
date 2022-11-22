@@ -1,4 +1,4 @@
-import logo from "../../assest/img/brand-exceed.jpeg";
+import logo from "../../assest/img/logo.png";
 
 import "./Header.css";
 import { getUser } from "../../Utils/common/Common";
