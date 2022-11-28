@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Router history={history} basename="/govsurvey">
+      <Router history={history}>
         <Switch>
           <PublicRoute exact path="/login">
             <Login />

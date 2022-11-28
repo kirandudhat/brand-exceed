@@ -103,7 +103,7 @@ const Container = () => {
           ...item.component,
         };
         let fieldString = `${newComponent.compName.type.name}_${Date.now().toString()}`
-        setFormData([...formData,{...newComponent.compName.props.data, field: fieldString}])
+        setFormData([...formData,{...newComponent.compName.props.data, field: fieldString,page: dropZone.selectPage}])
         const newItem = {
           id: newComponent.id,
           compName: item.component.content,

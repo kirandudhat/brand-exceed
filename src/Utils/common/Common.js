@@ -1,16 +1,16 @@
 import moment from "moment";
 import { imageUplode } from "../../services/imgUploadServices";
 export const setUser = (token) => {
-  localStorage.setItem("user", JSON.stringify(token));
+  sessionStorage.setItem("user", JSON.stringify(token));
 };
 
 export const getUser = () =>
-  localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
+  sessionStorage.getItem("user")
+    ? JSON.parse(sessionStorage.getItem("user"))
     : null;
 
 export const removeUser = () => {
-  localStorage.removeItem("user");
+  sessionStorage.removeItem("user");
 };
 
 export const getformattedDate = (list) => {
