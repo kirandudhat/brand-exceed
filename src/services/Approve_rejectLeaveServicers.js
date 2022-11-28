@@ -24,14 +24,14 @@ export async function RejectleaveStatus(payload) {
     });
 }
 ///employee status update
-export async function empStatusUpdate({ id , is_approve}) {
+export async function empStatusUpdate(id) {
 
  return apiClient
     
-    .put(`/api/v1/employee/updatestatus/${id}`, { is_active:is_approve})
+    .get(`/survey/publish/${id}`)
     .then((response) => {
       if (response) {
-        return response.data;
+        return response;
       }
       return false;
     });

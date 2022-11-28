@@ -32,12 +32,13 @@ const SideBar = () => {
             <ul className="sidebarlist">
               {role !== 0
                 ? roleLinks().map((route) => (
-                    <li className="sidebarlistItem" key={route.to}>
+                  <li className="sidebarlistItem" key={route.to}>
+                      {console.log("route", route, window.location.pathname, window.location.pathname.includes(route.to))}
                       <NavLink
                         to={getPath(route.to, getBasePath(role))}
-                        className="link"
+                        className={route.to !== '/' && window.location.pathname.includes(route.to)  ? "link active" : "link"}
                         exact
-                        activeClassName="active"
+                        // activeClassName={}
                       >
                         <span className="sidebarIcon">{route.icon}</span>
 

@@ -26,6 +26,7 @@ import FormControl from "@mui/material/FormControl";
 import { useHistory } from "react-router-dom";
 import CreateSurvey from "./CreateSurvey";
 import './togglestyle.scss'
+import { empStatusUpdate } from "../../services/Approve_rejectLeaveServicers";
 const Survey = () => {
   const [emptyName, setEmptyName] = useState(false);
   const [createSurvey, setCreateSurvey] = useState({
@@ -95,21 +96,12 @@ setEmptyName(true)
   //     History.push(`/admin/ouremployee/edit/${id}`);
   //   };
 
-  //   const handleDisableEmployee = (e, id, is_approve) => {
-  //     // e.preventDefault();
+    const handleDisableEmployee = async(id) => {
+      console.log("e, id",  id);
 
-  //     if (is_approve === 0) {
-  //       is_approve = 1;
-  //     } else if (is_approve === 1) {
-  //       is_approve = 0;
-  //     }
-
-  //     dispatch({
-  //       type: EMPLOYEE_STATUS_UPDATE,
-  //       payload: { id: id, is_approve: is_approve },
-  //     });
-  //     dispatch({ type: EMPLOYEE_LIST });
-  //   };
+      await empStatusUpdate(id)
+      dispatch({ type: EMPLOYEE_LIST });
+    };
 
   const columns = [
     { field: "id", headerName: "#", maxWidth: 10, className:"pstyl" },
@@ -181,6 +173,8 @@ setEmptyName(true)
       flex: 1,
       width: 10,
       renderCell: ({ row }) => {
+        console.log(row)
+
         return (
           <>
             <div className="toggle-switch">
@@ -189,7 +183,8 @@ setEmptyName(true)
                 className="toggle-switch-checkbox"
                 name='isActive'
                 id='isActive'
-                value={true}
+                checked={row.publish}
+                onChange={(e) => handleDisableEmployee( row.id)}
               />
               <label className="toggle-switch-label" htmlFor='isActive'>
                 <span className="toggle-switch-inner" />

@@ -65,14 +65,13 @@ export function* RejectleaveStatusSaga({ payload }) {
 }
 // EMPLOYEE  STATUS UPDATE saga
 export function* employeeStatusUpdateSaga({ payload }) {
+  debugger
   yield put(employeeStatusUpdateRequest());
 
   try {
     const result = yield call(empStatusUpdate, payload);
-
     if (result.status == true) {
-      yield put(employeeStatusUpdateSuccess({ ...result, payload }));
-      // yield call(employeeListing);
+      yield call(employeeListing);
       toast.success(result.message);
     } else {
       yield put(employeeStatusUpdateFailure(result));

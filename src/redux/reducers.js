@@ -34,11 +34,11 @@ import editClientsReducer from "./editClients/reducer";
 //   empLeaveListReducer,
 //   empLeaveListByIdReducer,
 // } from "./EmpLeaveList/reducer";
-// import {
-//   leaveStatusReducer,
-//   RejectleaveStatusReducer,
-//   employeeStatusUpdateReducer,
-// } from "./Approve_reject_leaves/reducers";
+import {
+  // leaveStatusReducer,
+  // RejectleaveStatusReducer,
+  employeeStatusUpdateReducer,
+} from "./Approve_reject_leaves/reducers";
 // import viewDateWiseTimeSheetReducer from "./ViewDateWiseTimeshee/reducer";
 // import editHolidayReducer from "./editHoliday/reducer";
 // import empOverTimeReducer from "./getOverTime/reducer";
@@ -94,7 +94,7 @@ export const rootReducers = () =>
     // addManualLeavesReducer,
     // empLeaveListByIdReducer,
     // addOverTimeReducer,
-    // employeeStatusUpdateReducer,
+    employeeStatusUpdateReducer,
     dasboardReducer,
   });
 export default rootReducers;
