@@ -27,6 +27,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
 
 function VwebSurvey({onChange, survey, handleSubmit}) {
     const [open, setOpen] = useState(false);
@@ -42,7 +43,6 @@ function VwebSurvey({onChange, survey, handleSubmit}) {
     let name = params.get('name') // 123 
     let layout = params.get('layout') // 123 
     let survey_type = params.get('survey_type') // 123 
-  console.log("surveyData",name,layout,survey_type)
   const history = useHistory();
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,16 +94,16 @@ const handleEditorChangeEndTer = (state) => {
           <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              Name *
+              Name <span className='star'>*</span>
             </FormLabel>
             <input name="name" className="col-md-7 col-sm-7 form-control"  value={survey.name} onChange={onChange}/>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Layout Type
             </FormLabel>
@@ -120,6 +120,7 @@ const handleEditorChangeEndTer = (state) => {
                 <FormControlLabel
                   value="horizontal"
                   control={<Radio />}
+                  disabled
                   label="Horizontal"
                   className="survey-lbl"
                   // labelPlacement="start"
@@ -127,16 +128,17 @@ const handleEditorChangeEndTer = (state) => {
                 <FormControlLabel
                   value="vertical"
                   control={<Radio />}
+                  disabled
                   label="Vertical"
                   // labelPlacement="start"
                 />
               </RadioGroup>
             </span>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Survey Type
             </FormLabel>
@@ -153,6 +155,7 @@ const handleEditorChangeEndTer = (state) => {
                 <FormControlLabel
                   value="app_survey"
                   control={<Radio />}
+                  disabled
                   label="App Survey"
                   className="survey-lbl"
                   // labelPlacement="start"
@@ -160,16 +163,17 @@ const handleEditorChangeEndTer = (state) => {
                 <FormControlLabel
                   value="web_survey"
                   control={<Radio />}
+                  disabled
                   label="Web Survey"
                   // labelPlacement="start"
                 />
               </RadioGroup>
             </span>
           </div>
-          <div className="formInputs">
+          <div className="d-flex align-items-center formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Show Header
             </FormLabel>
@@ -179,47 +183,44 @@ const handleEditorChangeEndTer = (state) => {
             {showHeader ? <> <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              Header Text *
+              Header Text <span className='star'>*</span>
             </FormLabel>
             <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={onChange}/>
           </div>
-          <div className="d-flex formInputs">
+          <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Header Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl"  name='headerImage' value={survey.headerImage} onChange={onChange}/>
-            </div> </>
+              <Form.Control type="file"  name='headerImage' onChange={onChange} />            </div> </>
             : "" }
-            <div className="d-flex formInputs">
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl" name='welcomeImage' value={survey.welcomeImage} onChange={onChange}/>
-            </div>
-            <div className="d-flex formInputs">
+              <Form.Control type="file"  name='welcomeImage' onChange={onChange} />            </div>
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
-                Thank you Image*
+                Thank you Image <span className='star'>*</span>
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl"  name='thankyouImage' value={survey.thankyouImage} onChange={onChange}/>
-            </div>
+              <Form.Control type="file"  name='thankyouImage' onChange={onChange} />            </div>
             <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Thank You Duration (Seconds)
               </FormLabel>
@@ -290,7 +291,7 @@ const handleEditorChangeEndTer = (state) => {
           }
           </div>
           {time ? 
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -302,7 +303,7 @@ const handleEditorChangeEndTer = (state) => {
             onChange={onChange}/>
           </div> : ""}
 
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -312,7 +313,7 @@ const handleEditorChangeEndTer = (state) => {
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='loopSurvey'
               value={survey.loopSurvey} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -328,7 +329,7 @@ const handleEditorChangeEndTer = (state) => {
       <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
+          className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
           Start Page
         </FormLabel>
@@ -343,14 +344,14 @@ const handleEditorChangeEndTer = (state) => {
           value={survey.startPage}
         //   onChange={onChange}
         />
-      </div><span style={{paddingLeft:"14%"}}>
+      </div><span style={{paddingLeft:"15%"}}>
         <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
         <DeleteIcon className="previewIcon" /></span>
 
         <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
+          className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
           End Page
           <br />
@@ -367,14 +368,14 @@ const handleEditorChangeEndTer = (state) => {
           value={survey.endPageSuccess}
         //   onChange={onChange}
         />
-      </div><span style={{paddingLeft:"14%"}}>
+      </div><span style={{paddingLeft:"15%"}}>
         <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
         <DeleteIcon className="previewIcon" /></span>
 
       <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
+          className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
           End Page
           <br />
@@ -391,7 +392,7 @@ const handleEditorChangeEndTer = (state) => {
           value={survey.endPageTer}
         //   onChange={onChange}
         />
-      </div><span style={{paddingLeft:"14%"}}>
+      </div><span style={{paddingLeft:"15%"}}>
         <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
         <DeleteIcon className="previewIcon" /></span>
       <div className="forbtn">

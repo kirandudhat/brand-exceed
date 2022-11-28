@@ -27,9 +27,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
 
 function HwebSurvey({onChange, survey, handleSubmit}) {
-    console.log("onChange",onChange)
     const [open, setOpen] = useState(false);
     const [time, setTime] = useState(false);
  
@@ -85,16 +85,16 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
           <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              Name *
+              Name <span className='star'>*</span>
             </FormLabel>
             <input name="name" value={survey.name} className="col-md-7 col-sm-7 form-control" onChange={onChange}/>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Layout Type
             </FormLabel>
@@ -111,6 +111,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="horizontal"
                   control={<Radio />}
+                  disabled
                   label="Horizontal"
                   className="survey-lbl"
                   // labelPlacement="start"
@@ -118,16 +119,17 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="vertical"
                   control={<Radio />}
+                  disabled
                   label="Vertical"
                   // labelPlacement="start"
                 />
               </RadioGroup>
             </span>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Survey Type
             </FormLabel>
@@ -144,6 +146,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="app_survey"
                   control={<Radio />}
+                  disabled
                   label="App Survey"
                   className="survey-lbl"
                   // labelPlacement="start"
@@ -151,6 +154,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="web_survey"
                   control={<Radio />}
+                  disabled
                   label="Web Survey"
                   // labelPlacement="start"
                 />
@@ -161,47 +165,45 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               name="headerText"
             >
-              Header Text *
+              Header Text <span className='star'>*</span>
             </FormLabel>
             <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={onChange} />
           </div>
-          <div className="d-flex formInputs">
+          <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Header Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl" name='headerImage' value={survey.headerImage} onChange={onChange}/>
+              <Form.Control type="file"   name='headerImage' onChange={onChange}/>
             </div>
-            <div className="d-flex formInputs">
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl" name='welcomeImage' value={survey.welcomeImage} onChange={onChange}/>
-            </div>
-            <div className="d-flex formInputs">
+              <Form.Control type="file"  name='welcomeImage' onChange={onChange} />            </div>
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
-                Thank you Image*
+                Thank you Image <span className='star'>*</span>
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl" name='thankyouImage' value={survey.thankyouImage} onChange={onChange}/>
-            </div>
+              <Form.Control type="file"   name='thankyouImage' onChange={onChange}/>            </div>
             <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Thank You Duration (Seconds)
               </FormLabel>
@@ -253,7 +255,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             </option>
           </select>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -264,7 +266,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='loopSurvey'
               value={survey.loopSurvey} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -280,72 +282,80 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
       <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
+          className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
           Start Page
         </FormLabel>
-        <Editor
-          editorState={editorState}
-          onEditorStateChange={handleEditorChange}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class survey-message"
-          toolbarClassName="toolbar-class"
-          className="col-md-7 col-lg-7 col-sm-7"
-          name='startPage'
-          value={survey.startPage}
-        //   onChange={onChange}
-        />
-      </div><span style={{paddingLeft:"14%"}}>
-        <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" /></span>
-
+        
+        <div className='position-relative'>
+          <Editor
+             editorState={editorState}
+             onEditorStateChange={handleEditorChange}
+             wrapperClassName="wrapper-class"
+             editorClassName="editor-class survey-message"
+             toolbarClassName="toolbar-class"
+             className="col-md-7 col-lg-7 col-sm-7"
+             name='startPage'
+             value={survey.startPage}
+          //   onChange={onChange}
+          />
+        <div className='textareabtn'><span>
+          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
+          <DeleteIcon className="previewIcon" /></span></div>
+        </div>
+      </div>
         <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
+          className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
-          End Page
-          <br />
-          (Success)
+          End Page (Success)
         </FormLabel>
-        <Editor
-          editorState={endSucces}
-          onEditorStateChange={handleEditorChangeEndSuccess}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class  survey-message"
-          toolbarClassName="toolbar-class"
-          className="col-md-7 col-lg-7 col-sm-7 survey-message"
-          name='endPageSuccess'
-          value={survey.endPageSuccess}
-        //   onChange={onChange}
-        />
-      </div><span style={{paddingLeft:"14%"}}>
-        <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" /></span>
+        <div className='position-relative'>
+          <Editor
+            editorState={endSucces}
+            onEditorStateChange={handleEditorChangeEndSuccess}
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class  survey-message"
+            toolbarClassName="toolbar-class"
+            className="col-md-7 col-lg-7 col-sm-7 survey-message"
+            name='endPageSuccess'
+            value={survey.endPageSuccess}
+          //   onChange={onChange}
+          />
+        <div className='textareabtn'><span>
+          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
+          <DeleteIcon className="previewIcon" /></span></div>
+        </div>
+        </div>
 
       <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
-          className="col-md-2 col-lg-2 control-label ng-binding survey-lbl"
+          className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
           End Page
-          <br />
           (Termination)
         </FormLabel>
-        <Editor
-          editorState={endTer}
-          onEditorStateChange={handleEditorChangeEndTer}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class  survey-message"
-          toolbarClassName="toolbar-class"
-          className="col-md-7 col-lg-7 col-sm-7 survey-message"
-          name='endPageTer'
-          value={survey.endPageTer}
-        //   onChange={onChange}
-        />
-      </div><span style={{paddingLeft:"14%"}}>
-        <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" /></span>
+
+        <div className='position-relative'>
+          <Editor
+             editorState={endTer}
+             onEditorStateChange={handleEditorChangeEndTer}
+             wrapperClassName="wrapper-class"
+             editorClassName="editor-class  survey-message"
+             toolbarClassName="toolbar-class"
+             className="col-md-7 col-lg-7 col-sm-7 survey-message"
+             name='endPageTer'
+             value={survey.endPageTer}
+          //   onChange={onChange}
+          />
+        <div className='textareabtn'><span>
+          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
+          <DeleteIcon className="previewIcon" /></span></div>
+        </div>
+      </div>
+
       <div className="forbtn">
         <button
           className="btncolor2"

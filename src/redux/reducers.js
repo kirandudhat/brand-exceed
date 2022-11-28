@@ -9,7 +9,7 @@ import authReducer from "./auth/reducer";
 //   addBankReducer,
 // } from "./addEmployee/reducer";
 import empListReducer from "./employeeListing/reducer";
-// import viewEmployeeDeatilsReducer from "./viewEmployee/reducer";
+import viewEmployeeDeatilsReducer from "./viewEmployee/reducer";
 // import {
 //   editEmployeeReducer,
 //   editEmpEducationReducer,
@@ -62,7 +62,7 @@ export const rootReducers = () =>
     // addBankReducer,
 
     empListReducer,
-    // viewEmployeeDeatilsReducer,
+    viewEmployeeDeatilsReducer,
 
     // editEmployeeReducer,
     // editEmpEducationReducer,

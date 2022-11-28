@@ -21,6 +21,7 @@ const viewEmployeeDeatilsReducer = (state = initialState, action) => {
         error: null,
       };
     case VIEW_EMPLOYEE_SUCCESS:
+      console.log("action.payload",action.payload)
       return {
         ...state,
         loading: false,

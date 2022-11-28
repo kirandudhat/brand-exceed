@@ -1,4 +1,4 @@
-import logo from "../../assest/img/logo.png";
+import logo from "../../assest/img/mainLogo.svg";
 
 import "./Header.css";
 import { getUser } from "../../Utils/common/Common";

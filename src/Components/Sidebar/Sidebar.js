@@ -5,6 +5,7 @@ import "./sidebar.css";
 import { useEffect, useState } from "react";
 import { getUser } from "../../Utils/common/Common";
 import { getBasePath, getPath, navLinks } from "../../Utils/common/routes";
+// import 'font-awesome/css/font-awesome.min.css';
 
 const SideBar = () => {
   const [role, setRole] = useState();

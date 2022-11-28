@@ -1,6 +1,15 @@
 import React from 'react';
-import "./../OurEmployee/OurEmployee.css";
 import "./survey.css";
+import {
+  Container,
+  InputGroup,
+  FormControl,
+  Form,
+  FormGroup,
+  Col,
+  Row,
+  FormCheck,
+} from "react-bootstrap";
 import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -9,24 +18,14 @@ import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import FormatBoldIcon from "@mui/icons-material/FormatBold";
+// import FormControl from "@mui/material/FormControl";
+
 import Button from "@mui/material/Button";
-import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import { convertToHTML } from "draft-convert";
-import DOMPurify from "dompurify";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useState } from "react";
-import PreviewIcon from "@mui/icons-material/Preview";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+
 import { useHistory } from 'react-router-dom';
+import "./../OurEmployee/OurEmployee.css";
 
 function HappSurvey({onChange, survey, handleSubmit}) {
     const history = useHistory();
@@ -40,20 +39,20 @@ function HappSurvey({onChange, survey, handleSubmit}) {
     <div>
     <div className="background">
       <div className="row SurvayForm">
-        <div className="col-md-8 col-lg-6">
+        <div className="col-md-6 col-lg-6">
           <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl formstyl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl formstyl"
             >
-              Name *
+              Name <span className='star'>*</span>
             </FormLabel>
             <input name="name" className="col-md-7 col-sm-7 form-control"  value={survey.name} onChange={onChange}/>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Layout Type
             </FormLabel>
@@ -86,10 +85,10 @@ function HappSurvey({onChange, survey, handleSubmit}) {
               </RadioGroup>
             </span>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Survey Type
             </FormLabel>
@@ -125,36 +124,36 @@ function HappSurvey({onChange, survey, handleSubmit}) {
             <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              Header Text *
+              Header Text <span className='star'>*</span>
             </FormLabel>
             <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={onChange} />
           </div>
-            <div className="d-flex formInputs">
-              <FormLabel
+            <div className="d-flex formInputs" >
+               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl"  name='welcomeImage' value={survey.welcomeImage} onChange={onChange}/>
+              {/* <TextField type="file" variant="standard" className="survey-lbl"  name='welcomeImage' value={survey.welcomeImage} onChange={onChange}/> */}
+              <Form.Control type="file"  name='welcomeImage' onChange={onChange} />
             </div>
-            <div className="d-flex formInputs">
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Thank you Image*
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl" name='thankyouImage' value={survey.thankyouImage} onChange={onChange}/>
-            </div>
+              <Form.Control type="file"   name='thankyouImage' onChange={onChange}/>            </div>
             <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Thank You Duration (Seconds)
               </FormLabel>
@@ -162,11 +161,11 @@ function HappSurvey({onChange, survey, handleSubmit}) {
             </div>
           
           </div>
-          <div className="col-md-8 col-lg-6">
+          <div className="col-md-6 col-lg-6">
           <div className="d-flex formInputs">
           <FormLabel
             for="Question Media Type"
-            className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+            className="col-md-3 col-lg-4 control-label ng-binding survey-lbl"
           >
             Theme
           </FormLabel>
@@ -186,7 +185,7 @@ function HappSurvey({onChange, survey, handleSubmit}) {
           <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-4 control-label ng-binding survey-lbl"
             >
               Access Pin
             </FormLabel>
@@ -194,38 +193,38 @@ function HappSurvey({onChange, survey, handleSubmit}) {
             value={survey.accessPin}
             onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-4 control-label ng-binding survey-lbl"
             >
               Loop Survey
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='loopSurvey'
               value={survey.loopSurvey} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-4 control-label ng-binding survey-lbl"
             >
               PDF-show Answered Questions Only
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='pdf' value={survey.pdf} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-4 control-label ng-binding survey-lbl"
             >
               Background Location Capture
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='backgroundLoc' value={survey.backgroundLoc} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-4 control-label ng-binding survey-lbl"
             >
               Is Location Capture Mandatory?
             </FormLabel>

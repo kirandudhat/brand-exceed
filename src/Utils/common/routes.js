@@ -26,6 +26,7 @@ import DashBoard from "../../Pages/Dashboard/Dashboard";
 // import WeekendIcon from "@material-ui/icons/Weekend";
 // // import GridViewIcon from "@material-ui/icons/GridView";
 import GridViewIcon from "@mui/icons-material/GridView";
+import StorageIcon from '@mui/icons-material/Storage';
 // import BadgeIcon from "@mui/icons-material/Badge";
 // import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import TimeToLeaveIcon from "@mui/icons-material/TimeToLeave";
@@ -38,72 +39,18 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import Survey from "../../Pages/Survey/Survey";
 import CreateSurvey from "../../Pages/Survey/CreateSurvey";
 import CreateSurveyForm from "../../Pages/Survey/CreateSurveyForm";
+import { Layers, MenuBook, Person } from "@material-ui/icons";
+import Data from "../../Pages/data/data";
+import Theme from "../../Pages/Theme/Theme";
+import Users from "../../Pages/users/Users";
 
 export const navLinks = [
   { to: "/", name: "DashBoard", permission: [1, 2], icon: <GridViewIcon /> },
-  { to: "/survey", name: "Survey", permission: [1, 2], icon: <GridViewIcon /> },
-  // {
-  //   to: "/ouremployee",
-  //   name: "Our Employees",
-  //   permission: [1],
-  //   icon: <BadgeIcon />,
-  // },
-  // {
-  //   to: "/employeetimesheet",
-  //   name: "Employee Timesheet",
-  //   permission: [1],
-  //   icon: <AccessTimeIcon />,
-  // },
-  // {
-  //   to: "/leavedetails",
-  //   name: "Leave Details",
-  //   permission: [1],
-  //   icon: <TimeToLeaveIcon />,
-  // },
-  // {
-  //   to: "/addmanualleave",
-  //   name: "Add Manual Leave",
-  //   permission: [1],
-  //   icon: <AddCircleOutlineIcon />,
-  // },
-  // {
-  //   to: "/holidays",
-  //   name: "Holidays",
-  //   permission: [1],
-  //   icon: <HolidayVillageIcon />,
-  // },
-  // { to: "/project", name: "Projects", permission: [1], icon: <LanguageIcon /> },
-  // { to: "/client", name: "Clients", permission: [1], icon: <PeopleAltIcon /> },
-  // {
-  //   to: "/timesheetadd",
-  //   name: "Add Timesheet",
-  //   permission: [2],
-  //   icon: <AddCircleOutlineIcon />,
-  // },
-  // {
-  //   to: "/monthlytimesheet",
-  //   name: "Timesheet",
-  //   permission: [2],
-  //   icon: <AccessTimeIcon />,
-  // },
-  // {
-  //   to: "/overtimesheet",
-  //   name: "Over Timesheet",
-  //   permission: [2],
-  //   icon: <MoreTimeIcon />,
-  // },
-  // {
-  //   to: "/leave",
-  //   name: "Leave Details",
-  //   permission: [2],
-  //   icon: <TimeToLeaveIcon />,
-  // },
-  // {
-  //   to: "/holiday",
-  //   name: "Holidays Details",
-  //   permission: [2],
-  //   icon: <WeekendIcon />,
-  // },
+  { to: "/survey", name: "Survey", permission: [1, 2], icon: <MenuBook /> },
+  { to: "/data", name: "Data", permission: [1, 2], icon: <StorageIcon /> },
+  { to: "/users", name: "Users", permission: [1, 2], icon: <Person /> },
+  { to: "/themes", name: "Themes", permission: [1, 2], icon: <Layers /> },
+  
 ];
 
 export const routes = [
@@ -120,64 +67,35 @@ export const routes = [
     component: <Survey />,
   },
   {
-    path: "/createsurvey",
+    path: "/survey/createsurvey",
     name: "CreateSurvey",
     permission: [1, 2],
     component: <CreateSurvey />,
   },
   {
-    path: "/CreateSurveyForm",
+    path: "/survey/CreateSurveyForm",
     name: "CreateSurveyForm",
     permission: [1, 2],
     component: <CreateSurveyForm />,
   },
-  // { path: "/ouremployee", permission: [1], component: <OurEmployee /> },
-  // {
-  //   path: "/ouremployee/viewemployee/:id",
-  //   permission: [1],
-  //   component: <ViewEmployee />,
-  // },
-  // { path: "/ouremployee/add", permission: [1], component: <FormikForm /> },
-  // {
-  //   path: "/ouremployee/edit/:id",
-  //   permission: [1],
-  //   component: <FormikForm />,
-  // },
-  // { path: "/employeetimesheet", permission: [1], component: <EmpTimeSheet /> },
-  // {
-  //   path: "/employeetimesheet/:id",
-  //   permission: [1],
-  //   component: <EmpMonthlysheet />,
-  // },
-  // {
-  //   path: "/employeetimesheet/:id/datewise",
-  //   permission: [1],
-  //   component: <EmpDateWise />,
-  // },
-  // { path: "/leavedetails", permission: [1], component: <Leave /> },
-  // { path: "/addmanualleave", permission: [1], component: <AddManualLeave /> },
-  // { path: "/holidays", permission: [1], component: <Holidays /> },
-  // { path: "/holidays/edit/:id", permission: [1], component: <Holidays /> },
-  // { path: "/project", permission: [1], component: <Project /> },
-  // { path: "/project/add", permission: [1], component: <AddProject /> },
-  // { path: "/project/edit/:id", permission: [1], component: <AddProject /> },
-  // { path: "/project/view/:id", permission: [1], component: <ViewProjects /> },
-  // { path: "/client", permission: [1], component: <Client /> },
-  // { path: "/client/add", permission: [1], component: <AddClient /> },
-  // { path: "/client/view/:id", permission: [1], component: <ViewClients /> },
-  // { path: "/client/edit/:id", permission: [1], component: <AddClient /> },
-  // { path: "/timesheetadd", permission: [2], component: <AddTimesheet /> },
-  // {
-  //   path: "/monthlytimesheet",
-  //   permission: [2],
-  //   component: <MonthlyTimeSheet />,
-  // },
-  // { path: "/monthly/dateWise", permission: [2], component: <DateWiseTime /> },
-  // { path: "/leave", permission: [2], component: <LeaveDeatails /> },
-  // { path: "/holiday", permission: [2], component: <Holiday /> },
-  // { path: "/overtimesheet", permission: [2], component: <OverTimeSheet /> },
-  // { path: "/profile/:id", permission: [2], component: <ViewEmployee /> },
-  // { path: '', permission: [1, 2], component: <div>Not found</div> },
+  {
+    path: "/data",
+    name: "Data",
+    permission: [1, 2],
+    component: <Data />,
+  },
+  {
+    path: "/users",
+    name: "Users",
+    permission: [1, 2],
+    component: <Users />,
+  },
+  {
+    path: "/themes",
+    name: "Themes",
+    permission: [1, 2],
+    component: <Theme />,
+  },
 ];
 
 export const getByRoleRoutes = (role) =>

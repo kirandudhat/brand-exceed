@@ -1,10 +1,28 @@
 .singliLine-header{
-    width: 90%;
+    width: 101%;
     margin-bottom: 10px;
     height: 30px;
+    border: none;
 }
 .discri-input{
     width: 70%;
+}
+.formfield{
+    background: #fff;
+    border: 10px solid #dffbff;
+    /* border-top: 0; */
+}
+::placeholder {
+    content: attr(placeholder);
+    color: #ccc;
+    font-style: italic;
+    letter-spacing: 2px;
+    border: none;
+}
+
+input:focus-visible {
+border: none;
+outline: none;
 }
 .discri-lbl{
     font-size: 12px;
@@ -57,8 +75,23 @@
 .formInputs{
     /* padding: 12px; */
     font-size: 13px !important;
-    color: #0d0e0f;
+    /* color: #0d0e0f; */
+   
+    margin: 0;
+    /* padding: 7px 10px; */
+    box-shadow: none;
+    margin: 0;
 }
 .limit-input{
     margin-left: 15px;
+}
+
+.formInputs label{
+    font-weight: 400 !important;
+    font-family: "Source Sans Pro", sans-serif !important;
+    color: #656565;
+    font-size: 14px !important;
+    justify-content: flex-end;
+    padding-right: 20px;
+    margin-top: 8px;
 }

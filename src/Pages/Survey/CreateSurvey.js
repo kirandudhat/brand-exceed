@@ -42,7 +42,6 @@ const CreateSurvey = () => {
   let name = params.get("name");
   let layout = params.get("layout");
   let survey_type = params.get("survey_type");
-  console.log("survey_type", survey_type);
   const [survey, setSurvey] = useState({
     name: name,
     layout: layout,
@@ -67,17 +66,26 @@ const CreateSurvey = () => {
     field: null,
   });
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value } = e.target;
-    console.log("name", name, value);
-    setSurvey({
-      ...survey,
-      [name]: value,
-    });
+    if(e.target.type !== 'file'){
+
+      setSurvey({
+        ...survey,
+        [name]: value,
+      });
+    } else {
+      const formData = new FormData();
+      formData.append('image',  e.target.files[0])
+      let uploadImage = await imageUplode(formData)
+      setSurvey({
+        ...survey,
+        [name]: uploadImage.data.data,
+      });
+    }
   };
 
   const handleSubmit = () => {
-    console.log("survey", survey);
     dispatch({ type: ADD_CLIENTS, payload: survey });
     // history.push("/admin/CreateSurveyForm")
   };
@@ -88,7 +96,6 @@ const CreateSurvey = () => {
   //   const imagesse = await uploadimagefunction(e.target.files[0]);
   //   setSurvey(imagesse)
   // };
-  // console.log("survey",survey)
 
   return (
     <div className="ouremployee">

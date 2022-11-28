@@ -16,7 +16,7 @@ export function* getViewEmpDetailsSagas({ payload }) {
     const result = yield call(viewEmployee, payload);
       
     if (result.status == true) {
-      yield put(viewEmployeeSuccess(result.result));
+      yield put(viewEmployeeSuccess(result.data));
       // toast.success(" Successfully");
     } else {
       yield put(viewEmployeeFailuer(result));

@@ -27,6 +27,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
 
 function VappSurvey({onChange, survey, handleSubmit}) {
     const [time, setTime] = useState(false);
@@ -46,16 +47,17 @@ function VappSurvey({onChange, survey, handleSubmit}) {
           <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              Name *
+              Name <span className='star'>*</span>
             </FormLabel>
             <input name="name" className="col-md-7 col-sm-7 form-control" value={survey.name} onChange={onChange}/>
           </div>
-          <div className="surveyRadio">
+          
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Layout Type
             </FormLabel>
@@ -72,6 +74,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="horizontal"
                   control={<Radio />}
+                  disabled
                   label="Horizontal"
                   className="survey-lbl"
                   // labelPlacement="start"
@@ -79,16 +82,17 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="vertical"
                   control={<Radio />}
+                  disabled
                   label="Vertical"
                   // labelPlacement="start"
                 />
               </RadioGroup>
             </span>
           </div>
-          <div className="surveyRadio">
+          <div className="d-flex formInputs surveyRadio">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Survey Type
             </FormLabel>
@@ -105,13 +109,15 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 <FormControlLabel
                   value="app_survey"
                   control={<Radio />}
+                  disabled
                   label="App Survey"
-                  className="survey-lbl"
+                  // className="survey-lbl"s
                   // labelPlacement="start"
                 />
                 <FormControlLabel
                   value="web_survey"
                   control={<Radio />}
+                  disabled
                   label="Web Survey"
                   // labelPlacement="start"
                 />
@@ -121,7 +127,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
           <div className="formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
               Show Header
             </FormLabel>
@@ -131,47 +137,44 @@ function VappSurvey({onChange, survey, handleSubmit}) {
           {showHeader ? <> <div className="d-flex formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
-              className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+              className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
             >
-              Header Text *
+              Header Text <span className='star'>*</span>
             </FormLabel>
             <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={onChange}/>
           </div>
-          <div className="d-flex formInputs">
+          <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Header Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl"  name='headerImage' value={survey.headerImage} onChange={onChange}/>
-            </div> </>
+              <Form.Control type="file" name='headerImage' onChange={onChange}/>            </div> </>
             : "" }
-            <div className="d-flex formInputs">
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl" name='welcomeImage' value={survey.welcomeImage} onChange={onChange}/>
-            </div>
-            <div className="d-flex formInputs">
+              <Form.Control type="file" name='welcomeImage' onChange={onChange}/>            </div>
+            <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
-                Thank you Image*
+                Thank you Image <span className='star'>*</span>
               </FormLabel>
               {/* <input type="file" /> */}
-              <TextField type="file" variant="standard" className="survey-lbl"  name='thankyouImage' value={survey.thankyouImage} onChange={onChange}/>
-            </div>
+              <Form.Control type="file"  name='thankyouImage' onChange={onChange}/>            </div>
             <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
-                className="col-md-4 col-lg-4 control-label ng-binding survey-lbl"
+                className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
               >
                 Thank You Duration (Seconds)
               </FormLabel>
@@ -230,7 +233,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
           }
           </div>
           {time ? 
-          <div className="formInputs">
+          <div className="d-flex align-items-center formInputs">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -241,7 +244,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             value={survey.saveOnTime}
             onChange={onChange}/>
           </div> : ""}
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -251,7 +254,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='loopSurvey'
               value={survey.loopSurvey} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -260,7 +263,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='pdf' value={survey.pdf} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
@@ -269,7 +272,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='backgroundLoc' value={survey.backgroundLoc} onChange={onChange}/>
           </div>
-          <div className="formInputs">
+          <div className="formInputs d-flex align-items-center">
             <FormLabel
               id="demo-form-control-label-placement"
               className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"

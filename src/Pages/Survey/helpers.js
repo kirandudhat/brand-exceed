@@ -132,7 +132,6 @@ export const handleMoveToDifferentParent = (
   splitItemPath,
   item
 ) => {
-  console.log("compName", item, layout);
   let newLayoutStructure;
   const COLUMN_STRUCTURE = {
     type: COLUMN,
@@ -203,7 +202,8 @@ export const handleMoveSidebarComponentIntoParent = (
         type: ROW,
         id: shortid.generate(),
         children: item.compName,
-        data: item.data 
+        data: item.data,
+        page: item.page 
       };
       break;
     }
@@ -219,7 +219,6 @@ export const handleMoveSidebarComponentIntoParent = (
       newLayoutStructure = item;
     }
   }
-// console.log("newLayoutStructure",newLayoutStructure)
   return addChildToChildren(layout, splitDropZonePath, newLayoutStructure);
 };
 

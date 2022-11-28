@@ -2,7 +2,7 @@ import { all } from "redux-saga/effects";
 import auth from "./auth/sagas";
 // import addEmpSaga from "./addEmployee/sagas";
 import empListSaga from "./employeeListing/sagas";
-// import ViewEmpSaga from "./viewEmployee/sagas";
+import ViewEmpSaga from "./viewEmployee/sagas";
 // import editEmpSaga from "./editEmployee/sagas";
 // import addProjectSaga from "./addProjects/sagas";
 // import projectsListSaga from "./projectsListing/sagas";
@@ -37,7 +37,7 @@ export default function* rootSaga() {
     // addEmpSaga(),
     empListSaga(),
     addClientSaga(),
-    // ViewEmpSaga(),
+    ViewEmpSaga(),
     // addProjectSaga(),
     // projectsListSaga(),
     // addClientsSaga(),

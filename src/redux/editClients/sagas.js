@@ -4,20 +4,23 @@ import { editClientFailure, editClientRequest, editClientSuccess } from "./actio
 import { EDIT_CLIENT } from "./types";
 import getClientListSagas from "../../redux/clientListing/sagas"
 import { useParams } from "react-router-dom";
+import history from "../../Utils/History/History";
+import { toast } from "react-toastify";
 
 export function* editClientsDeatilsSaga( payload ) {
-  console.log("payload",payload)
   const params = new URLSearchParams(window.location.search) 
   let id = params.get('id')
-  console.log("params",params , id)
   
   yield put(editClientRequest());
   
   try {
-    const result = yield call(editClients, {...payload,id}, );
+    const result = yield call(editClients, {payload,id}, );
   
     // if (result.status == true) {
       yield put(editClientSuccess(payload));
+
+      history.push(`/admin/survey`);
+      toast.success('record update successfully');
     //  yield call(getClientListSagas)
     
   } catch (error) {

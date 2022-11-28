@@ -5,8 +5,7 @@ import { getBasePath } from "../../Utils/common/routes";
 
 export default function PublicRoute({ children, ...routerProps }) {
   if (getUser()) {
-    const role = getUser().role;
-    return <Redirect to={'/login'} />;
+    return <Redirect to={'/admin/'} />;
   }
 
   return <Route {...routerProps}>{children}</Route>;

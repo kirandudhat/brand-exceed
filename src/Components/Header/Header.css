@@ -6,7 +6,6 @@
   /* border-bottom: 1px solid #f2f4f9; */
   box-shadow: 3px 0 10px 0 rgb(183 192 206 / 20%);
   transition: width .1s ease, left .1s ease;
-  padding:  0 !important;
   position: sticky !important;
   top: 0;
   z-index: 1000;

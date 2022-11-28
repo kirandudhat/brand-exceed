@@ -5,15 +5,14 @@ import { COMPONENT, SIDEBAR_ITEM, ROW, COLUMN } from "./constants";
 
 const ACCEPTS = [SIDEBAR_ITEM, COMPONENT, ROW, COLUMN];
 
-const DropZone = ({ data, onDrop, isLast, className }) => {
+const DropZone = ({ data,style, onDrop, isLast, className,selectPage }) => {
+
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ACCEPTS,
     drop: (item, monitor) => {
-      console.log("hello",data);
       onDrop(data, item);
     },
     canDrop: (item, monitor) => {
-      console.log("hello1");
       const dropZonePath = data.path;
       const splitDropZonePath = dropZonePath.split("-");
       const itemPath = item.path;
@@ -72,6 +71,7 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
   const isActive = isOver && canDrop;
   return (
     <div
+    style={!canDrop ? {} : style}
       className={classNames(
         "dropZone",
         { active: isActive, isLast },

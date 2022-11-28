@@ -23,20 +23,11 @@ import {
 } from "./constants";
 import shortid from "shortid";
 import { Button, Grid } from "@mui/material";
-import {
-  CheckBoxList,
-  MultiLine,
-  NumberPoint,
-  NumberWithCodeInput,
-  RadioButton,
-  SingleLine,
-  TextBox,
-  Rating,
-} from "./Forms";
-import { width } from "@mui/system";
+import AddIcon from '@mui/icons-material/Add';
+import { minHeight, width } from "@mui/system";
 import { EDIT_CLIENT } from "../../redux/editClients/types";
 import { useDispatch } from "react-redux";
-
+import TitleIcon from '@mui/icons-material/Title';
 const Container = () => {
   const dispatch = useDispatch()
   const initialLayout = initialData.layout;
@@ -45,7 +36,8 @@ const Container = () => {
   const [components, setComponents] = useState(initialComponents);
   const [standard, setStandard] = useState(0);
   const [formData,setFormData] = useState([])
-
+  const [pages, setPages] = useState([1])
+  const [selectPage, setSelectPage] = useState(1)
   const handleChange = (e, field) =>{
     const {name, value} = e.target
     let setField  = formData.map((item) => {
@@ -65,10 +57,8 @@ const Container = () => {
    
   const handleChecked = (e, field) =>{
     const {name, checked} = e.target
-    console.log("e.target", name,e.target)
     let setField  = formData.map((item) => {
       if(item.field === field){
-        console.log("item.field", checked)
         return {
           ...item,
           [name]: checked
@@ -78,13 +68,11 @@ const Container = () => {
         return item
       }
     })
-    console.log("setField",setField)
     setFormData(setField)
   }
 
   const handleClick = () =>{
-    console.log("SaveBtn",formData)
-    dispatch({type: EDIT_CLIENT, payload: formData})
+    dispatch({type: EDIT_CLIENT, payload: JSON.stringify(formData)})
   }
 
   const handleDropToTrashBin = useCallback(
@@ -97,8 +85,6 @@ const Container = () => {
 
   const handleDrop = useCallback(
     (dropZone, item) => {
-      // console.log("dropZone", dropZone);
-      // console.log("item", item);
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
@@ -122,7 +108,8 @@ const Container = () => {
           id: newComponent.id,
           compName: item.component.content,
           type: COMPONENT,
-          data: {[fieldString]:newComponent.compName.props.data}
+          data: {[fieldString]:newComponent.compName.props.data},
+          page: dropZone.selectPage
         };
       setComponents({
           ...components,
@@ -177,8 +164,7 @@ const Container = () => {
     },
     [layout, components]
   );
-  console.log("formData",formData)
-  const renderRow = (row, currentPath, formData, handleChange, handleChecked) => {
+  const renderRow = (row, currentPath, formData, handleChange, handleChecked,pages, selectPage) => {
     return (
       <Row
         key={row.id}
@@ -189,15 +175,23 @@ const Container = () => {
         formData={formData}
         handleChange={handleChange}
         handleChecked={handleChecked}
+        pages={pages}
+        selectPage={selectPage}
       />
     );
   };
-  // dont use index for key when mapping over items
-  // causes this issue - https://github.com/react-dnd/react-dnd/issues/342
+  const handleInsertPage = () => {
+    setPages([...pages, (pages.length + 1)])
+    setSelectPage(pages.length + 1)
+  }
+  const handleSelectionPage = (item) => {
+    setSelectPage(item)
+  }
+  
   return (
     <div className="option-header">
       <Grid container>
-        <Grid item xs={3}>
+        <Grid item md={3}>
           <div className="sideBar">
             <header className="App-header">Questions</header>
             <Grid container>
@@ -215,9 +209,8 @@ const Container = () => {
               </Grid>
               <Grid item xs>
                 <Button
-                  color="primary"
                   variant="contained"
-                  className="stnd-btn"
+                  className="active-btn"
                   onClick={() => {
                     setStandard(1);
                   }}
@@ -226,10 +219,12 @@ const Container = () => {
                 </Button>
               </Grid>
             </Grid>
-            <div>
+            <div className="menu-item">
             {standard === 0
               ? Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
-                  <SideBarItem key={sideBarItem.id} data={sideBarItem} />
+               
+               <SideBarItem key={sideBarItem.id} data={sideBarItem} />
+                 
                 ))
               : Object.values(Advance_Item).map((sideBarItem, index) => (
                   <SideBarItem key={sideBarItem.id} data={sideBarItem} />
@@ -238,9 +233,10 @@ const Container = () => {
           </div>
         </Grid>
         <Grid item xs={9}>
+          <div className="title-bar"></div>
           <div className="pageContainer">
             <div className="page">
-              {layout.map((row, index) => {
+              {layout.filter((page) => page.page === selectPage).map((row, index) => {
                 const currentPath = `${index}`;
                 return (
                   <React.Fragment key={row.id}>
@@ -248,11 +244,12 @@ const Container = () => {
                       data={{
                         path: currentPath,
                         childrenCount: layout.length,
+                        selectPage
                       }}
                       onDrop={handleDrop}
                       path={currentPath}
                     />
-                    {renderRow(row, currentPath, formData, handleChange, handleChecked)}
+                    {renderRow(row, currentPath, formData, handleChange, handleChecked,pages, selectPage)}
                   </React.Fragment>
                 );
               })}
@@ -261,17 +258,17 @@ const Container = () => {
                   path: `${layout.length}`,
                   childrenCount: layout.length,
                   onChange: {handleChange},
-                  formData: formData
+                  formData: formData,
+                  selectPage
                 }}
+                style={{minHeight:350}}
                 onDrop={handleDrop}
-                isLast
-              />
+                isLast>
+
+                </DropZone>
+              
             </div>
-            <div style={{display:'flex', justifyContent:'end', paddingRight:'10px', paddingBottom:'10px'}}>
-            <button className="btncolor" style={{width:'80px', float:'right'}} onClick={handleClick}>
-              Save
-            </button>
-            </div>
+           
             {/* <TrashDropZone
           data={{
             layout
@@ -279,8 +276,37 @@ const Container = () => {
           onDrop={handleDropToTrashBin}
         /> */}
           </div>
+          <div className="insert-page">
+          <div className="pull-left page-block">
+            <ul>
+              <li>
+                <button>Pages</button>
+              </li>
+                {
+                  pages?.length > 0  && pages.map((item, index)=>{
+                    return(
+                    <li>  
+                      <button className={selectPage === item ? 'active': ''} onClick={() => handleSelectionPage(item)}>{item}</button>
+                    </li>
+                    )
+                  })
+                }
+             
+              <li>
+                <button onClick={handleInsertPage}>+</button>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <button className="btncolorSave" style={{width:'80px', float:'right'}} onClick={handleClick}>
+              Save
+            </button>
+            </div>
+          </div>
         </Grid>
+      
       </Grid>
+     
     </div>
   );
 };

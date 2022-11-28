@@ -11,13 +11,15 @@ import {
 export default function PrivateRoute() {
   if (!getUser()) {
     return <Redirect to="/login" />;
-  }
+  } 
+  // else {
+  //   return <Redirect to="/admin/" />;
+  // }
 
   const getRoutesAccToRoles = () => {
     const role = 1;
 
     return getByRoleRoutes(role).map((route, index) => {
-      console.log("routes",route)
       return (
         <Route
           key={index}

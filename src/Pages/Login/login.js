@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import qtech_logo from "../../assest/img/logo.png";
+import qtech_logo from "../../assest/img/mainLogo.svg";
 import Blob from "../../assest/img/blob.svg";
 import round from "../../assest/img/round.svg";
 import round2 from "../../assest/img/round2.svg";

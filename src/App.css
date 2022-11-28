@@ -10,8 +10,8 @@
   transition-duration: 0.5s;
 }
 .link:hover{
-  background: #4b4b4b;
-  color: white !important;
+  
+  color: #00AAAA !important;
 }
 .btncolor{
   background-color: #5d9cec;

@@ -25,6 +25,7 @@ import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import { useHistory } from "react-router-dom";
 import CreateSurvey from "./CreateSurvey";
+import './togglestyle.scss'
 const Survey = () => {
   const [emptyName, setEmptyName] = useState(false);
   const [createSurvey, setCreateSurvey] = useState({
@@ -52,7 +53,6 @@ const Survey = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEmptyName(false)
-    console.log("name", name, value);
     setCreateSurvey({
       ...createSurvey,
       [name]: value,
@@ -64,7 +64,7 @@ const Survey = () => {
     if(createSurvey.name)
     {
       history.push(
-        `/admin/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`
+        `/admin/survey/createsurvey?name=${createSurvey.name}&layout=${createSurvey.layout}&survey_type=${createSurvey.survey_type}`
       );
     }
     else
@@ -77,7 +77,6 @@ setEmptyName(true)
   //   (state) => state.employeeStatusUpdateReducer.payload
   // );
   const empdata2 = useSelector((state) => state.empListReducer.employeeList);
-  console.log("empdata2", empdata2);
   React.useEffect(() => {
     dispatch({ type: EMPLOYEE_LIST });
   }, []);
@@ -184,30 +183,20 @@ setEmptyName(true)
       renderCell: ({ row }) => {
         return (
           <>
-            <Button
-              variant="contained"
-              color="primary"
-              //   onClick={(e) => handleDisableEmployee(e, row.id, row.is_active)}
-              value={row.is_active}
-            >
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={row?.is_active === 1 ? true : false}
-                  // onChange={(e) => handleDisableEmployee(e, row.id, row.is_active)}
-                  value={row.is_active}
-                  // defaultValue={true}
-                  readOnly
-                />
-                {/* <input 
-                  type="checkbox"
-                  checked={row.is_active === 1 ? true : false}
-                  onChange={() => handleDisableEmployeeChange(row.id, row.is_active)}
-                  value={row.is_active}
-              /> */}
-                <span className="slider round" />
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                className="toggle-switch-checkbox"
+                name='isActive'
+                id='isActive'
+                value={true}
+              />
+              <label className="toggle-switch-label" htmlFor='isActive'>
+                <span className="toggle-switch-inner" />
+                <span className="toggle-switch-switch" />
               </label>
-            </Button>
+            </div>
+          
           </>
         );
       },
@@ -266,7 +255,6 @@ setEmptyName(true)
     // },
   ];
 
-  const empdata = [{ id: 1, name: "test-demo", responses: "1", is_active: 1 }];
   const getformattedDate = (list) => {
     return list.map((date) => ({
       ...date,
@@ -277,11 +265,11 @@ setEmptyName(true)
   return (
     <>
       <div className="ouremployee">
-        <div className="employeeWrapper">
-          <span style={{ fontWeight: "bold" }}>Surveys</span>
-          {/* <NavLink to="/admin/ouremployee/add"> */}
-          {/* <Button className="btn btn-dark btn-lg"> ADD EMPLOYEE</Button> */}
-          <button
+      <div className="employeeWrapper">
+        <span style={{ fontWeight: "bold" }} className="surveyTitle">
+          Create Surveys
+        </span>
+        <button
             className="btncolor"
             variant="contained"
             type="submit"
@@ -289,8 +277,8 @@ setEmptyName(true)
           >
             Create Survey
           </button>
-          {/* </NavLink> */}
-        </div>
+      </div>
+        
         <div className="employeemain" style={{borderWidth:"2px 1px 2px 1px",borderStyle:"solid",borderColor:"lightgray"}}>
           {
             <Datatable
@@ -319,6 +307,8 @@ setEmptyName(true)
             <FormLabel id="demo-form-control-label-placement">
               App Layout
             </FormLabel>
+            {/* <input type="radio" name="test" value="big"/>
+            <span><img src="https://thumbs.dreamstime.com/z/online-questionnaire-icon-simple-style-online-questionnaire-icon-simple-illustration-online-questionnaire-vector-icon-web-187717117.jpg"></img></span> */}
             <RadioGroup
               row
               aria-labelledby="demo-form-control-label-placement"
@@ -330,15 +320,19 @@ setEmptyName(true)
               <FormControlLabel
                 value="horizontal"
                 control={<Radio />}
+                // style={{margin:0}}
                 label="Horizontal"
                 // labelPlacement="start"
               />
+              {/* <span></span> */}
               <FormControlLabel
                 value="vertical"
                 control={<Radio />}
                 label="Vertical"
+                // style={{margin:0}}
                 // labelPlacement="start"
               />
+              {/* <span></span> */}
             </RadioGroup>
           </FormControl>
 

@@ -84,7 +84,9 @@ export const formController = (name, data, formData, handleChange, handleChecked
 
 
 export const TextBox = ({data,formData, handleChange}) => {
-  console.log("textbox---->",data,formData, handleChange)
+  let field = Object.keys(data)[0]
+  let findData = formData.find((item)=>item.field === field);
+
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -97,8 +99,10 @@ export const TextBox = ({data,formData, handleChange}) => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
     setConvertedContent(currentContentAsHTML);
   };
+  console.log("editorState",convertedContent);
   return (
     <>
+    <div className="formfield" style={{padding:15}}>
       <div className="form-header">
         <div className="form-area">
           {/* <PreviewIcon/>
@@ -112,6 +116,7 @@ export const TextBox = ({data,formData, handleChange}) => {
           />
         </div>
       </div>
+      </div>
     </>
   );
 };
@@ -120,11 +125,11 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field);
 
-  console.log("SingleLine",findData)
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" checked={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" placeholder="type your question here...." variant="standard" className="singliLine-header" name="question" checked={findData.question} onChange={(e)=>handleChange(e, field)}/>
+       <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -236,6 +241,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -246,7 +252,8 @@ export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -340,6 +347,7 @@ export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -350,7 +358,8 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -462,6 +471,7 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -472,7 +482,8 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -859,6 +870,7 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
             </tr>
           </table>
         </div>
+        </div>
       </div>
     </>
   );
@@ -870,7 +882,8 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -991,6 +1004,7 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="ValidationMessage" value={findData.ValidationMessage} onChange={(e)=>handleChange(e, field)} placeholder="Define validation message"/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -1001,7 +1015,8 @@ export const Email = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1065,6 +1080,7 @@ export const Email = ({data,formData, handleChange, handleChecked}) => {
             Is Question Required?
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+        </div>
         </div>
       </div>
     </>
@@ -1076,7 +1092,8 @@ export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1141,6 +1158,7 @@ export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -1151,8 +1169,8 @@ export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1271,6 +1289,7 @@ export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -1281,8 +1300,8 @@ export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1400,6 +1419,7 @@ export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked
             Auto Next Duration (In Seconds)
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
+        </div>
         </div>
       </div>
     </>
@@ -1411,8 +1431,8 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1548,6 +1568,7 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
             Auto Next Duration (In Seconds)
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
+        </div>
         </div>
       </div>
     </>
@@ -1559,8 +1580,8 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1697,6 +1718,7 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -1707,8 +1729,8 @@ export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -1870,6 +1892,7 @@ export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -1880,8 +1903,8 @@ export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecke
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2041,6 +2064,7 @@ export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecke
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2051,8 +2075,8 @@ export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) 
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2214,6 +2238,7 @@ export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) 
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2225,8 +2250,8 @@ export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2368,6 +2393,7 @@ export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
             />
           </RadioGroup>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2379,8 +2405,8 @@ export const Rating = ({data,formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2454,6 +2480,7 @@ export const Rating = ({data,formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2464,8 +2491,8 @@ export const YesNo = ({data, formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2503,6 +2530,7 @@ export const YesNo = ({data, formData, handleChange, handleChecked}) => {
             Auto Next Duration (In Seconds)
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
+        </div>
         </div>
       </div>
     </>
@@ -2514,8 +2542,8 @@ export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2554,6 +2582,7 @@ export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2564,8 +2593,8 @@ export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2604,6 +2633,7 @@ export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2615,8 +2645,8 @@ export const Date = ({data, formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2727,6 +2757,7 @@ export const Date = ({data, formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2738,8 +2769,8 @@ export const Time = ({data, formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2802,6 +2833,7 @@ export const Time = ({data, formData, handleChange, handleChecked}) => {
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="questionRequired" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2812,8 +2844,8 @@ export const DateTime = ({data, formData, handleChange, handleChecked}) => {
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -2887,6 +2919,7 @@ export const DateTime = ({data, formData, handleChange, handleChecked}) => {
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-4 col-md-4 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -2897,8 +2930,8 @@ export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) 
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             for="Question Media Type"
@@ -2993,6 +3026,7 @@ export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) 
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="autonextDuration" value={findData.autonextDuration} onChange={(e)=>handleChange(e, field)}/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -3003,7 +3037,8 @@ export const BarCodeScanner = ({data, formData, handleChange, handleChecked}) =>
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -3032,6 +3067,7 @@ export const BarCodeScanner = ({data, formData, handleChange, handleChecked}) =>
           </FormLabel>
           <input type="text" variant="standard" className="col-lg-5 col-md-5 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
         </div>
+        </div>
       </div>
     </>
   );
@@ -3042,8 +3078,8 @@ export const MapCoordinates = ({data, formData, handleChange, handleChecked}) =>
   return (
     <>
       <div style={{ padding: "10px" }}>
-        <input type="text" variant="standard" className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
-
+        <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
             id="demo-form-control-label-placement"
@@ -3082,7 +3118,9 @@ export const MapCoordinates = ({data, formData, handleChange, handleChecked}) =>
           </FormLabel>
           <Checkbox inputProps={{ "aria-label": "controlled" }} name="preventDuplicate" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
+        </div>
       </div>
+      
     </>
   );
 };
