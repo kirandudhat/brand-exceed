@@ -13,6 +13,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Text Block",
+      name: "TextBox",
       content: <TextBox data={{
         text:''
     }}/>
@@ -23,6 +24,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Singleline Text Input",
+      name: "SingleLine",
       content: <SingleLine data={{
         question:'',
         discription:'',
@@ -43,6 +45,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Multiline Text Input",
+      name:"MultiLine",
       content: <MultiLine data={{
         question:'',
         discription:'',
@@ -61,6 +64,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number Input",
+      name:"NumberInput",
       content: <NumberInput data={{
         question:'',
         discription:'',
@@ -81,6 +85,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number With Auto Code",
+      name:"NumberWithCodeInput",
       content: <NumberWithCodeInput data={{
         question:'',
         discription:'',
@@ -131,6 +136,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Decimal Input",
+      name:"DecimalInput",
       content: <DecimalInput data={{
         question:'',
         discription:'',
@@ -152,6 +158,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Email",
+      name:"Email",
       content: <Email data={{
         question:'',
         discription:'',
@@ -167,6 +174,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Phone Number",
+      name:"PhoneNumber",
       content: <PhoneNumber data={{
         question:'',
         discription:'',
@@ -182,6 +190,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Radio Button",
+      name:"RadioButton",
       content: <RadioButton data={{
         question:'',
         displayTitle:'',
@@ -200,6 +209,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Radio Button With Other",
+      name:"RadioButtonWithOther",
       content: <RadioButtonWithOther data={{
         question:'',
         displayTitle:'',
@@ -218,6 +228,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Drop Down",
+      name:"Dropdown",
       content: <Dropdown data={{
         question:'',
         description:'',
@@ -238,6 +249,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Drop Down With Other",
+      name:"DropdownWithOther",
       content: <DropdownWithOther data={{
         question:'',
         description:'',
@@ -258,6 +270,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Checkbox List",
+      name:"CheckBoxList",
       content: <CheckBoxList data={{
         question:'',
         displayTitle:'',
@@ -279,6 +292,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Checkbox List With Other",
+      name:"CheckBoxListWithOther",
       content: <CheckBoxListWithOther data={{
         question:'',
         displayTitle:'',
@@ -300,6 +314,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "2 Columns Checkbox",
+      name:"TwoColumnCheckBox",
       content: <TwoColumnCheckBox data={{
         question:'',
         displayTitle:'',
@@ -321,6 +336,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Number Point",
+      name:"NumberPoint",
       content: <NumberPoint data={{
         question:'',
         displayTitle:'',
@@ -342,6 +358,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Rating",
+      name:"Rating",
       content: <Rating data={{
         question:'',
         displayTitle:'',
@@ -358,6 +375,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Date",
+      name:"Date",
       content: <Date data={{
         question:'',
         description:'',
@@ -376,6 +394,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Time",
+      name:"Time",
       content: <Time data={{
         question:'',
         description:'',
@@ -391,6 +410,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Date & Time",
+      name:"DateTime",
       content: <DateTime data={{
         question:'',
         description:'',
@@ -407,6 +427,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Net Promoter Score",
+      name: "NetPromoterScore",
       content: <NetPromoterScore data={{
         question:'',
         questionMedia:'',
@@ -425,6 +446,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Barcode Scanner",
+      name: "BarCodeScanner",
       content: <BarCodeScanner data={{
         questionRequired:false,
         disallowManual:false,
@@ -437,6 +459,7 @@ export const SIDEBAR_ITEMS = [
     type: SIDEBAR_ITEM,
     component: {
       type: "Map Coordinates (GPS)",
+      name: "MapCoordinates",
       content: <MapCoordinates data={{
         question:'',
         displayTitle:'',

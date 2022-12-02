@@ -54,10 +54,10 @@ const CreateSurvey = () => {
     theme: null,
     accessPin: null,
     timeOut: null,
-    saveOnTime: false,
+    saveOnTime: null,
     defaultLang: null,
-    loopSurvey: false,
-    pdf: false,
+    loopSurvey: null,
+    pdf: null,
     backgroundLoc: null,
     captureMandatory: null,
     startPage: null,
@@ -68,7 +68,13 @@ const CreateSurvey = () => {
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
-    if(e.target.type !== 'file'){
+    if(e.target.checked){
+      setSurvey({
+        ...survey,
+        [name]: e.target.checked
+      })
+    }
+    else if(e.target.type !== 'file'){
 
       setSurvey({
         ...survey,

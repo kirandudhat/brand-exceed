@@ -21,10 +21,13 @@ import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { object } from "yup";
 
 
 export const formController = (name, data, formData, handleChange, handleChecked) => {
-  switch(name) {
+  console.log('name', name, Object.keys(data)[0].split('_')[0]);
+  
+  switch(Object.keys(data)[0].split('_')[0]) {
     case 'TextBox':
      return <TextBox data={data} formData={formData}  handleChange={handleChange}/>;
     case 'SingleLine':

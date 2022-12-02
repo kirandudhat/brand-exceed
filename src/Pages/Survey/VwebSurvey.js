@@ -333,44 +333,48 @@ const handleEditorChangeEndTer = (state) => {
         >
           Start Page
         </FormLabel>
-        <Editor
-          editorState={editorState}
-          onEditorStateChange={handleEditorChange}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class survey-message"
-          toolbarClassName="toolbar-class"
-          className="col-md-7 col-lg-7 col-sm-7"
-          name='startPage'
-          value={survey.startPage}
-        //   onChange={onChange}
-        />
-      </div><span style={{paddingLeft:"15%"}}>
-        <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" /></span>
-
-        <div className="textArea">
+        
+        <div className='position-relative'>
+          <Editor
+             editorState={editorState}
+             onEditorStateChange={handleEditorChange}
+             wrapperClassName="wrapper-class"
+             editorClassName="editor-class survey-message"
+             toolbarClassName="toolbar-class"
+             className="col-md-7 col-lg-7 col-sm-7"
+             name='startPage'
+             value={survey.startPage}
+          //   onChange={onChange}
+          />
+        <div className='textareabtn'><span>
+          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
+          <DeleteIcon className="previewIcon" /></span></div>
+        </div>
+      </div>
+      <div className="textArea">
         <FormLabel
           id="demo-form-control-label-placement"
           className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
-          End Page
-          <br />
-          (Success)
+          End Page (Success)
         </FormLabel>
-        <Editor
-          editorState={endSucces}
-          onEditorStateChange={handleEditorChangeEndSuccess}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class  survey-message"
-          toolbarClassName="toolbar-class"
-          className="col-md-7 col-lg-7 col-sm-7 survey-message"
-          name='endPageSuccess'
-          value={survey.endPageSuccess}
-        //   onChange={onChange}
-        />
-      </div><span style={{paddingLeft:"15%"}}>
-        <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" /></span>
+        <div className='position-relative'>
+          <Editor
+            editorState={endSucces}
+            onEditorStateChange={handleEditorChangeEndSuccess}
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class  survey-message"
+            toolbarClassName="toolbar-class"
+            className="col-md-7 col-lg-7 col-sm-7 survey-message"
+            name='endPageSuccess'
+            value={survey.endPageSuccess}
+          //   onChange={onChange}
+          />
+        <div className='textareabtn'><span>
+          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
+          <DeleteIcon className="previewIcon" /></span></div>
+        </div>
+        </div>
 
       <div className="textArea">
         <FormLabel
@@ -378,23 +382,26 @@ const handleEditorChangeEndTer = (state) => {
           className="col-md-3 col-lg-3 control-label ng-binding survey-lbl"
         >
           End Page
-          <br />
           (Termination)
         </FormLabel>
-        <Editor
-          editorState={endTer}
-          onEditorStateChange={handleEditorChangeEndTer}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class  survey-message"
-          toolbarClassName="toolbar-class"
-          className="col-md-7 col-lg-7 col-sm-7 survey-message"
-          name='endPageTer'
-          value={survey.endPageTer}
-        //   onChange={onChange}
-        />
-      </div><span style={{paddingLeft:"15%"}}>
-        <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-        <DeleteIcon className="previewIcon" /></span>
+
+        <div className='position-relative'>
+          <Editor
+             editorState={endTer}
+             onEditorStateChange={handleEditorChangeEndTer}
+             wrapperClassName="wrapper-class"
+             editorClassName="editor-class  survey-message"
+             toolbarClassName="toolbar-class"
+             className="col-md-7 col-lg-7 col-sm-7 survey-message"
+             name='endPageTer'
+             value={survey.endPageTer}
+          //   onChange={onChange}
+          />
+        <div className='textareabtn'><span>
+          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
+          <DeleteIcon className="previewIcon" /></span></div>
+        </div>
+      </div>
       <div className="forbtn">
         <button
           className="btncolor2"
