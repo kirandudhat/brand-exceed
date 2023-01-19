@@ -12,13 +12,12 @@ export function* getClientListSagas(){
         const result = yield call(clientListing);
     
         if (result.status == true) {
-
-            yield put(clientListingSuccess(result.result));
-            // toast.success(" Successfully")
+            yield put(clientListingSuccess(result.data));
+            toast.success("Get User List Successfully")
         } else {
 
             yield put(clientListingFailure(result))
-            // toast("FailListing")
+            toast("FailListing")
         }
 
     }catch(error){

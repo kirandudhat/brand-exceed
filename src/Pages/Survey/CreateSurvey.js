@@ -31,9 +31,10 @@ import HappSurvey from "./HappSurvey";
 import VappSurvey from "./VappSurvey";
 import VwebSurvey from "./VwebSurvey";
 import { ADD_CLIENTS } from "../../redux/addClients/types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { imageUplode } from "../../services/imgUploadServices";
 import { uploadimagefunction } from "../../Utils/common/Common";
+import { VIEW_EMPLOYEE_DETAILS } from "../../redux/viewEmployee/types";
 
 const CreateSurvey = () => {
   const dispatch = useDispatch();
@@ -42,11 +43,19 @@ const CreateSurvey = () => {
   let name = params.get("name");
   let layout = params.get("layout");
   let survey_type = params.get("survey_type");
+  let id = params.get("id");
+  const user = sessionStorage.getItem('user')
+  let userId = JSON.parse(user)
+  const surveyData = useSelector(
+    (state) => state.viewEmployeeDeatilsReducer.viewEmpData
+    );
+    
   const [survey, setSurvey] = useState({
-    name: name,
-    layout: layout,
-    survey_type: survey_type,
-    headerText: name,
+    user_id: userId.role > 2 ? userId?.parent_id : userId?.id,
+    name: null,
+    layout: null,
+    survey_type:null,
+    headerText: null,
     headerImage: null,
     welcomeImage: null,
     thankyouImage: null,
@@ -64,9 +73,18 @@ const CreateSurvey = () => {
     endPageSuccess: null,
     endPageTer: null,
     field: null,
+    owner_id: userId.role > 2 ? userId?.id : 0
   });
-
   const handleChange = async (e) => {
+    if(!e.target){
+
+      const { name, value } = e;
+      setSurvey({
+        ...survey,
+        [name]: value,
+      });
+    }
+    else{
     const { name, value } = e.target;
     if(e.target.checked){
       setSurvey({
@@ -89,19 +107,57 @@ const CreateSurvey = () => {
         [name]: uploadImage.data.data,
       });
     }
+  }
   };
-
   const handleSubmit = () => {
     dispatch({ type: ADD_CLIENTS, payload: survey });
-    // history.push("/admin/CreateSurveyForm")
   };
-  // useEffect(()=>{
-  // },[])
-
-  // const imageHandle = async (e) => {
-  //   const imagesse = await uploadimagefunction(e.target.files[0]);
-  //   setSurvey(imagesse)
-  // };
+ 
+  useEffect(()=>{
+    if(id){
+      dispatch({ type: VIEW_EMPLOYEE_DETAILS, payload: id  });
+    }  else {
+      setSurvey({...survey,
+        name: name,
+        layout: layout,
+        survey_type:survey_type,})
+    }
+    return(()=>{
+      setSurvey({
+        user_id: userId.role > 2 ? userId?.parent_id : userId?.id,
+        name: null,
+        layout: null,
+        survey_type:null,
+        headerText: null,
+        headerImage: null,
+        welcomeImage: null,
+        thankyouImage: null,
+        thankyouDuration: null,
+        theme: null,
+        accessPin: null,
+        timeOut: null,
+        saveOnTime: null,
+        defaultLang: null,
+        loopSurvey: null,
+        pdf: null,
+        backgroundLoc: null,
+        captureMandatory: null,
+        startPage: null,
+        endPageSuccess: null,
+        endPageTer: null,
+        field: null,
+        owner_id: userId.role > 2 ? userId?.id : 0
+      })
+    })
+  },[])
+  
+useEffect(()=>{
+  if(surveyData){
+  let data = {...surveyData}
+  delete data.field;
+  setSurvey(data)
+  }
+},[surveyData])
 
   return (
     <div className="ouremployee">
@@ -113,12 +169,12 @@ const CreateSurvey = () => {
           className="backbtn"
           variant="contained"
           type="submit"
-          onClick={() => history.push("/admin/survey")}
+          onClick={() => history.push("/survey")}
         >
           Back
         </button>
       </div>
-      {layout === "horizontal" && survey_type === "web_survey" ? (
+      {survey.layout === "horizontal" && survey.survey_type === "web_survey" ? (
         <HwebSurvey
           onChange={handleChange}
           survey={survey}
@@ -127,7 +183,7 @@ const CreateSurvey = () => {
       ) : (
         ""
       )}
-      {layout === "horizontal" && survey_type === "app_survey" ? (
+      {survey.layout === "horizontal" && survey.survey_type === "app_survey" ? (
         <HappSurvey
           onChange={handleChange}
           survey={survey}
@@ -136,7 +192,7 @@ const CreateSurvey = () => {
       ) : (
         ""
       )}
-      {layout === "vertical" && survey_type === "web_survey" ? (
+      {survey.layout === "vertical" && survey.survey_type === "web_survey" ? (
         <VwebSurvey
           onChange={handleChange}
           survey={survey}
@@ -145,7 +201,7 @@ const CreateSurvey = () => {
       ) : (
         ""
       )}
-      {layout === "vertical" && survey_type === "app_survey" ? (
+      {survey.layout === "vertical" && survey.survey_type === "app_survey" ? (
         <VappSurvey
           onChange={handleChange}
           survey={survey}

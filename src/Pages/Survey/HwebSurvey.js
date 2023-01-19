@@ -1,5 +1,4 @@
-import React from 'react';
-import "./../OurEmployee/OurEmployee.css";
+import React, { useState, useRef, useMemo, useEffect } from 'react';import "./../OurEmployee/OurEmployee.css";
 import "./survey.css";
 import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
@@ -13,12 +12,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import Button from "@mui/material/Button";
-import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import { convertToHTML } from "draft-convert";
-import DOMPurify from "dompurify";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useState } from "react";
 import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Dialog from "@mui/material/Dialog";
@@ -28,54 +23,36 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import JoditEditor from 'jodit-react';
+import { getUser } from '../../Utils/common/Common';
+import apiClient from '../../services/axois';
 
 function HwebSurvey({onChange, survey, handleSubmit}) {
     const [open, setOpen] = useState(false);
     const [time, setTime] = useState(false);
- 
+    const [themes, setThemes] = useState([]);
+    const editor = useRef(null);
     const history = useHistory();
+    
     const handleClickOpen = () => {
       setOpen(true);
     };
     const handleClose = () => {
       setOpen(false);
     };
-    const [editorState, setEditorState] = useState(() =>
-      EditorState.createEmpty()
-    );
-    const [endSucces, setEndSucces] = useState(() =>
-      EditorState.createEmpty()
-    );
-    const [endTer, setEndTer] = useState(() =>
-      EditorState.createEmpty()
-    );
-    const [convertedContent, setConvertedContent] = useState(null);
-    const [convertedContentEndSuccess, setConvertedContentEndSuccess] = useState(null);
-    const [convertedContentEndTer, setConvertedContentEndTer] = useState(null);
-    const handleEditorChange = (state) => {
-      setEditorState(state);
-      convertContentToHTML();
-    };
-    const handleEditorChangeEndSuccess = (state) => {
-        setEndSucces(state);
-        convertContentToHTMLEndSuccess();
-    };
-    const handleEditorChangeEndTer = (state) => {
-        setEndTer(state);
-        convertContentToHTMLEndTer();
-    };
-    const convertContentToHTML = () => {
-      let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-      setConvertedContent(currentContentAsHTML);
-    };
-    const convertContentToHTMLEndSuccess = () => {
-      let currentContentAsHTML = convertToHTML(endSucces.getCurrentContent());
-      setConvertedContentEndSuccess(currentContentAsHTML);
-    };
-    const convertContentToHTMLEndTer = () => {
-      let currentContentAsHTML = convertToHTML(endTer.getCurrentContent());
-      setConvertedContentEndTer(currentContentAsHTML);
-    };
+    let loggedInUser = getUser()
+    useEffect(()=>{
+      let url = `/theme/${loggedInUser.id}`
+        if(loggedInUser.role > 2){
+          url = `/theme/${loggedInUser.parent_id}`
+        }
+      apiClient.get(url).then((response) => {
+       console.log("response",response.data.data);
+       if(response.data.data.length){
+        setThemes(response.data.data)
+       }
+      });
+  },[])
 
   return (
     <div>
@@ -89,7 +66,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             >
               Name <span className='star'>*</span>
             </FormLabel>
-            <input name="name" value={survey.name} className="col-md-7 col-sm-7 form-control" onChange={onChange}/>
+            <input name="name" value={survey.name} className="col-md-7 col-sm-7 form-control" onChange={(e)=>onChange(e)}/>
           </div>
           <div className="d-flex formInputs surveyRadio">
             <FormLabel
@@ -106,7 +83,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 defaultValue="horizontal"
                 className="survey-lbl"
                 value={survey.layout}
-                onChange={onChange}
+                onChange={(e)=>onChange(e)}
               >
                 <FormControlLabel
                   value="horizontal"
@@ -141,7 +118,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 defaultValue="horizontal"
                 className="survey-lbl"
                 value={survey.survey_type}
-                onChange={onChange}
+                onChange={(e)=>onChange(e)}
               >
                 <FormControlLabel
                   value="app_survey"
@@ -170,7 +147,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             >
               Header Text <span className='star'>*</span>
             </FormLabel>
-            <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={onChange} />
+            <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={(e)=>onChange(e)} />
           </div>
           <div className="d-flex formInputs" >
               <FormLabel
@@ -180,7 +157,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 Header Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <Form.Control type="file"   name='headerImage' onChange={onChange}/>
+              <Form.Control type="file"   name='headerImage' onChange={(e)=>onChange(e)}/>
             </div>
             <div className="d-flex formInputs" >
               <FormLabel
@@ -190,7 +167,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <Form.Control type="file"  name='welcomeImage' onChange={onChange} />            </div>
+              <Form.Control type="file"  name='welcomeImage' onChange={(e)=>onChange(e)} />            </div>
             <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
@@ -199,7 +176,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
                 Thank you Image <span className='star'>*</span>
               </FormLabel>
               {/* <input type="file" /> */}
-              <Form.Control type="file"   name='thankyouImage' onChange={onChange}/>            </div>
+              <Form.Control type="file"   name='thankyouImage' onChange={(e)=>onChange(e)}/>            </div>
             <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
@@ -207,7 +184,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
               >
                 Thank You Duration (Seconds)
               </FormLabel>
-              <input name="thankyouDuration" className="col-md-7 col-sm-7 form-control" value={survey.thankyouDuration} onChange={onChange}/>
+              <input type="number" name="thankyouDuration" className="col-md-7 col-sm-7 form-control" value={survey.thankyouDuration} onChange={(e)=>onChange(e)}/>
             </div>
           
           </div>
@@ -225,11 +202,20 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             style={{height:'38px'}}
             name='theme'
             value={survey.theme}
-            onChange={onChange}
+            onChange={(e)=>onChange(e)}
           >
-            <option value="Default">
-              Default
-            </option>
+             <option value={null}>
+                  Select theme
+                </option>
+            {
+              themes && themes.length && themes.map((item) => {
+                return(
+                <option value={item.id}>
+                  {item.theme_name}
+                </option>
+                )
+              })
+            }
           </select>
           </div>
           <div className="d-flex formInputs">
@@ -245,7 +231,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             style={{height:'38px'}}
             name='defaultLang'
             value={survey.defaultLang}
-            onChange={onChange}
+            onChange={(e)=>onChange(e)}
           >
             <option value="select">
               Select
@@ -264,7 +250,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
               Loop Survey
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='loopSurvey'
-              value={survey.loopSurvey} onChange={onChange}/>
+              value={survey.loopSurvey} onChange={(e)=>onChange(e)}/>
           </div>
           <div className="formInputs d-flex align-items-center">
             <FormLabel
@@ -273,7 +259,7 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
             >
               PDF-show Answered Questions Only
             </FormLabel>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} name='pdf' value={survey.pdf} onChange={onChange}/>
+            <Checkbox inputProps={{ "aria-label": "controlled" }} name='pdf' value={survey.pdf} onChange={(e)=>onChange(e)}/>
           </div>
           </div>
         
@@ -288,20 +274,15 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
         </FormLabel>
         
         <div className='position-relative'>
-          <Editor
-             editorState={editorState}
-             onEditorStateChange={handleEditorChange}
-             wrapperClassName="wrapper-class"
-             editorClassName="editor-class survey-message"
-             toolbarClassName="toolbar-class"
-             className="col-md-7 col-lg-7 col-sm-7"
-             name='startPage'
-             value={survey.startPage}
-          //   onChange={onChange}
-          />
-        <div className='textareabtn'><span>
-          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-          <DeleteIcon className="previewIcon" /></span></div>
+   
+             <JoditEditor
+              ref={editor}
+              name='startPage'
+              value={survey.startPage}
+              tabIndex={1} // tabIndex of textarea
+              onBlur={(e)=>onChange({value: e, name: 'startPage'})} // preferred to use only this option to update the content for performance reasons
+              // onChange={(e) => onChange({value: e, name: 'startPage'})}
+            />
         </div>
       </div>
         <div className="textArea">
@@ -312,20 +293,14 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
           End Page (Success)
         </FormLabel>
         <div className='position-relative'>
-          <Editor
-            editorState={endSucces}
-            onEditorStateChange={handleEditorChangeEndSuccess}
-            wrapperClassName="wrapper-class"
-            editorClassName="editor-class  survey-message"
-            toolbarClassName="toolbar-class"
-            className="col-md-7 col-lg-7 col-sm-7 survey-message"
-            name='endPageSuccess'
-            value={survey.endPageSuccess}
-          //   onChange={onChange}
-          />
-        <div className='textareabtn'><span>
-          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-          <DeleteIcon className="previewIcon" /></span></div>
+        <JoditEditor
+              ref={editor}
+              name='endPageSuccess'
+              value={survey.endPageSuccess}
+              tabIndex={1} // tabIndex of textarea
+              onBlur={(e)=>onChange({value: e, name: 'endPageSuccess'})} // preferred to use only this option to update the content for performance reasons
+              // onChange={(e) => onChange({value: e, name: 'endPageSuccess'})}
+            />
         </div>
         </div>
 
@@ -339,20 +314,15 @@ function HwebSurvey({onChange, survey, handleSubmit}) {
         </FormLabel>
 
         <div className='position-relative'>
-          <Editor
-             editorState={endTer}
-             onEditorStateChange={handleEditorChangeEndTer}
-             wrapperClassName="wrapper-class"
-             editorClassName="editor-class  survey-message"
-             toolbarClassName="toolbar-class"
-             className="col-md-7 col-lg-7 col-sm-7 survey-message"
-             name='endPageTer'
-             value={survey.endPageTer}
-          //   onChange={onChange}
-          />
-        <div className='textareabtn'><span>
-          <PreviewIcon className="previewIcon" onClick={handleClickOpen} />
-          <DeleteIcon className="previewIcon" /></span></div>
+       
+        <JoditEditor
+              ref={editor}
+              name='endPageTer'
+              value={survey.endPageTer}
+              tabIndex={1} // tabIndex of textarea
+              onBlur={(e)=>onChange({value: e, name: 'endPageTer'})} // preferred to use only this option to update the content for performance reasons
+              // onChange={(e) => onChange({value: e, name: 'endPageTer'})}
+            />
         </div>
       </div>
 

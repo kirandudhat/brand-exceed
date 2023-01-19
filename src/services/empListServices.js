@@ -1,9 +1,19 @@
+import { getUser } from "../Utils/common/Common";
 import apiClient from "./axois";
 
 export async function employeeListing() {
-  return apiClient.get("/survey").then((response) => {
+  let user = getUser()
+  let url = '/survey'
+  if(user.role == 2){
+    if(user.role == 2 ){
+      url = `/survey/list/${user.id}`
+    }
+  } else if(user.role > 2){
+    url = `user/survey/${user.id}`
+  }
+  return apiClient.get(url).then((response) => {
     if (response) {
-      const { data } = response;
+      const { data, details } = response;
 
       return data;
     }

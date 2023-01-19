@@ -19,7 +19,7 @@ export function* editClientsDeatilsSaga( payload ) {
     // if (result.status == true) {
       yield put(editClientSuccess(payload));
 
-      history.push(`/admin/survey`);
+      history.push(`/survey`);
       toast.success('record update successfully');
     //  yield call(getClientListSagas)
     

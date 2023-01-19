@@ -4,15 +4,15 @@ import { projectsListing } from "../../services/empProjectsListServices";
 import { ProjectsListingFailure, ProjectsListingRequest, projectsListingSuccess } from "./action";
 import { VIEW_PROJECTS_LIST } from "./types";
 
-export function* getProjectsListSagas(){
+export function* getProjectsListSagas({payload}){
     yield put(ProjectsListingRequest())
     try{
         
-        const result = yield call(projectsListing);
+        const result = yield call(projectsListing, payload);
         
         if (result.status == true) {
 
-            yield put(projectsListingSuccess(result.result));
+            yield put(projectsListingSuccess(result.data));
             // toast.success(" Successfully")
         } else {
 

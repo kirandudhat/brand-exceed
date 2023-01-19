@@ -135,6 +135,7 @@
   flex-direction: row !important ;
   align-items: center !important;
   justify-content: center !important;
+  cursor: pointer;
 }
 .iconstyl{
   color:rgba(85, 85, 240, 0.659);

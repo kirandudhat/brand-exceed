@@ -14,7 +14,6 @@ const ProjectsListReducer = (state = initialState, action) => {
                 error: null,
             }
         case VIEW_PROJECTS_LIST_SUCCESS: {
-
             return {
                 ...state,
                 loading: false,

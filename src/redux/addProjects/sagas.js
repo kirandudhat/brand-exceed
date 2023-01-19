@@ -17,7 +17,7 @@ export function* addDeveloperProjectsSaga(payload ) {
       const result = yield call(addProjects, payload.payload);
       if (result.status == true) {
         yield put(addDeveloperProjectsSuccess({ ...payload }));
-        yield call(getProjectsListSagas)
+        // yield call(getProjectsListSagas)
         // toast.success(" Successfully");
       } else {
         yield put(addDeveloperProjectsFailure(result));

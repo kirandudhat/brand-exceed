@@ -6,7 +6,7 @@ import Column from "./Column";
 import { formController } from "./Forms";
 
 const style = {};
-const Row = ({ data, components, handleDrop, path, formData, handleChange, handleChecked, pages, selectPage }) => {
+const Row = ({ data, components, handleDrop, path, formData, handleChange,handleBlur, handleChecked,handleDelete, pages, selectPage }) => {
   const ref = useRef(null);
   const [{ isDragging }, drag] = useDrag({
     item: {
@@ -33,8 +33,7 @@ const Row = ({ data, components, handleDrop, path, formData, handleChange, handl
       
       className="base draggable row"
     >
-      {console.log("name data",data)}
-      {formController(data.children.type.name, data.data, formData, handleChange, handleChecked)}
+      {formController(data.children.type.name, data.data, formData, handleChange,handleBlur, handleChecked,handleDelete)}
       <div className="columns">
 
         <DropZone

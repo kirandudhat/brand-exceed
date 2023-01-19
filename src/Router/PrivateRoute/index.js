@@ -3,39 +3,37 @@ import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Layout from '../../Components/Layout/Layout';
 import { getUser } from '../../Utils/common/Common';
 import {
-  getBasePath,
   getByRoleRoutes,
   getPath,
 } from '../../Utils/common/routes';
 
+const getRoutesAccToRoles = () => {
+  let user = getUser()
+  const role = Number(user.role);
+  return getByRoleRoutes(role).map((route, index) => {
+    return (
+      <Route
+        key={index}
+        exact
+        path={getPath(route.path)}
+        render={(routerProps) => (
+          <Layout routerProps={routerProps}>{route.component}</Layout>
+        )}
+      />
+    );
+  });
+};
+
 export default function PrivateRoute() {
-  if (!getUser()) {
-    return <Redirect to="/login" />;
-  } 
+  // if (!getUser()) {
+  //   return <Redirect to="/login" />;
+  // } 
   // else {
   //   return <Redirect to="/admin/" />;
   // }
-
-  const getRoutesAccToRoles = () => {
-    const role = 1;
-
-    return getByRoleRoutes(role).map((route, index) => {
-      return (
-        <Route
-          key={index}
-          exact
-          path={getPath(route.path, getBasePath(role))}
-          render={(routerProps) => (
-            <Layout routerProps={routerProps}>{route.component}</Layout>
-          )}
-        />
-      );
-    });
-  };
-
   return (
     <>
-      {getUser()? (
+      {getUser() ? (
         <Switch>
           {getRoutesAccToRoles()}
           <Route path="*">

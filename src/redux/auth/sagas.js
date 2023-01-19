@@ -8,24 +8,23 @@ import {
 } from "../auth/action";
 import userLogin from "../../services/authServices";
 import { toast } from "react-toastify";
-import { getBasePath } from "../../Utils/common/routes";
 
 export function* userLoginSaga({ payload }) {
   const { email, password } = payload;
-  console.log("email, password",email, password);
   yield put(loginUserRequest());
   try {
     const result = yield call(userLogin, { email, password });
-    if (result.status) {
-      console.log("result",result)
+    if (result.status != 0) {
       yield put(loginUserSuccess(result));
-      yield history.push(`/admin/`);
+      yield history.push(`/`);
       toast.success(result.msg);
+    } else {
+      yield put(loginUserFailure(result));
+      toast.error(result.msg);
+
     }
   } catch (error) {
     console.log("error",error)
-    // const { message } = error.response.data;
-    // toast.error(message);
     // yield put(loginUserFailure(error.response.data));
   }
 }

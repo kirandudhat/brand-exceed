@@ -1,0 +1,19 @@
+#surveyList tbody {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    height: 400px;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table .checkbox {
+    margin: 0 auto;
+    width: 20px;
+}
+.survey-block label, .survey-notification label, form label {
+    font-weight: 400;
+}
+

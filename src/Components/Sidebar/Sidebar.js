@@ -33,9 +33,8 @@ const SideBar = () => {
               {role !== 0
                 ? roleLinks().map((route) => (
                   <li className="sidebarlistItem" key={route.to}>
-                      {console.log("route", route, window.location.pathname, window.location.pathname.includes(route.to))}
                       <NavLink
-                        to={getPath(route.to, getBasePath(role))}
+                        to={getPath(route.to)}
                         className={route.to !== '/' && window.location.pathname.includes(route.to)  ? "link active" : "link"}
                         exact
                         // activeClassName={}

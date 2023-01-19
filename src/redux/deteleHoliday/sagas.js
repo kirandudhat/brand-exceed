@@ -4,10 +4,9 @@ import { toast } from 'react-toastify';
 import { deleteholiday } from "../../services/deleteHolidayServices";
 import { deleteHolidayFailure, deleteHolidaySuccess } from "./action";
 import { DELETE_HOLIDAY } from "./type";
-import { getHolidayListSagas } from "../holidayListing/sagas";
+import { getEmployeeListSagas } from "../employeeListing/sagas";
 
 export function* deleteHolidaySagas({payload}){
-
     try{
          
         const result = yield call(deleteholiday,payload);
@@ -15,8 +14,8 @@ export function* deleteHolidaySagas({payload}){
         if (result.status == true) {
 
             yield put(deleteHolidaySuccess(result.result));
-            yield call(getHolidayListSagas)
-            // toast.success(" Successfully")
+            yield call(getEmployeeListSagas())  
+            toast.success(" Successfully")
         } else {
 
             yield put(deleteHolidayFailure(result))

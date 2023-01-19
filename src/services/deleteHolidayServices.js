@@ -2,7 +2,7 @@ import apiClient from "./axois";
 export async function deleteholiday(id) {
      
     return apiClient
-      .post(`/api/v1/holiday/delete/${id}`)
+      .get(`/survey/delete/${id}`)
       .then((response) => {
         if (response) {
           return response.data;

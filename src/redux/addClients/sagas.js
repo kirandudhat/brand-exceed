@@ -20,7 +20,13 @@ export function* addClientsSaga(payload) {
     const result = yield call(addClients, payload.payload);
     // if (result.status == true) {
       yield put(addClientSuccess(payload ));
-      history.push(`/admin/survey/CreateSurveyForm?id=${result.data.id}`);
+      if(payload.payload.id){
+
+        history.push(`/survey/CreateSurveyForm?id=${payload.payload.id}`);
+      }else{
+
+        history.push(`/survey/CreateSurveyForm?id=${result.data.id}`);
+      }
       toast.success(result.msg);
     // } else {
     //   yield put(addClientFailure(result));

@@ -17,10 +17,10 @@ import viewEmployeeDeatilsReducer from "./viewEmployee/reducer";
 //   editEmpProjectReducer,
 //   editEmpBankReducer,
 // } from "./editEmployee/reducer";
-// import addDeveloperProjectsReducer from "./addProjects/reducer";
-// import ProjectsListReducer from "./projectsListing/reducer";
+import addDeveloperProjectsReducer from "./addProjects/reducer";
+import ProjectsListReducer from "./projectsListing/reducer";
 import addClientReducer from "./addClients/reducer";
-// import clientListReducer from "./clientListing/reducer";
+import clientListReducer from "./clientListing/reducer";
 // // import addTimeSheetReducer from "./addTimeSheet/reducer";
 // import timeSheetListReducer from "./timeSheetListing/reducers";
 // import viewProjectsDeatilsReducer from "./ViewProjects/reducer";
@@ -28,7 +28,7 @@ import addClientReducer from "./addClients/reducer";
 // import viewClientsDeatilsReducer from "./ViewClients/reducers";
 import editClientsReducer from "./editClients/reducer";
 // import addHolidaysReducer from "./addHolidays/reducers";
-// import holidayListReducer from "./holidayListing/reducers";
+import holidayListReducer from "./holidayListing/reducers";
 // import viewMonthlyTimeSheetReducer from "./viewMonthlytimesheet/reducer";
 // import {
 //   empLeaveListReducer,
@@ -42,7 +42,7 @@ import {
 // import viewDateWiseTimeSheetReducer from "./ViewDateWiseTimeshee/reducer";
 // import editHolidayReducer from "./editHoliday/reducer";
 // import empOverTimeReducer from "./getOverTime/reducer";
-// import deleteHolidayReducer from "./deteleHoliday/reducer";
+import deleteHolidayReducer from "./deteleHoliday/reducer";
 // import addLeavesReducer from "./Emp_addLeaves/reducer";
 // import addManualLeavesReducer from "./addManualLeave/reducer";
 // import {
@@ -69,10 +69,10 @@ export const rootReducers = () =>
     // editEmpExperienceReducer,
     // editEmpProjectReducer,
     // editEmpBankReducer,
-    // addDeveloperProjectsReducer,
-    // ProjectsListReducer,
+    addDeveloperProjectsReducer,
+    ProjectsListReducer,
     addClientReducer,
-    // clientListReducer,
+    clientListReducer,
     // addTimeSheetReducer,
     // timeSheetListReducer,
     // viewProjectsDeatilsReducer,
@@ -80,7 +80,7 @@ export const rootReducers = () =>
     // viewClientsDeatilsReducer,
     editClientsReducer,
     // addHolidaysReducer,
-    // holidayListReducer,
+    holidayListReducer,
     // viewMonthlyTimeSheetReducer,
 
     // empLeaveListReducer,
@@ -89,7 +89,7 @@ export const rootReducers = () =>
     // viewDateWiseTimeSheetReducer,
     // editHolidayReducer,
     // empOverTimeReducer,
-    // deleteHolidayReducer,
+    deleteHolidayReducer,
     // addLeavesReducer,
     // addManualLeavesReducer,
     // empLeaveListByIdReducer,

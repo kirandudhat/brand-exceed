@@ -170,7 +170,7 @@ export default function ViewEmployee() {
         <div className="ouremployee">
           <div className="employeeWrapper">
             {role == 1 ? (
-              <NavLink exact to="/admin/ouremployee" className="link">
+              <NavLink exact to="/ouremployee" className="link">
                 <span style={{ fontWeight: "bold", fontSize: "25px" }}>Employee Details</span>
               </NavLink>
             ) : (

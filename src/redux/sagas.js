@@ -4,10 +4,10 @@ import auth from "./auth/sagas";
 import empListSaga from "./employeeListing/sagas";
 import ViewEmpSaga from "./viewEmployee/sagas";
 // import editEmpSaga from "./editEmployee/sagas";
-// import addProjectSaga from "./addProjects/sagas";
-// import projectsListSaga from "./projectsListing/sagas";
+import addProjectSaga from "./addProjects/sagas";
+import projectsListSaga from "./projectsListing/sagas";
 // import addClientsSaga from "./addClients/sagas";
-// import ClientListSaga from "./clientListing/sagas";
+import ClientListSaga from "./clientListing/sagas";
 // // import addEmployeeTimesheetSaga from "./addTimeSheet/sagas"
 // import timeSheetSaga from "./timeSheetListing/sagas";
 // import ViewProjectSaga from "./ViewProjects/sagas";
@@ -15,14 +15,14 @@ import ViewEmpSaga from "./viewEmployee/sagas";
 // import ViewClientSaga from "./ViewClients/sagas";
 // import editClientsSaga from "./editClients/sagas";
 // import holidaysSaga from "./addHolidays/sagas";
-// import holidayListSaga from "./holidayListing/sagas";
+import holidayListSaga from "./holidayListing/sagas";
 // import ViewMonthlyTimesheetSaga from "./viewMonthlytimesheet/sagas";
 // import empLeaveListSaga from "./EmpLeaveList/sagas";
 // import LeaveStatuaUpdateSaga from "./Approve_reject_leaves/sagas";
 // import ViewDateWiseTimesheetSaga from "./ViewDateWiseTimeshee/saga";
 // import editHolidaysSaga from "./editHoliday/saga";
 // import empOverTimeSaga from "./getOverTime/sagas";
-// import deleteholidaySaga from "./deteleHoliday/sagas";
+import deleteholidaySaga from "./deteleHoliday/sagas";
 // import emp_add_leavesSaga from "./Emp_addLeaves/sagas";
 // import manualLeavesSaga from "./addManualLeave/sagas";
 // import addEmployeeTimesheetSaga from "./Emp_addTimeSheet/sagas";
@@ -38,10 +38,10 @@ export default function* rootSaga() {
     empListSaga(),
     addClientSaga(),
     ViewEmpSaga(),
-    // addProjectSaga(),
-    // projectsListSaga(),
+    addProjectSaga(),
+    projectsListSaga(),
     // addClientsSaga(),
-    // ClientListSaga(),
+    ClientListSaga(),
     // addEmployeeTimesheetSaga(),
     // timeSheetSaga(),
     // ViewProjectSaga(),
@@ -49,14 +49,14 @@ export default function* rootSaga() {
     // ViewClientSaga(),
     editClientsSaga(),
     // holidaysSaga(),
-    // holidayListSaga(),
+    holidayListSaga(),
     // ViewMonthlyTimesheetSaga(),
     // empLeaveListSaga(),
     // LeaveStatuaUpdateSaga(),
     // ViewDateWiseTimesheetSaga(),
     // editHolidaysSaga(),
     // empOverTimeSaga(),
-    // deleteholidaySaga(),
+    deleteholidaySaga(),
     // emp_add_leavesSaga(),
     // manualLeavesSaga(),
   ]);

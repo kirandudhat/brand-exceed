@@ -1,0 +1,149 @@
+.smartphone {
+    position: relative;
+    width: 360px;
+    height: 600px;
+    margin: auto;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
+  }
+  .smartphone:before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+  .smartphone:before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+  .smartphone .content {
+    width: 330px;
+    height: 480px;
+    background: white;
+  }
+  .tablet {
+    position: relative;
+    width: 506px;
+    height: 390px;
+    margin: auto;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
+    margin-left: 110px;
+  }
+  .tablet:before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+  .tablet:after {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50%;
+    bottom: -65px;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 50%;
+  }
+  .tablet .content {
+    width: 476px;
+    height: 275px;
+    background: white;
+    margin: -1px;
+  }
+  .laptop {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    border-width: 24px 24px 80px;
+    background-color: black;
+    margin-left: 105px;
+    top: 30%;
+  }
+  .laptop:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 499px;
+    height: 26px;
+    margin: 25px 0 0 -22px;
+    background: black;
+    border-radius: 6px;
+  }
+  .laptop:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 14px;
+    bottom: -94px;
+    left: 50%;
+    transform: translate(-50%);
+    background: #f1f1f1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 1;
+  }
+  .laptop .content {
+    width: 453px;
+    height: 254px;
+    overflow: hidden;
+    border: none;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+  }
+  .radiobtn .MuiFormControlLabel-label{
+    font-size: 12px !important;
+    margin-right: 0;
+  }
+  .radiobtn{
+    margin-left: -11px;
+    margin-right: 10px !important;
+    margin-top: -13px;
+  }
+  .themeform-control{
+    /* display: block; */
+    height: 35px;
+    padding: 6px 16px;
+    font-size: 13px !important;
+    line-height: 1.52857143;
+    color: #3a3f51;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #dde6e9;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}

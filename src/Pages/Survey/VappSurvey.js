@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./../OurEmployee/OurEmployee.css";
 import "./survey.css";
 import FormLabel from "@mui/material/FormLabel";
@@ -28,16 +28,27 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useHistory } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import { getUser } from '../../Utils/common/Common';
+import apiClient from '../../services/axois';
 
 function VappSurvey({onChange, survey, handleSubmit}) {
     const [time, setTime] = useState(false);
     const [showHeader,setShowHeader] = useState(false)
-       // const [savebtn,setSavebtn] = useState([])
+    const [themes, setThemes] = useState([]);
 
-    // const handleSaveClick = () =>{
-    //     setSavebtn([...savebtn,survey])
-    // }
-    // console.log("savebtn",savebtn)
+    let loggedInUser = getUser()
+    useEffect(()=>{
+      let url = `/theme/${loggedInUser.id}`
+        if(loggedInUser.role > 2){
+          url = `/theme/${loggedInUser.parent_id}`
+        }
+      apiClient.get(url).then((response) => {
+       if(response.data.data.length){
+        setThemes(response.data.data)
+       }
+      });
+  },[])
+
     const history = useHistory();
   return (
     <div>
@@ -51,7 +62,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             >
               Name <span className='star'>*</span>
             </FormLabel>
-            <input name="name" className="col-md-7 col-sm-7 form-control" value={survey.name} onChange={onChange}/>
+            <input name="name" className="col-md-7 col-sm-7 form-control" value={survey.name} onChange={(e)=>onChange(e)}/>
           </div>
           
           <div className="d-flex formInputs surveyRadio">
@@ -69,7 +80,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 defaultValue="horizontal"
                 className="survey-lbl"
                 value={survey.layout}
-                onChange={onChange}
+                onChange={(e)=>onChange(e)}
               >
                 <FormControlLabel
                   value="horizontal"
@@ -104,7 +115,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 defaultValue="horizontal"
                 className="survey-lbl"
                 value={survey.survey_type}
-                onChange={onChange}
+                onChange={(e)=>onChange(e)}
               >
                 <FormControlLabel
                   value="app_survey"
@@ -141,7 +152,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             >
               Header Text <span className='star'>*</span>
             </FormLabel>
-            <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={onChange}/>
+            <input name="headerText" value={survey.headerText} className="col-md-7 col-sm-7 form-control" onChange={(e)=>onChange(e)}/>
           </div>
           <div className="d-flex formInputs" >
               <FormLabel
@@ -151,7 +162,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 Header Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <Form.Control type="file" name='headerImage' onChange={onChange}/>            </div> </>
+              <Form.Control type="file" name='headerImage' onChange={(e)=>onChange(e)}/>            </div> </>
             : "" }
             <div className="d-flex formInputs" >
               <FormLabel
@@ -161,7 +172,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 Welcome Image
               </FormLabel>
               {/* <input type="file" /> */}
-              <Form.Control type="file" name='welcomeImage' onChange={onChange}/>            </div>
+              <Form.Control type="file" name='welcomeImage' onChange={(e)=>onChange(e)}/>            </div>
             <div className="d-flex formInputs" >
               <FormLabel
                 id="demo-form-control-label-placement"
@@ -170,7 +181,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
                 Thank you Image <span className='star'>*</span>
               </FormLabel>
               {/* <input type="file" /> */}
-              <Form.Control type="file"  name='thankyouImage' onChange={onChange}/>            </div>
+              <Form.Control type="file"  name='thankyouImage' onChange={(e)=>onChange(e)}/>            </div>
             <div className="d-flex formInputs">
               <FormLabel
                 id="demo-form-control-label-placement"
@@ -178,7 +189,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
               >
                 Thank You Duration (Seconds)
               </FormLabel>
-              <input name="thankyouDuration" className="col-md-7 col-sm-7 form-control" value={survey.thankyouDuration} onChange={onChange}/>
+              <input type="number" name="thankyouDuration" className="col-md-7 col-sm-7 form-control" value={survey.thankyouDuration} onChange={(e)=>onChange(e)}/>
             </div>
           
           </div>
@@ -196,11 +207,17 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             style={{height:'38px'}}
             name='theme'
             value={survey.theme}
-            onChange={onChange}
+            onChange={(e)=>onChange(e)}
           >
-            <option value="Default">
-              Default
-            </option>
+           {
+              themes && themes.length && themes.map((item) => {
+                return(
+                <option value={item.id}>
+                  {item.theme_name}
+                </option>
+                )
+              })
+            }
           </select>
           </div>
           <div className="d-flex formInputs">
@@ -212,7 +229,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             </FormLabel>
             <input className="col-md-7 col-sm-7 form-control"  name='accessPin'
             value={survey.accessPin}
-            onChange={onChange}/>
+            onChange={(e)=>onChange(e)}/>
           </div>
           <div className="d-flex formInputs">
             <FormLabel
@@ -228,7 +245,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             {time ? 
             <input className="col-md-4 col-sm-4 form-control" name='timeOut'
             value={survey.timeOut}
-            onChange={onChange}/> :
+            onChange={(e)=>onChange(e)}/> :
             ""
           }
           </div>
@@ -242,7 +259,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='saveOnTime'
             value={survey.saveOnTime}
-            onChange={onChange}/>
+            onChange={(e)=>onChange(e)}/>
           </div> : ""}
           <div className="formInputs d-flex align-items-center">
             <FormLabel
@@ -252,7 +269,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
               Loop Survey
             </FormLabel>
             <Checkbox inputProps={{ "aria-label": "controlled" }} name='loopSurvey'
-              value={survey.loopSurvey} onChange={onChange}/>
+              value={survey.loopSurvey} onChange={(e)=>onChange(e)}/>
           </div>
           <div className="formInputs d-flex align-items-center">
             <FormLabel
@@ -261,7 +278,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             >
               PDF-show Answered Questions Only
             </FormLabel>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} name='pdf' value={survey.pdf} onChange={onChange}/>
+            <Checkbox inputProps={{ "aria-label": "controlled" }} name='pdf' value={survey.pdf} onChange={(e)=>onChange(e)}/>
           </div>
           <div className="formInputs d-flex align-items-center">
             <FormLabel
@@ -270,7 +287,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             >
               Background Location Capture
             </FormLabel>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} name='backgroundLoc' value={survey.backgroundLoc} onChange={onChange}/>
+            <Checkbox inputProps={{ "aria-label": "controlled" }} name='backgroundLoc' value={survey.backgroundLoc} onChange={(e)=>onChange(e)}/>
           </div>
           <div className="formInputs d-flex align-items-center">
             <FormLabel
@@ -279,7 +296,7 @@ function VappSurvey({onChange, survey, handleSubmit}) {
             >
               Is Location Capture Mandatory?
             </FormLabel>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} name='captureMandatory' value={survey.captureMandatory} onChange={onChange}/>
+            <Checkbox inputProps={{ "aria-label": "controlled" }} name='captureMandatory' value={survey.captureMandatory} onChange={(e)=>onChange(e)}/>
           </div>
           </div>
         

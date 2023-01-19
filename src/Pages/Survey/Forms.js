@@ -11,7 +11,7 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Children, useState } from "react";
+import { Children, useRef, useState } from "react";
 import { convertToHTML } from "draft-convert";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -22,101 +22,93 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { object } from "yup";
+import JoditEditor from "jodit-react";
 
 
-export const formController = (name, data, formData, handleChange, handleChecked) => {
-  console.log('name', name, Object.keys(data)[0].split('_')[0]);
+export const formController = (name, data, formData, handleChange,handleBlur, handleChecked, handleDelete) => {
   
   switch(Object.keys(data)[0].split('_')[0]) {
     case 'TextBox':
-     return <TextBox data={data} formData={formData}  handleChange={handleChange}/>;
+     return <TextBox data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} />;
     case 'SingleLine':
-      return <SingleLine data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <SingleLine data={data} formData={formData} handleBlur={handleBlur}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'MultiLine':
-      return <MultiLine data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <MultiLine data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'NumberInput':
-      return <NumberInput data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <NumberInput data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'NumberWithCodeInput':
-      return <NumberWithCodeInput data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <NumberWithCodeInput data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'DecimalInput':
-      return <DecimalInput data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <DecimalInput data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'Email':
-      return <Email data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <Email data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'PhoneNumber':
-      return <PhoneNumber data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <PhoneNumber data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'RadioButton':
-      return <RadioButton data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <RadioButton data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'RadioButtonWithOther':
-      return <RadioButtonWithOther data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <RadioButtonWithOther data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'Dropdown':
-      return <Dropdown data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <Dropdown data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'DropdownWithOther':
-      return <DropdownWithOther data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <DropdownWithOther data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'CheckBoxList':
-      return <CheckBoxList data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <CheckBoxList data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'CheckBoxListWithOther':
-      return <CheckBoxListWithOther data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <CheckBoxListWithOther data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'TwoColumnCheckBox':
-      return <TwoColumnCheckBox data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <TwoColumnCheckBox data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'NumberPoint':
-      return <NumberPoint data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <NumberPoint data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'Rating':
-      return <Rating data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <Rating data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'YesNo':
-      return <YesNo data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <YesNo data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'TrueFalse':
-      return <TrueFalse data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <TrueFalse data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'MaleFemale':
-      return <MaleFemale data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <MaleFemale data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'Date':
-      return <Date data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <Date data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'Time':
-      return <Time data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <Time data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'DateTime':
-      return <DateTime data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <DateTime data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'NetPromoterScore':
-      return <NetPromoterScore data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <NetPromoterScore data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'BarCodeScanner':
-      return <BarCodeScanner data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <BarCodeScanner data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     case 'MapCoordinates':
-      return <MapCoordinates data={data} formData={formData}  handleChange={handleChange} handleChecked={handleChecked}/>;
+      return <MapCoordinates data={data} formData={formData}  handleChange={handleChange} handleDelete={handleDelete} handleChecked={handleChecked}/>;
     default:
      return null;
    }
 }
 
 
-export const TextBox = ({data,formData, handleChange}) => {
+export const TextBox = ({data,formData, handleChange,handleDelete}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field);
+  const editor = useRef(null);
 
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
-  const [convertedContent, setConvertedContent] = useState(null);
-  const handleEditorChange = (state) => {
-    setEditorState(state);
-    convertContentToHTML();
-  };
-  const convertContentToHTML = () => {
-    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-    setConvertedContent(currentContentAsHTML);
-  };
-  console.log("editorState",convertedContent);
+ console.log("findData?.text",field);
   return (
     <>
     <div className="formfield" style={{padding:15}}>
-      <div className="form-header">
+      <div className="form-header" style={{display:'contents'}}>
         <div className="form-area">
-          {/* <PreviewIcon/>
-            <DeleteIcon/> */}
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={handleEditorChange}
-            wrapperClassName="wrapper-class"
-            editorClassName="editor-class"
-            toolbarClassName="toolbar-class"
-          />
+          <div style={{display: 'flex', justifyContent: 'end'}} onClick={()=>handleDelete(field)}>
+            <DeleteIcon />
+          </div>
+        <JoditEditor
+              ref={editor}
+              name='text'
+              value={findData?.text} 
+              onChange={(e)=>handleChange(e, field)}
+              tabIndex={1} // tabIndex of textarea
+              // onBlur={onChange} // preferred to use only this option to update the content for performance reasons
+              // onChange={(e) => onChange({value: e, name: 'endPageTer'})}
+            />
         </div>
       </div>
       </div>
@@ -124,14 +116,18 @@ export const TextBox = ({data,formData, handleChange}) => {
   );
 };
 
-export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
+export const SingleLine = ({data,formData, handleChange,handleBlur,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field);
 
   return (
     <>
       <div style={{ padding: "10px" }}>
+      <div className="d-flex">
         <input type="text" placeholder="type your question here...." variant="standard" className="singliLine-header" name="question" checked={findData.question} onChange={(e)=>handleChange(e, field)}/>
+
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
        <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -158,7 +154,7 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
           >
             Variable Name
           </FormLabel>
-          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} placeholder="Define variable name"/>
+          <input type="text" variant="standard" className="col-lg-7 col-md-7 form-control" name="variableName" value={findData.variableName} onChange={(e)=>handleChange(e, field)} onBlur={(e)=>handleBlur(e)} placeholder="Define variable name"/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -249,13 +245,16 @@ export const SingleLine = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
+export const MultiLine = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -355,13 +354,17 @@ export const MultiLine = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
+export const NumberInput = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
+  
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -479,13 +482,16 @@ export const NumberInput = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}) => {
+export const NumberWithCodeInput = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -879,13 +885,16 @@ export const NumberWithCodeInput = ({data,formData, handleChange, handleChecked}
   );
 };
 
-export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
+export const DecimalInput = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1012,13 +1021,16 @@ export const DecimalInput = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const Email = ({data,formData, handleChange, handleChecked}) => {
+export const Email = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1089,13 +1101,16 @@ export const Email = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
+export const PhoneNumber = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" placeholder="type your question here...." className="singliLine-header" name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1166,13 +1181,16 @@ export const PhoneNumber = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
+export const RadioButton = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1281,7 +1299,7 @@ export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }}  name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }}  name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1297,13 +1315,16 @@ export const RadioButton = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked}) => {
+export const RadioButtonWithOther = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1412,7 +1433,7 @@ export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1428,13 +1449,16 @@ export const RadioButtonWithOther = ({data,formData, handleChange, handleChecked
     </>
   );
 };
-export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
+export const Dropdown = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1561,7 +1585,7 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1577,13 +1601,16 @@ export const Dropdown = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) => {
+export const DropdownWithOther = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1710,7 +1737,7 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         <div className="d-flex formInputs">
           <FormLabel
@@ -1726,13 +1753,16 @@ export const DropdownWithOther = ({data,formData, handleChange, handleChecked}) 
     </>
   );
 };
-export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
+export const CheckBoxList = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -1893,20 +1923,23 @@ export const CheckBoxList = ({data,formData, handleChange, handleChecked}) => {
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         </div>
       </div>
     </>
   );
 };
-export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecked}) => {
+export const CheckBoxListWithOther = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2065,20 +2098,23 @@ export const CheckBoxListWithOther = ({data,formData, handleChange, handleChecke
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         </div>
       </div>
     </>
   );
 };
-export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) => {
+export const TwoColumnCheckBox = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2239,7 +2275,7 @@ export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) 
           >
             Randomize Options
           </FormLabel>
-          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.questionRequired}  onChange={(e)=>handleChecked(e, field)}/>
+          <Checkbox inputProps={{ "aria-label": "controlled" }} name="randomizeOption" checked={findData.randomizeOption}  onChange={(e)=>handleChecked(e, field)}/>
         </div>
         </div>
       </div>
@@ -2247,13 +2283,16 @@ export const TwoColumnCheckBox = ({data,formData, handleChange, handleChecked}) 
   );
 };
 
-export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
+export const NumberPoint = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2402,13 +2441,16 @@ export const NumberPoint = ({data,formData, handleChange, handleChecked}) => {
   );
 };
 
-export const Rating = ({data,formData, handleChange, handleChecked}) => {
+export const Rating = ({data,formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2488,13 +2530,16 @@ export const Rating = ({data,formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const YesNo = ({data, formData, handleChange, handleChecked}) => {
+export const YesNo = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2539,13 +2584,16 @@ export const YesNo = ({data, formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
+export const TrueFalse = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2590,13 +2638,16 @@ export const TrueFalse = ({data, formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
+export const MaleFemale = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2641,14 +2692,17 @@ export const MaleFemale = ({data, formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const Date = ({data, formData, handleChange, handleChecked}) => {
+export const Date = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   const [value, setValue] = useState(dayjs('2022-04-07'));
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2766,13 +2820,16 @@ export const Date = ({data, formData, handleChange, handleChecked}) => {
   );
 };
 
-export const Time = ({data, formData, handleChange, handleChecked}) => {
+export const Time = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2841,13 +2898,16 @@ export const Time = ({data, formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const DateTime = ({data, formData, handleChange, handleChecked}) => {
+export const DateTime = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -2927,13 +2987,16 @@ export const DateTime = ({data, formData, handleChange, handleChecked}) => {
     </>
   );
 };
-export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) => {
+export const NetPromoterScore = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel
@@ -3034,13 +3097,16 @@ export const NetPromoterScore = ({data, formData, handleChange, handleChecked}) 
     </>
   );
 };
-export const BarCodeScanner = ({data, formData, handleChange, handleChecked}) => {
+export const BarCodeScanner = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="formInputs">
           <FormLabel
@@ -3075,13 +3141,16 @@ export const BarCodeScanner = ({data, formData, handleChange, handleChecked}) =>
     </>
   );
 };
-export const MapCoordinates = ({data, formData, handleChange, handleChecked}) => {
+export const MapCoordinates = ({data, formData, handleChange,handleDelete, handleChecked}) => {
   let field = Object.keys(data)[0]
   let findData = formData.find((item)=>item.field === field)
   return (
     <>
       <div style={{ padding: "10px" }}>
+        <div className="d-flex">
         <input type="text" variant="standard" className="singliLine-header" placeholder="type your question here...." name="question" value={findData.question} onChange={(e)=>handleChange(e, field)}/>
+        <div onClick={()=>handleDelete(field)}>   <DeleteIcon/> </div>
+        </div>
         <div className="formfield">
         <div className="d-flex formInputs">
           <FormLabel

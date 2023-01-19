@@ -140,7 +140,7 @@ const AddProject = () => {
                 dispatch({ type: EDIT_PROJECTS, payload: values, id: id });
                 history.push("/admin/project");
               } else {
-                dispatch({ type: ADD_DEVELOPER_PROJECTS, payload: values });
+                // dispatch({ type: ADD_DEVELOPER_PROJECTS, payload: values });
                 history.push("/admin/project");
               }
             }}

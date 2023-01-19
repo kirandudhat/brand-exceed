@@ -65,7 +65,6 @@ export function* RejectleaveStatusSaga({ payload }) {
 }
 // EMPLOYEE  STATUS UPDATE saga
 export function* employeeStatusUpdateSaga({ payload }) {
-  debugger
   yield put(employeeStatusUpdateRequest());
 
   try {

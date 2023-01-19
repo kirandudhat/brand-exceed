@@ -18,14 +18,14 @@ const clientListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                clientList: action.payload.rows
+                clientList: action.payload
             }
         }
         case CLIENT_LIST_FAILUER:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.message,
+                error: action.payload,
             }
 
         default:

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 
-const SideBarItem = ({ data, onChange }) => {
+const SideBarItem = ({ data, selectPage, handleDubbuleClickEvent }) => {
   // console.log("sideber",onChange)
   const [{ opacity }, drag] = useDrag({
     item: data,
@@ -9,9 +9,8 @@ const SideBarItem = ({ data, onChange }) => {
       opacity: monitor.isDragging() ? 0.4 : 1
     })
   });
-  console.log("drag",drag);
   return (
-    <div className="sideBarItem" ref={drag} style={{ opacity }}>
+    <div className="sideBarItem" onDoubleClick={()=> handleDubbuleClickEvent(data)} ref={drag} style={{ opacity }}>
       {data.component.type}
     </div>
   );

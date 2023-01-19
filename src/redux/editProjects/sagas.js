@@ -16,7 +16,7 @@ export function* editProjectDeatilsSaga( payload,id ) {
     
     if (result.status == true) {
       yield put(editProjectSuccess({ ...payload }));
-      yield call(getProjectsListSagas)
+      // yield call(getProjectsListSagas)
       toast.success(result.message);
     
     } else {

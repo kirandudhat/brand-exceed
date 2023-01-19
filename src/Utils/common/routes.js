@@ -43,13 +43,19 @@ import { Layers, MenuBook, Person } from "@material-ui/icons";
 import Data from "../../Pages/data/data";
 import Theme from "../../Pages/Theme/Theme";
 import Users from "../../Pages/users/Users";
+import SurveyResponse from "../../Pages/Survey/SurveyResponse";
+import Responses from "../../Components/SurveyPage/Responses";
+import AddUserForm from "../../Pages/users/AddUserForm";
+import AddThemeForm from "../../Pages/Theme/AddThemeForm";
+
 
 export const navLinks = [
-  { to: "/", name: "DashBoard", permission: [1, 2], icon: <GridViewIcon /> },
-  { to: "/survey", name: "Survey", permission: [1, 2], icon: <MenuBook /> },
-  { to: "/data", name: "Data", permission: [1, 2], icon: <StorageIcon /> },
-  { to: "/users", name: "Users", permission: [1, 2], icon: <Person /> },
-  { to: "/themes", name: "Themes", permission: [1, 2], icon: <Layers /> },
+  { to: "/", name: "DashBoard", permission: [1, 2, 3, 4,5], icon: <GridViewIcon /> },
+  { to: "/survey", name: "Survey", permission: [1, 2, 3, 4,5], icon: <MenuBook /> },
+  { to: "/data", name: "Data", permission: [1, 2, 3, 4,5], icon: <StorageIcon /> },
+  { to: "/company", name: "Company", permission: [1], icon: <Person /> },
+  { to: "/users", name: "Users", permission: [1, 2,3,4], icon: <Person /> },
+  { to: "/themes", name: "Themes", permission: [1, 2,3,4], icon: <Layers /> },
   
 ];
 
@@ -57,57 +63,87 @@ export const routes = [
   {
     path: "/",
     name: "DashBoard",
-    permission: [1, 2],
+    permission: [1, 2, 3,4,5],
     component: <DashBoard />,
   },
   {
     path: "/survey",
     name: "Survey",
-    permission: [1, 2],
+    permission: [1, 2, 3,4,5],
     component: <Survey />,
   },
   {
     path: "/survey/createsurvey",
     name: "CreateSurvey",
-    permission: [1, 2],
+    permission: [1, 2, 3,4],
     component: <CreateSurvey />,
   },
   {
     path: "/survey/CreateSurveyForm",
     name: "CreateSurveyForm",
-    permission: [1, 2],
+    permission: [1, 2, 3, 4],
     component: <CreateSurveyForm />,
   },
   {
     path: "/data",
     name: "Data",
-    permission: [1, 2],
+    permission: [1, 2, 3, 4,5],
     component: <Data />,
   },
   {
     path: "/users",
     name: "Users",
-    permission: [1, 2],
+    permission: [1, 2, 3, 4],
+    component: <Users />,
+  },
+  {
+    path: "/company",
+    name: "Company",
+    permission: [1],
     component: <Users />,
   },
   {
     path: "/themes",
     name: "Themes",
-    permission: [1, 2],
+    permission: [1, 2, 3, 4],
     component: <Theme />,
   },
+  {
+    path: "/themes/add-edit-themes",
+    name: "AddEditThemes",
+    permission: [1, 2, 3, 4],
+    component: <AddThemeForm />,
+  },
+  {
+    path: "/Suveyresponse",
+    name: "surveyResponse",
+    permission: [1, 2, 3, 4, 5],
+    component: <Responses />,
+  },
+  {
+    path: "/company/add-edit-User",
+    name: "AddUser",
+    permission: [1],
+    component: <AddUserForm />,
+  },
+  {
+    path: "/users/add-edit-User",
+    name: "AddUser",
+    permission: [1, 2, 3, 4],
+    component: <AddUserForm />,
+  }
 ];
 
-export const getByRoleRoutes = (role) =>
-  routes.filter((route) => route.permission.includes(role));
+export const getByRoleRoutes = (role) =>{
+  return routes.filter((route) => route.permission.includes(role));}
 
 export const getBasePath = (role) => {
 
   let basePath = "";
 
-  if (role === 1) {
-    basePath = "/admin";
-  }
+  // if (role === 1) {
+  //   basePath = "/admin";
+  // }
 
   return basePath;
 };
@@ -119,9 +155,9 @@ export const getPath = (path, basePath) => {
     newPath = "";
   } else if (path === "/" && basePath !== "") {
     // Removing / in the end of dashboard url
-    newPath = `${basePath}`;
+    newPath = path;
   } else {
-    newPath = `${basePath}${path}`;
+    newPath = path;
   }
 
   return newPath;

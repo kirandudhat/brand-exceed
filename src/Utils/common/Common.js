@@ -94,6 +94,5 @@ export async function uploadimagefunction(paylode) {
 
   formData.append("profile", paylode);
   let imageUpload = await imageUplode(formData);
-  console.log("imageUpload", imageUpload);
   return imageUpload;
 }

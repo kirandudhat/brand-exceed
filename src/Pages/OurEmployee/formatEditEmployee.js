@@ -2,7 +2,6 @@ import { formInitialValue } from "./FormInitialValue";
 export const formatEditEmployee = (editData) => {
   // imgURL: `${process.env.REACT_APP_IMAGE_URL}`,
   const imgurl = " https://qtech-bucket.s3.ap-south-1.amazonaws.com/";
-  console.log("editData", editData);
   const {
     name,
     username,

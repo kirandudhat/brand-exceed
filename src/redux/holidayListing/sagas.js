@@ -1,4 +1,5 @@
 import { put } from "@redux-saga/core/effects";
+import { toast } from "react-toastify";
 import { all, takeEvery, call } from "redux-saga/effects";
 import { getholidayListing } from "../../services/getHolidayListServices";
 import {
@@ -14,11 +15,11 @@ export function* getHolidayListSagas() {
     const result = yield call(getholidayListing);
     
     if (result.status == true) {
-      yield put(holidayListingSuccess(result.result));
-      // toast.success(" Successfully")
+      yield put(holidayListingSuccess(result.data));
+      toast.success("Get Theme Successfully")
     } else {
       yield put(holidayListingFailure(result));
-      // toast("FailListing")
+      toast("FailListing")
     }
   } catch (error) {
     yield put(holidayListingFailure(error.response.data));

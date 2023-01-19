@@ -31,13 +31,13 @@ const OurEmployee = () => {
 
   const isLoading = useSelector((state) => state.empListReducer.loading);
   const handleViewEmployee = (id) => {
-    History.push(`/admin/ouremployee/viewemployee/${id}`);
+    History.push(`/ouremployee/viewemployee/${id}`);
 
     dispatch({ type: VIEW_EMPLOYEE_DETAILS, payload: id });
   };
 
   const handleEditEmployee = (id) => {
-    History.push(`/admin/ouremployee/edit/${id}`);
+    History.push(`/ouremployee/edit/${id}`);
   };
 
   const handleDisableEmployee = (e, id, is_approve) => {
@@ -163,7 +163,7 @@ const OurEmployee = () => {
       <div className="ouremployee">
         <div className="employeeWrapper">
           <span style={{ fontWeight: "bold" }}>OUR EMPLOYEES</span>
-          <NavLink to="/admin/ouremployee/add">
+          <NavLink to="/ouremployee/add">
             {/* <Button className="btn btn-dark btn-lg"> ADD EMPLOYEE</Button> */}
             <button className="btncolor" variant="contained" type="submit">
               ADD EMPLOYEE

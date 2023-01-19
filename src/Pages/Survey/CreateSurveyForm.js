@@ -37,7 +37,7 @@ function CreateSurveyForm() {
   
     <div>
     <DndProvider backend={Backend}>
-      <Example />
+      <Example surveyData={surveyData}/>
     </DndProvider>
     </div>
 

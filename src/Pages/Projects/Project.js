@@ -18,15 +18,15 @@ const Project = () => {
   );
   const isLoading = useSelector((state) => state.ProjectsListReducer.loading);
   console.log("isLoading", isLoading);
-  React.useEffect(() => {
-    dispatch({ type: VIEW_PROJECTS_LIST });
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch({ type: VIEW_PROJECTS_LIST });
+  // }, []);
 
   const handleEditProject = (id) => {
-    history.push(`/admin/project/edit/${id}`);
+    history.push(`/project/edit/${id}`);
   };
   const handleViewProject = (id) => {
-    history.push(`/admin/project/view/${id}`);
+    history.push(`/project/view/${id}`);
     dispatch({ type: VIEW_PROJECTS_DETAILS, payload: id });
   };
   const getformattedDate = (list) => {
@@ -107,7 +107,7 @@ const Project = () => {
           <span style={{ fontWeight: "bold", fontSize: "25px" }}>
            PROJECT LIST
           </span>
-          <NavLink to="/admin/project/add">
+          <NavLink to="/project/add">
             <button className="btncolor" variant="contained" type="submit">
               ADD PROJECTS
             </button>

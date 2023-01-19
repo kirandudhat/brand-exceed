@@ -18,7 +18,6 @@ const TextBox = ({data,formData, handleChange}) => {
       let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
       setConvertedContent(currentContentAsHTML);
     };
-    console.log("editorState",convertedContent);
     return (
       <>
       <div className="formfield" style={{padding:15}}>

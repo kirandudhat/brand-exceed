@@ -10,7 +10,6 @@ const DropZone = ({ data,style, onDrop, isLast, className,selectPage }) => {
     accept: ACCEPTS,
     
     drop: (item, monitor) => {
-      console.log("data, item",data, item);
       onDrop(data, item);
     },
     canDrop: (item, monitor) => {
@@ -70,7 +69,6 @@ const DropZone = ({ data,style, onDrop, isLast, className,selectPage }) => {
   });
 
   const isActive = isOver && canDrop;
-  console.log("dropzone", drop)
   return (
     <div
     style={!canDrop ? {} : style}

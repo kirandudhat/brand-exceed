@@ -41,9 +41,9 @@ const AddTimesheet = () => {
   const projectList = useSelector(
     (state) => state.ProjectsListReducer.projectsList
   );
-  useEffect(() => {
-    dispatch({ type: VIEW_PROJECTS_LIST });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: VIEW_PROJECTS_LIST });
+  // }, []);
 
   const handleProjectIdSelect = (
     selectedList,

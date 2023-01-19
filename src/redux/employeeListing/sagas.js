@@ -14,7 +14,7 @@ export function* getEmployeeListSagas() {
     const result = yield call(employeeListing);
 
     // if (result.status == true) {
-      yield put(empListingSuccess(result.data));
+      yield put(empListingSuccess(result));
       // toast.success(" Successfully");
    
   } catch (error) {

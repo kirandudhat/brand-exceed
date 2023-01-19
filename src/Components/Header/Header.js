@@ -31,7 +31,7 @@ const Header = () => {
         <img src={logo} className="main-logo" alt="logo" />
         </div>
         <div className="navbarWrapper">
-          {role === 2 ? (
+          {/* {role === 2 ? (
             <button
               className="btn btn-outline-greay my-2 my-sm-0"
               type="submit"
@@ -39,10 +39,10 @@ const Header = () => {
             >
               <AccountCircleIcon fontSize="large" />
             </button>
-          ) : (
+           ) : (
             ""
-          )}
-
+          )} 
+ */}
           <Model />
         </div>
       </div>
